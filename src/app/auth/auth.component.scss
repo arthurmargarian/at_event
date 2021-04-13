@@ -1,5 +1,59 @@
-.icon-slogan {
-  margin: 60px auto;
-  display: flex;
-  align-items: center;
+.auth-main {
+  background-image: url("../../assets/bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+
+  .container {
+    padding-top: 8%;
+
+    img {
+      margin: 0 auto;
+      display: block;
+      padding: 30px 0 20px 0;
+    }
+
+    .content {
+      background: white;
+      border-radius: 10px;
+      min-height: 450px;
+      max-height: 700px;
+      overflow: hidden;
+      box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.4);
+      padding: 0 30px;
+
+      .connect-with {
+        padding-left: 30px;
+
+        span {
+          text-align: center;
+          display: block;
+          font-size: 20px;
+          margin-top: 15px;
+        }
+      }
+
+      .or {
+        text-align: center;
+
+        &::before {
+          content: '';
+          width: 1px;
+          display: block;
+          margin: 0 auto;
+          background: #001952;
+          height: 43%;
+        }
+
+        &::after {
+          content: '';
+          display: block;
+          margin: 0 auto;
+          width: 1px;
+          background: #001952;
+          height: 52%;
+        }
+      }
+    }
+  }
 }

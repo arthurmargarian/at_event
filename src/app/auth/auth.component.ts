@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthComponent implements OnInit {
 
-  constructor() {
+  constructor(private router: Router) {
   }
 
   ngOnInit(): void {
+    this.router.navigate(['sign-in']);
   }
 }

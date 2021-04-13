@@ -1,0 +1,60 @@
+@import "variables";
+
+.my-btn {
+  min-width: 70px;
+  line-height: 14px;
+  padding: 5px 10px;
+  border-radius: 3px !important;
+  border: 1px solid #e5e5e5;
+  display: flex;
+  align-items: center !important;
+  justify-content: center !important;
+  -ms-flex-pack: center !important;
+  box-shadow: 0 0 2px rgba(0, 0, 0, .07) !important;
+  color: #495962;
+  font-weight: 600;
+  max-height: 26px;
+  font-size: $font-size-sm;
+  background: none;
+  white-space: nowrap;
+  text-decoration: none;
+  margin: 0.25rem;
+  cursor: pointer;
+  transition: 0.2s;
+
+  &:hover {
+    background-color: #f7fafb;
+    border: 1px solid rgba(240, 151, 72, 0.75);
+    color: $ae-color;
+  }
+
+  &:focus {
+    border-color: #e5e5e5;
+    background-color: #e4ebef;
+  }
+
+  .icon {
+    color: $ae-color;
+    font-size: $font-size-md;
+  }
+}
+
+.my-btn-sm{
+  @extend .my-btn;
+  font-size: $font-size-sm;
+  max-height: 18px;
+  min-width: auto;
+  line-height: 14px;
+  padding: 1px 5px;
+  border-radius: 2px !important;
+  border: 1px solid #e5e5e5;
+  background-color: #fff;
+  display: flex;
+  align-items: center !important;
+  justify-content: center !important;
+  -ms-flex-pack: center !important;
+  box-shadow: 0 0 2px rgba(0, 0, 0, .07) !important;
+  color: #495962;
+  font-weight: 600;
+}
+

@@ -1,0 +1,89 @@
+@import "~src/assets/general-styles/variables";
+
+.sing-in {
+  display: block;
+  text-align: center;
+  font-size: 20px;
+}
+
+.forget {
+  color: $font-color;
+  cursor: pointer;
+  font-size: $font-size-sm;
+  line-height: 35px;
+
+  &:hover {
+    color: $ae-color;
+  }
+}
+
+.sign-up-title{
+  color: $font-color;
+  font-size: $font-size-sm;
+  line-height: 35px;
+  margin-right: 10px;
+}
+
+.connect-with {
+  display: block;
+
+  .title {
+    text-align: left;
+    font-size: 15px;
+    line-height: 15px;
+  }
+
+  .facebook {
+    cursor: pointer;
+    height: 35px;
+    border-radius: 5px;
+    background-color: #3966B8;
+    transition: 0.2s;
+
+    &:hover {
+      background-color: #09459a;
+    }
+
+    .sign-in {
+      color: white;
+      font-size: 13px;
+      line-height: 35px;
+      margin-left: 20px;
+    }
+
+    .fa-facebook-f {
+      color: white;
+      font-size: 25px;
+      transform: translateY(4px);
+      margin-right: 5px;
+    }
+  }
+
+  .google {
+    margin-top: 10px;
+    cursor: pointer;
+    height: 35px;
+    border-radius: 5px;
+    background-color: #c43326;
+    transition: 0.2s;
+
+    &:hover {
+      background-color: #932a18;
+    }
+
+    .sign-in {
+      color: white;
+      font-size: 13px;
+      line-height: 35px;
+      margin-left: 20px;
+    }
+
+    .fa-google {
+      color: white;
+      font-size: 25px;
+      transform: translateY(4px);
+      margin-right: 5px;
+    }
+  }
+
+}

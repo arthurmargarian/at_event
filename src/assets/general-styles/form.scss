@@ -1,0 +1,49 @@
+@import "variables";
+
+.form-group {
+  margin-bottom: 5px;
+
+  .form-control {
+    font-size: 13px;
+    padding: 5px 8px;
+    height: 30px;
+    color: $font-color;
+
+    &.invalid {
+      border-color: #fc533d;
+    }
+
+    &:focus {
+      outline: 0;
+      box-shadow: none;
+      border-color: #F09548;
+    }
+  }
+
+  .form-messages {
+    min-height: 18px;
+    text-align: left;
+    display: block;
+    font-size: 12px;
+    font-style: italic;
+
+    div {
+      &.errors {
+        color: #fc533d;
+      }
+
+      &.warnings {
+        color: #fdb423;
+      }
+
+      &.infos {
+        color: #6d93ba;
+      }
+
+      span {
+        display: block;
+        line-height: 1.5;
+      }
+    }
+  }
+}
