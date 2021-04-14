@@ -37,4 +37,11 @@ export class LoginComponent implements OnInit {
       console.log(this.form.value);
     }
   }
+
+  public test() {
+    this.authService.test()
+      .subscribe(res => {
+        console.log(res);
+      });
+  }
 }
