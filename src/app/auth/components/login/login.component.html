@@ -1,39 +1,50 @@
 <span class="sing-in m-b-10"> Sign-in to Your Account</span>
-<form [formGroup]="form">
-  <div class="form-group">
-    <input type="email"
-           class="form-control"
-           formControlName="email"
-           [ngClass]="{'invalid': form.get('email').errors && (form.get('email').touched || submitted)}"
-           placeholder="Email">
-    <div class="form-messages">
-      <div class="errors" *ngIf="form.get('email').errors && (form.get('email').touched || submitted)">
-        <span *ngIf="form.get('email').errors.required">Required Field</span>
-        <span *ngIf="form.get('email').errors.email">Invalid Email</span>
+<div *ngIf="!isLoading;else loader">
+  <form [formGroup]="form">
+    <div class="form-group">
+      <input type="email"
+             class="form-control"
+             formControlName="email"
+             [ngClass]="{'invalid': (form.get('email').errors && (form.get('email').touched || submitted)) || requested && emailError}"
+             placeholder="Email">
+      <div class="form-messages">
+        <div class="errors" *ngIf="form.get('email').errors && (form.get('email').touched || submitted)">
+          <span *ngIf="form.get('email').errors.required">Required Field</span>
+          <span *ngIf="form.get('email').errors.email">Invalid Email</span>
+        </div>
+        <div class="errors" *ngIf="requested && emailError">
+          <span>User Not Found</span>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="form-group">
-    <input type="password"
-           formControlName="password"
-           [ngClass]="{'invalid': form.get('password').errors && (form.get('password').touched || submitted)}"
-           class="form-control"
-           placeholder="Password">
-    <div class="form-messages">
-      <div class="errors" *ngIf="form.get('password').errors && (form.get('password').touched || submitted)">
-        <span *ngIf="form.get('password').errors.required">Required Field</span>
+    <div class="form-group">
+      <input type="password"
+             formControlName="password"
+             [ngClass]="{'invalid': (form.get('password').errors && (form.get('password').touched || submitted)) || requested && passwordError}"
+             class="form-control"
+             placeholder="Password">
+      <div class="form-messages">
+        <div class="errors" *ngIf="form.get('password').errors && (form.get('password').touched || submitted)">
+          <span *ngIf="form.get('password').errors.required">Required Field</span>
+        </div>
+        <div class="errors" *ngIf="requested && passwordError">
+          <span>Wrong Password</span>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="form-group d-flex justify-content-xl-between">
-    <div class="d-flex">
-      <span class="forget">Forget Password?</span>
+    <div class="form-group d-flex justify-content-xl-between">
+      <div class="d-flex">
+        <span class="forget">Forget Password?</span>
+      </div>
+      <div class="d-flex">
+        <button type="submit" class="my-btn" (click)="signInSubmit()">Sign In</button>
+      </div>
     </div>
-    <div class="d-flex">
-      <button type="submit" class="my-btn" (click)="test()" >Sign In</button>
-    </div>
-  </div>
-</form>
+  </form>
+</div>
+<ng-template #loader>
+  <app-loader></app-loader>
+</ng-template>
 <hr>
 <div class="connect-with m-t-20">
   <div class="facebook w-65 m-l-r-auto d-flex justify-content-center">
@@ -49,7 +60,7 @@
     </div>
   </div>
 </div>
-  <hr class="m-b-5">
+<hr class="m-b-5">
 <div class="form-group d-flex justify-content-center">
   <div class="d-flex">
     <span class="sign-up-title">Don't have an account?</span>

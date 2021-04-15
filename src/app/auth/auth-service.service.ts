@@ -11,15 +11,14 @@ export class AuthService {
   constructor(private http: HttpClient) {
   }
 
-  private url = `${environment.host}/auth`;
+  private url = `${environment.host}/auth/`;
 
-  public test(): Observable<any> {
-    const url = `${this.url}/register`;
-    return this.http.post(url, {
-      first_name: 'req.body.first_name',
-      last_name: 'req.body.last_name',
-      email: 'req.body.email',
-      password: 'req.body.password',
-    });
+  public signIn(credentials): Observable<any> {
+    const url = this.url + 'login';
+    return this.http.post(url, credentials);
+  }
+
+  public isAuthenticated(): boolean {
+    return !!localStorage.getItem('token');
   }
 }
