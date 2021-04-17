@@ -1,5 +1,4 @@
 const express = require('express');
-const path = require('path');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const passport = require('passport');
@@ -46,6 +45,16 @@ app.use(passport.initialize());
 app.use(passport.session());
 require('./server/config/passport')(passport);
 
+// Localization Get
+app.get('/assets/i18n/en.json', (req, res) => {
+  const en = require('./src/assets/i18n/en-US.json');
+  res.send(en);
+})
+
+app.get('/assets/i18n/hy.json', (req, res) => {
+  const en = require('./src/assets/i18n/hy-AM.json');
+  res.send(en);
+})
 
 // Index Route
 app.get('/', (req, res) => {

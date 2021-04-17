@@ -6,6 +6,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { AuthComponent } from './auth.component';
 import { AuthService } from './auth-service.service';
 import { SharedModule } from '../shared/shared.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { SharedModule } from '../shared/shared.module';
   ],
   imports: [
     SharedModule,
-    AuthRoutingModule
+    AuthRoutingModule,
+    TranslateModule,
   ],
   providers: [AuthService]
 })

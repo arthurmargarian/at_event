@@ -5,6 +5,7 @@ import { AuthService } from '../../auth-service.service';
 import { Title } from '@angular/platform-browser';
 import { LoginStatusEnum } from '../../../infratructure/enums/login-status.enum';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login',
@@ -19,6 +20,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private router: Router,
+              private translateService: TranslateService,
               private titleService: Title,
               private authService: AuthService) {
   }
@@ -27,6 +29,7 @@ export class LoginComponent implements OnInit {
   public submitted: boolean;
 
   ngOnInit() {
+    this.translateService.setDefaultLang('en');
     this.titleService.setTitle('Sign In');
     this.initForm();
   }
