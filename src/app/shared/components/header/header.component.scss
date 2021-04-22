@@ -1,0 +1,43 @@
+@import "~src/assets/general-styles/variables";
+
+$color: radial-gradient(circle, rgba(248, 75, 4, 1) 0%, rgba(249, 211, 35, 1) 100%);
+
+.navbar {
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 4px;
+    width: 100%;
+    z-index: -1;
+    background: $color;
+  }
+
+  .nav-item {
+    color: $font-color;
+
+    &.active {
+      color: $ae-color;
+
+      span {
+        border-bottom: 1px solid $ae-color;
+      }
+    }
+
+    &:hover {
+      color: $ae-hover-color;
+
+      span {
+        border-bottom: 1px solid $ae-hover-color;
+      }
+
+    }
+  }
+}
+
+@media (min-width: 1400px) {
+  .container, .container-sm, .container-md, .container-lg, .container-xl {
+    max-width: 1350px;
+  }
+}

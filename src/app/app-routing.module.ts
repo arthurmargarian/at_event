@@ -6,14 +6,22 @@ import { AuthGuard } from './guards/auth.guard';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: './dashboard/dashboard.module#DashboardModule',
-    canActivate: [AuthGuard],
-  },
-  {
-    path: '',
     loadChildren: './auth/auth.module#AuthModule',
     canActivate: [NotAuthGuard],
-  }
+  },
+  {
+    path: 'dashboard',
+    loadChildren: './dashboard/dashboard.module#DashboardModule',
+    canActivate: [NotAuthGuard],
+  },
+  {
+    path: 'events',
+    loadChildren: './events/events.module#EventsModule',
+  },
+  // {
+  //   path: '**',
+  //   redirectTo: ''
+  // }
 ];
 
 @NgModule({

@@ -13,11 +13,11 @@
   line-height: 35px;
 
   &:hover {
-    color: $ae-color;
+    color: $ae-hover-color;
   }
 }
 
-.sign-up-title{
+.sign-up-title {
   color: $font-color;
   font-size: $font-size-sm;
   line-height: 35px;
@@ -37,22 +37,24 @@
     cursor: pointer;
     height: 35px;
     border-radius: 5px;
-    background-color: #3966B8;
+    background: none;
+    border: 1px solid $font-color;
+    color: $font-color;
     transition: 0.2s;
 
     &:hover {
+      border: none;
       background-color: #09459a;
+      color: white;
     }
 
     .sign-in {
-      color: white;
       font-size: 13px;
       line-height: 35px;
       margin-left: 20px;
     }
 
     .fa-facebook-f {
-      color: white;
       font-size: 25px;
       transform: translateY(4px);
       margin-right: 5px;
@@ -63,25 +65,27 @@
     margin-top: 10px;
     cursor: pointer;
     height: 35px;
+    color: $font-color;
     border-radius: 5px;
-    background-color: #c43326;
+    background: none;
+    border: 1px solid $font-color;
     transition: 0.2s;
 
     &:hover {
+      border: none;
+      color: white;
       background-color: #932a18;
     }
 
     .sign-in {
-      color: white;
       font-size: 13px;
       line-height: 35px;
       margin-left: 20px;
     }
 
     .fa-google {
-      color: white;
       font-size: 25px;
-      transform: translateY(4px);
+      transform: translate3d(-5px, 2px, 0px);
       margin-right: 5px;
     }
   }

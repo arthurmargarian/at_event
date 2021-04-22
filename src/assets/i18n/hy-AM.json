@@ -1,3 +1,33 @@
 {
-  "test": "թեսթ"
+  "AUTH": {
+    "sign_in": "Sign In",
+    "sign_up": "Sign Up",
+    "sing_in_into": "Sign-in to Your Account",
+    "forget_password": "Forget Password?",
+    "dont_have_an_account" : "Don't have an Account?",
+    "sign_in_with_facebook" : "Sign in with Facebook",
+    "sign_in_with_google" : "Sign in with Google",
+    "validations": {
+      "user_not_found": "User Not Found",
+      "wrong_password": "Wrong Password",
+      "invalid_email": "Invalid Email"
+    }
+  },
+  "GENERAL_LABELS": {
+
+  },
+  "GENERAL_VALIDATIONS": {
+    "required_field": "Required Field"
+  },
+  "HEADER": {
+    "TITLES": {
+      "dashboard": "Dashboard",
+      "events_for_you": "Events for You",
+      "event_navigator":"Event Navigator",
+      "create_event": "Create Event",
+      "your_events": "Your Events",
+      "sign_in": "Sign In"
+
+    }
+  }
 }

@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { WebpackTranslateLoader } from './core/webpack-translate-loader';
+import { SharedModule } from './shared/shared.module';
+import { EventsModule } from './events/events.module';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import { WebpackTranslateLoader } from './core/webpack-translate-loader';
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
+    EventsModule,
+    SharedModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

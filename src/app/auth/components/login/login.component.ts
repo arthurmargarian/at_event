@@ -89,6 +89,6 @@ export class LoginComponent implements OnInit {
   private setUserSettings(res): void {
     localStorage.setItem('token', res.token);
     localStorage.setItem('loggedUser', JSON.stringify(res.user));
-    this.router.navigate(['/']);
+    this.router.navigate(['/dashboard']);
   }
 }

@@ -1,4 +1,4 @@
-<span class="sing-in m-b-10"> Sign-in to Your Account</span>
+<span class="sing-in m-b-10">{{'AUTH.sing_in_into' | translate}}</span>
 <div *ngIf="!isLoading; else loader">
   <form [formGroup]="form">
     <div class="form-group">
@@ -9,11 +9,15 @@
              placeholder="Email">
       <div class="form-messages">
         <div class="errors" *ngIf="form.get('email').errors && (form.get('email').touched || submitted)">
-          <span *ngIf="form.get('email').errors.required">Required Field</span>
-          <span *ngIf="form.get('email').errors.email">Invalid Email</span>
+          <span *ngIf="form.get('email').errors.required">
+            {{'GENERAL_VALIDATIONS.required_field' | translate}}
+          </span>
+          <span *ngIf="form.get('email').errors.email">
+            {{'AUTH.validations.invalid_email' | translate}}
+          </span>
         </div>
         <div class="errors" *ngIf="requested && emailError">
-          <span>User Not Found</span>
+          <span>{{'AUTH.validations.user_not_found' | translate}}</span>
         </div>
       </div>
     </div>
@@ -25,19 +29,25 @@
              placeholder="Password">
       <div class="form-messages">
         <div class="errors" *ngIf="form.get('password').errors && (form.get('password').touched || submitted)">
-          <span *ngIf="form.get('password').errors.required">Required Field</span>
+          <span *ngIf="form.get('password').errors.required">
+            {{'GENERAL_VALIDATIONS.required_field' | translate}}
+            </span>
         </div>
         <div class="errors" *ngIf="requested && passwordError">
-          <span>Wrong Password</span>
+          <span>{{'AUTH.validations.wrong_password' | translate}}</span>
         </div>
       </div>
     </div>
     <div class="form-group d-flex justify-content-xl-between">
       <div class="d-flex">
-        <span class="forget">Forget Password?</span>
+        <span class="forget">{{'AUTH.forget_password' | translate}}</span>
       </div>
       <div class="d-flex">
-        <button type="submit" class="my-btn" (click)="signInSubmit()">Sign In</button>
+        <button type="submit"
+                class="my-btn"
+                (click)="signInSubmit()">
+          {{'AUTH.sign_in' | translate}}
+        </button>
       </div>
     </div>
   </form>
@@ -50,23 +60,26 @@
   <div class="facebook w-65 m-l-r-auto d-flex justify-content-center">
     <div>
       <i class="icon fa fa-facebook-f"></i>
-      <span class="sign-in">Sign in with Facebook</span>
+      <span class="sign-in">{{'AUTH.sign_in_with_facebook' | translate}}</span>
     </div>
   </div>
   <div class="google w-65 m-l-r-auto d-flex justify-content-center">
     <div>
       <i class="icon fa fa-google"></i>
-      <span class="sign-in">Sign in with Google</span>
+      <span class="sign-in">{{'AUTH.sign_in_with_google' | translate}}</span>
     </div>
   </div>
 </div>
 <hr class="m-b-5">
 <div class="form-group d-flex justify-content-center">
   <div class="d-flex">
-    <span class="sign-up-title">Don't have an account?</span>
+    <span class="sign-up-title">{{'AUTH.dont_have_an_account' | translate}}</span>
   </div>
   <div class="d-flex">
-    <button class="my-btn" routerLink="/sign-up">Sign Up</button>
+    <button class="my-btn"
+            routerLink="/sign-up">
+      {{'AUTH.sign_up' | translate}}
+    </button>
   </div>
 </div>
 
