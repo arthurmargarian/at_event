@@ -1,92 +1,96 @@
 @import "~src/assets/general-styles/variables";
 
 .sing-in {
-  display: block;
-  text-align: center;
-  font-size: 20px;
+  display: block !important;
+  text-align: center !important;
+  font-size: 20px !important;
+}
+
+.form-control{
+  border-radius: 0.25rem !important;
 }
 
 .forget {
-  color: $font-color;
-  cursor: pointer;
-  font-size: $font-size-sm;
-  line-height: 35px;
+  color: $font-color !important;
+  cursor: pointer !important;
+  font-size: $font-size-sm !important;
+  line-height: 35px !important;
 
   &:hover {
-    color: $ae-hover-color;
+    color: $ae-hover-color !important;
   }
 }
 
 .sign-up-title {
-  color: $font-color;
-  font-size: $font-size-sm;
-  line-height: 35px;
-  margin-right: 10px;
+  color: $font-color !important;
+  font-size: $font-size-sm !important;
+  line-height: 35px !important;
+  margin-right: 10px !important;
 }
 
 .connect-with {
-  display: block;
+  display: block !important;
 
   .title {
-    text-align: left;
-    font-size: 15px;
-    line-height: 15px;
+    text-align: left !important;
+    font-size: 15px !important;
+    line-height: 15px !important;
   }
 
   .facebook {
-    cursor: pointer;
-    height: 35px;
-    border-radius: 5px;
-    background: none;
-    border: 1px solid $font-color;
-    color: $font-color;
-    transition: 0.2s;
+    cursor: pointer !important;
+    height: 35px !important;
+    border-radius: 5px !important;
+    background: none !important;
+    border: 1px solid $font-color !important;
+    color: $font-color !important;
+    transition: 0.2s !important;
 
     &:hover {
-      border: none;
-      background-color: #09459a;
-      color: white;
+      border: none !important;
+      background-color: #09459a !important;
+      color: white !important;
     }
 
     .sign-in {
-      font-size: 13px;
-      line-height: 35px;
-      margin-left: 20px;
+      font-size: 13px !important;
+      line-height: 35px !important;
+      margin-left: 20px !important;
     }
 
     .fa-facebook-f {
-      font-size: 25px;
-      transform: translateY(4px);
-      margin-right: 5px;
+      font-size: 25px !important;
+      transform: translateY(4px) !important;
+      margin-right: 5px !important;
     }
   }
 
   .google {
-    margin-top: 10px;
-    cursor: pointer;
-    height: 35px;
-    color: $font-color;
-    border-radius: 5px;
-    background: none;
-    border: 1px solid $font-color;
-    transition: 0.2s;
+    margin-top: 10px !important;
+    cursor: pointer !important;
+    height: 35px !important;
+    color: $font-color !important;
+    border-radius: 5px !important;
+    background: none !important;
+    border: 1px solid $font-color !important;
+    transition: 0.2s !important;
 
     &:hover {
-      border: none;
-      color: white;
-      background-color: #932a18;
+      border: none !important;
+      color: white !important;
+      background-color: #932a18 !important;
     }
 
     .sign-in {
-      font-size: 13px;
-      line-height: 35px;
-      margin-left: 20px;
+      font-size: 13px !important;
+      line-height: 35px !important;
+      margin-left: 20px !important;
     }
 
     .fa-google {
-      font-size: 25px;
-      transform: translate3d(-5px, 2px, 0px);
-      margin-right: 5px;
+      font-size: 25px !important;
+      transform: translate3d(-5px, 2px, 0px) !important;
+      margin-right: 5px !important;
     }
   }
 

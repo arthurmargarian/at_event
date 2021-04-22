@@ -1,0 +1,577 @@
+// data-table
+.new-data-table {
+  border: 1px solid $border-color;
+  z-index: 1;
+
+  .datatable-header {
+    border-color: $disabled-color;
+    position: sticky;
+    top: 54px;
+    background: white;
+    z-index: 1000;
+    .datatable-header-cell {
+      padding: 9px 10px;
+      &.item-id {
+        .datatable-header-cell-template-wrap {
+          @include justify-content(flex-end);
+        }
+      }
+      &.sortable {
+        .sort-btn {
+          &:before,
+          &:after {
+            color: $secondary-icons;
+            font-family: "icomoon" !important;
+            font-size: 12px;
+          }
+
+          &:before {
+            content: "\e970";
+          }
+          &:after {
+            content: "\e971";
+          }
+        }
+      }
+      .resize-handle {
+        display: none !important;
+      }
+      .datatable-header-cell-template-wrap {
+        @include flexbox();
+        @include align-items(center);
+        padding-right: 10px !important;
+        .datatable-header-cell-wrapper {
+          .datatable-header-cell-label {
+            color: $primary-text;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 0 2px 0 0 !important;
+            // text-overflow: unset;
+          }
+        }
+      }
+    }
+  }
+  .datatable-row-wrapper {
+    .datatable-body-row {
+      .tags-cell {
+        padding-top: 8px !important;
+      }
+      &.disabled {
+        @include pointer-events(auto);
+        .datatable-body-cell:not(.active-cell):not(.tags-cell) {
+          @include opacity(0.5);
+        }
+        .tags-cell {
+          .table-row-tags {
+            .tag {
+              @include opacity(0.5);
+            }
+          }
+        }
+        .time-off-policies,
+        .active-tooltip-wrapper {
+          i,
+          razor-tooltip-holder .outer {
+            @include  opacity(0.5);
+          }
+        }
+      }
+      min-height: 40px !important;
+      font-size: 13px;
+      .datatable-body-cell {
+        min-height: 34px !important;
+        padding: 3px 10px;
+        &.wrap-col {
+          white-space: normal;
+          .datatable-body-cell-label  {
+            white-space: normal;
+          }
+        }
+        .datatable-body-cell-label {
+          color: $primary-text;
+          .left-border {
+            position: absolute;
+            width: 3px;
+            top: 0;
+            left: 0;
+            bottom: 1px;
+          }
+          .new-link,
+          .name-hyperlink {
+            .outer {
+              padding-top: 5px;
+              &:hover {
+                text-decoration: underline;
+              }
+            }
+            .archived-data .outer {
+              padding-top: 0;
+            }
+          }
+        }
+        .no-parent {
+          ~ razor-tooltip-holder {
+            color: $secondary-text;
+          }
+        }
+        ngb-tooltip-window {
+          .tooltip-inner {
+            font-size: 11px;
+            line-height: 13px;
+          }
+        }
+        &.item-id {
+          text-align: right !important;
+          padding-right: 18px;
+        }
+        .name-hyperlink {
+          font-size: $font-size-small;
+          text-decoration: none;
+          razor-tooltip-holder {
+            .outer {
+              text-decoration: none;
+              font-weight: 600;
+              &:hover {
+                text-decoration: underline;
+              }
+            }
+          }
+        }
+      }
+    }
+    &:nth-child(even) {
+      background-color: $disabled-color;
+    }
+  }
+  img {
+    width: 32px;
+    height: 32px;
+    @include border-radius(50%);
+  }
+  .actions-header {
+    .datatable-header-cell-template-wrap {
+      @include justify-content(flex-end);
+    }
+  }
+  .archived-data {
+    @include flexbox();
+    @include align-items(center);
+    i {
+      margin-right: 4px;
+      color: $secondary-text;
+    }
+    razor-tooltip-holder {
+      overflow: hidden;
+      .outer {
+        vertical-align: top;
+      }
+    }
+  }
+  .status_wrapper {
+    @include flexbox();
+    .status-label {
+      max-width: 95px;
+      @include text-overflow();
+    }
+  }
+
+  .attachment-tooltip {
+    .icon-attachment {
+      font-size: 12px;
+      margin-right: 5px;
+      margin-top: 4px;
+    }
+    .tooltip-new-link {
+      @include flexbox();
+      color: $light-blue;
+      font-weight: 600;
+      font-size: $font-size-small;
+      a {
+        white-space: normal;
+        text-align: left;
+        @include break-all();
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+  &.profile-notifications-table {
+    .datatable-header {
+      .datatable-header-cell {
+        &:last-child {
+          .datatable-header-cell-template-wrap {
+            @include justify-content(center);
+            padding-right: 0!important;
+          }
+        }
+      }
+    }
+    .datatable-row-wrapper {
+      .datatable-body-row {
+        &.unread {
+            background-color: $bg-color;
+            border-top: 1px solid $border-color;
+            border-bottom: 1px solid $border-color;
+            font-weight: 600;
+            a {
+              cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+  &.border-bottom-table {
+    .datatable-row-wrapper {
+      ~.datatable-row-wrapper {
+        border-top: 1px solid #fff;
+      }
+    }
+  }
+}
+
+@media (max-width: 1300px) {
+  .new-data-table {
+    .datatable-row-wrapper .datatable-body-row .datatable-body-cell {
+      padding: 3px 6px;
+    }
+    .datatable-header .datatable-header-cell {
+      padding: 9px 6px;
+    }
+    .datatable-row-detail .row-details-wrapper .details-ceil {
+      padding: 8px 6px 9px;
+    }
+  }
+}
+
+.custom-table,
+.custom-darg-drop-table {
+  border: 1px solid $border-color;
+  &-header {
+    border-bottom: 2px solid #f2f2f2;
+    @include flexbox();
+    font-size: 12px;
+    font-weight: 700;
+    position: sticky;
+    top: 54px;
+    background: white;
+    z-index: 1000;
+    .header-cell {
+      padding: 9px 10px;
+      &:first-child {
+        text-align: right;
+      }
+
+      i {
+        color: $light-blue;
+        margin-right: 5px;
+      }
+    }
+
+  }
+  &-content {
+    .content-row {
+      cursor: grab;
+      min-height: 40px;
+      margin-bottom: 3px;
+      &.deleted {
+        opacity: 0.4;
+      }
+      &:last-child {
+        margin-bottom: 0;
+      }
+      &:hover {
+        @include box-shadow(0px 2px 6px 0px rgba(60, 64, 67, 0.15));
+      }
+      &:nth-child(2n+1) {
+        background: $white;
+      }
+      &:nth-child(2n) {
+        background: $disabled-color;
+      }
+    }
+    .content-cell {
+      padding: 6px 10px 0;
+      &:first-child {
+        text-align: right;
+      }
+    }
+    .actions {
+      height: 32px;
+      .btn-transparent {
+        height: 28px;
+      }
+    }
+  }
+  &.view-mode {
+    .custom-table-content {
+      .content-row {
+        cursor: default;
+        &:hover {
+          @include box-shadow(unset);
+        }
+        /deep/ ng-select,
+        input {
+          border: none;
+          background: unset;
+          color: $primary-text;
+          @include box-shadow(unset);
+          .ng-arrow-wrapper {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+  .table-row {
+    position: relative;
+    &.with-icon {
+      .icon-drag {
+        position: absolute;
+        left: 2px;
+        top: 11px;
+      }
+    }
+  }
+}
+
+.actions {
+  button,
+  .btn-transparent {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    &:hover {
+      background-color: $bg-hover-color !important;
+      cursor: pointer;
+    }
+
+    &.btn-edit,
+    &.btn-discard-reason,
+    &.btn-restore,
+    &.btn-view {
+      i:before {
+        color: $light-blue;
+      }
+    }
+
+    &.btn-respond,
+    &.btn-copy,
+    &.btn-activate {
+      i:before {
+        color: $green2;
+      }
+    }
+
+    &.btn-discard {
+      i:before {
+        color: $placeholder;
+      }
+    }
+
+    &.btn-delete {
+      i:before {
+        color: $danger-color;
+      }
+      &:focus,
+      &:active {
+        background-color: transparent !important;
+      }
+    }
+
+    &.btn-archive {
+      i:before {
+        color: $primary-icons;
+      }
+      &:focus,
+      &:active {
+        background-color: transparent !important;
+      }
+    }
+  }
+}
+
+.sticky-table {
+  margin-bottom: 0 !important;
+  @include position(sticky !important);
+  top: 0;
+  z-index: 20;
+  background: white;
+}
+
+
+ngx-datatable {
+  .datatable-row-detail {
+    background-color: $white;
+    box-shadow: unset;
+    .row-details-wrapper {
+      @include flexbox();
+      .details-ceil {
+        @include flexbox();
+        @include align-items(center);
+        @include flex-wrap(wrap);
+        padding: 8px 10px 9px;
+        .details-ceil-label {
+          @include text-overflow();
+        }
+      }
+    }
+  }
+}
+
+.new-data-table {
+  &.time-tracking-list {
+    position: relative;
+    .datatable-body-row {
+      padding-right: 4px;
+      cursor: pointer;
+      &.current, &.upcoming {
+        cursor: default;
+      }
+      .expand-column {
+        padding: 3px 0 3px 5px;
+        margin-right: 3px;
+        .datatable-body-cell-label {
+          height: 100%;
+          .icon-arrow {
+            top: 12px;
+          }
+        }
+      }
+    }
+    .actions {
+      .w-24 {
+        width: 24px;
+        @include flexbox();
+        @include justify-content(center);
+      }
+      .btn-transparent {
+        width: 24px;
+        height: 24px;
+        i {
+          &:before {
+            font-size: $font-size-base;
+          }
+        }
+      }
+      .time-off__icon {
+        font-size: $font-size-base;
+      }
+      .icon-history:before {
+        color: $secondary-text;
+      }
+    }
+    .outer {
+      vertical-align: top;
+    }
+    .datatable-row-wrapper {
+      border-bottom: 1px solid $border-color;
+      &:last-child {
+        border-bottom: unset;
+      }
+      &:nth-child(even) {
+        background-color: white;
+      }
+      .week-name {
+        display: inline-block;
+        width: 25px;
+      }
+      .today {
+        border: 1px solid $cyan !important;
+        .tracking-row-date {
+          color: $cyan;
+          font-weight: normal;
+        }
+      }
+      .ready-period {
+        .tracking-row-date {
+          color: $cyan;
+          font-weight: 600;
+        }
+      }
+      .period {
+        font-size: $font-size-base;
+        border-bottom: 1px solid $border-color;
+      }
+      .non-working {
+        border-right: 4px solid $st-in-progress !important;
+        padding-right: 0 !important;
+      }
+      .holiday {
+        border-right: 4px solid $st-approved !important;
+        padding-right: 0 !important;
+      }
+      .weekEnd {
+        border-right: 4px solid $st-weekend !important;
+        padding-right: 0 !important;
+      }
+      .extra {
+        border-right: 4px solid $st-rejected !important;
+        padding-right: 0 !important;
+      }
+    }
+    .row-detail-item {
+      .row-details-wrapper {
+        padding-right: 4px;
+        cursor: pointer;
+        border-bottom: 1px solid $border-color;
+        .expand-column {
+          padding: 3px 0 3px 5px;
+          margin-right: 3px;
+        }
+        &.upcoming {
+          cursor: default;
+        }
+      }
+      &:last-child {
+        .row-details-wrapper {
+          border-bottom: unset;
+        }
+      }
+    }
+  }
+  &.scroll-horz {
+    .datatable-header,
+    .datatable-body {
+      width: 100% !important;
+    }
+    .datatable-row-left {
+      @include flexbox();
+    }
+    .frozen-col {
+      background: white;
+    }
+    .flag-active-row {
+      .frozen-col {
+        background: #E5F1F6 !important;
+      }
+    }
+    .datatable-row-wrapper:nth-child(even) {
+      .frozen-col {
+        background: $disabled-color;
+      }
+      .datatable-body-row {
+        background-color: $disabled-color;
+        &.flag-active-row {
+          background-color: #E5F1F6;
+        }
+      }
+    }
+    datatable-body {
+      &::-webkit-scrollbar {
+        opacity: 1;
+        height: 6px;
+        border-radius: 2px;
+      }
+      &::-webkit-scrollbar-track {
+        opacity: 1;
+        background-color: #f6f6f6;
+      }
+      &::-webkit-scrollbar-thumb {
+        background-color: #e5e5e5;
+        border-radius: 2px;
+      }
+    }
+  }
+}

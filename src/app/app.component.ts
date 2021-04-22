@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -7,9 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
 
-  constructor() {
+  constructor(private translateService: TranslateService, private titleService: Title) {
   }
 
   ngOnInit(): void {
+    this.translateService.setDefaultLang('en');
+    this.titleService.setTitle('At Event');
   }
 }

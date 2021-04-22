@@ -1,0 +1,795 @@
+@import "../../../scss/redesign/base/variables";
+
+@include placeholder {
+  color: $placeholder !important;
+}
+
+;
+
+.tags {
+  @include flexbox();
+
+  button.tag {
+    @include tag-style();
+    @include box-shadow(unset);
+    border: none;
+    margin: 0 5px 0 0 !important;
+    font-size: 12px;
+    font-weight: 600;
+    min-height: 18px !important;
+    text-align: left;
+
+    .tag-close {
+      margin-left: 5px !important;
+      @include flexbox();
+
+      .icon-close {
+        cursor: pointer;
+        font-size: 7px;
+        color: $danger-color;
+      }
+    }
+  }
+}
+
+.ng2-dropdown-menu {
+  width: 180px !important;
+  margin-top: -10px;
+
+  .ng2-menu-item {
+    line-height: 26px !important;
+    height: 26px !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    font-size: 12px !important;
+  }
+}
+
+.top-part,
+.advanced-search {
+  .form-control {
+    height: unset;
+  }
+
+  razor-multiselect.new-element,
+  .ng-select.new-element {
+    margin-bottom: 16px;
+    margin-right: 10px !important;
+  }
+}
+
+.new-form {
+
+  razor-multiselect.new-element,
+  .ng-select.new-element {
+    width: 100% !important;
+    //&.validation-error,
+    //&.validation-error:focus {
+    //  border: 1px solid $danger-color !important;
+    //}
+  }
+
+  .textarea-resizable {
+    min-height: 120px;
+  }
+}
+
+.top-part,
+.advanced-search,
+.new-form,
+.new-page,
+.cdk-drag-preview {
+
+  //dropdown
+  ng-select.ng-select.new-element,
+  razor-multiselect.new-element ng-select.ng-select.new-element {
+    border: 1px solid $border-color;
+    @include border-radius(3px);
+    font-size: 12px;
+    min-height: 26px !important;
+    padding: 0 10px !important;
+    height: inherit;
+    @include box-shadow($main-box-shadow);
+    @include flexbox();
+    @include align-items(center);
+
+    &.blue-border {
+      border-color: $cyan;
+    }
+
+    @at-root .blue-border ng-select.ng-select.new-element {
+      border-color: $cyan;
+    }
+
+    &.ng-select-multiple {
+      .ng-value {
+        @include tag-style();
+
+        .ng-value-label {
+          font-size: 12px !important;
+          //line-height: 14px;
+          font-weight: 600 !important;
+          @include text-overflow();
+          display: inline-block;
+        }
+      }
+
+      .ng-select-container {
+        .ng-clear-wrapper {
+          display: none;
+        }
+      }
+
+      .ng-value-icon {
+        @include ng-value-icon();
+      }
+    }
+
+    .ng-select-container {
+      height: inherit !important;
+      min-height: 1px;
+
+      &:after {
+        display: none;
+      }
+
+      .ng-value-container {
+        @include flexbox();
+        @include align-items(center);
+        height: inherit !important;
+        padding: 0 !important;
+        margin: 0;
+        border: none;
+
+        .ng-placeholder {
+          color: $placeholder !important;
+          height: inherit !important;
+          margin: 0;
+          //position: static;
+          @include transition(none);
+          max-width: 90%;
+          white-space: nowrap;
+        }
+
+        .ng-value {
+          max-width: 90%;
+        }
+      }
+
+      /deep/.ng-select-focused > .ng-select-container > .ng-arrow-wrapper > .ng-arrow {
+          color: $primary-color !important;
+        &:focus{
+          color: $primary-color !important;
+        }
+      }
+
+      .ng-arrow-wrapper {
+
+        .ng-arrow {
+
+
+        }
+      }
+
+      .ng-value,
+      .ng-input,
+      .ng-value-label {
+        height: inherit !important;
+      }
+
+      .ng-clear-wrapper {
+        border: none !important;
+        margin: 0;
+        padding: 0;
+        bottom: 0 !important;
+        width: 10px;
+
+        .ng-clear {
+          font-size: 16px;
+          font-weight: 600;
+        }
+      }
+    }
+
+    .ng-dropdown-panel {
+      .ng-dropdown-panel-items {
+        .ng-option {
+          line-height: 26px;
+          min-height: 26px;
+          padding: 0 10px;
+        }
+      }
+    }
+
+    .select-dropdown {
+      .highlighted {
+        background-color: $color-yellow;
+      }
+    }
+
+    input {
+      border: none !important;
+      height: auto !important;
+      padding: 0 !important;
+    }
+
+    background: $white;
+  }
+
+  razor-multiselect.new-element,
+  .ng-select.new-element {
+    width: 180px;
+
+    &:last-child {
+      margin-right: 0 !important;
+    }
+
+    &.ng-select-focused {
+      border-color: $color-yellow !important;
+    }
+
+    .ng-dropdown-panel.ng-select-bottom {
+      top: 25px;
+    }
+  }
+
+  razor-multiselect.new-element {
+    min-height: 24px !important;
+    padding: 0;
+    border: none;
+
+    // select component
+    .ng-select.new-element {
+      border-color: $border-color;
+      min-height: 24px !important;
+      margin-bottom: 0;
+      margin-bottom: 0 !important;
+      width: 100% !important;
+    }
+
+    &.validation-error,
+    &.validation-error:focus {
+      .ng-select.new-element {
+        border: 1px solid $danger-color !important;
+      }
+    }
+
+    //input
+    input {
+      border: none;
+    }
+  }
+
+  .ng-select.new-element {
+
+    &.validation-error,
+    &.validation-error:focus {
+      border: 1px solid $danger-color !important;
+    }
+
+    .ng-clear-wrapper {
+      color: $icon-color;
+    }
+  }
+
+  // input
+  input.new-element,
+  textarea.new-element {
+    border: 1px solid $border-color;
+    @include border-radius(3px);
+    padding: 5px 10px !important;
+    font-size: 12px !important;
+    line-height: 14px !important;
+    width: 100%;
+    height: 26px;
+    @include box-shadow($main-box-shadow);
+
+    &:focus {
+      border-color: $light-blue !important;
+    }
+
+    &.validation-error {
+      border: 1px solid $danger-color !important;
+
+      .new-link {
+        font-size: 11px;
+      }
+    }
+
+    &:disabled {
+      background-color: $disabled-color;
+      color: $secondary-text;
+    }
+
+    &.blue-border {
+      border-color: $cyan;
+    }
+
+    @at-root .blue-border input.new-element {
+      border-color: $cyan;
+    }
+  }
+
+  input,
+  textarea {
+    //&:focus {
+    //  border: 1px solid $light-blue !important;
+    //}
+  }
+
+  textarea:not(.textarea-resizable) {
+    height: 100px !important;
+    display: block;
+  }
+
+  razor-multiselect.new-element {
+    tag-input.tag-select {
+      width: 100%;
+
+      .ng2-tag-input {
+        padding: 0 !important;
+        @include border-radius(3px);
+        @include transition(inherit !important);
+        border: 1px solid $border-color !important;
+        min-height: 24px;
+        line-height: 14px;
+
+        .ng2-tags-container {
+          width: 100%;
+          padding: 0 10px;
+
+          tag {
+            @include border-radius(2px);
+            background-color: rgba(59, 184, 228, 0.1) !important;
+            color: $light-blue !important;
+            padding: 1px 5px !important;
+            margin: 2px 2px 2px 0 !important;
+            font-weight: 700 !important;
+            font-size: 12px;
+            line-height: 16px !important;
+            letter-spacing: unset;
+
+            .ng-value-icon {
+              @include ng-value-icon();
+            }
+
+            .tag-ripple {
+              display: none;
+            }
+
+            .ng-value {
+              .ng-value-label {
+                display: inline-block;
+                @include text-overflow();
+                vertical-align: middle;
+                max-width: 120px;
+                font-weight: 600;
+                line-height: 16px !important;
+                margin-right: 0px !important;
+              }
+            }
+
+            &:hover,
+            &:focus {
+              @include box-shadow(unset);
+            }
+          }
+
+          tag-input-form {
+            padding: 0 !important;
+            width: 100%;
+            @include flex-value(1);
+
+            input {
+              width: 100%;
+              border: none !important;
+              height: auto !important;
+              padding: 5px 0 !important;
+              font-size: 12px !important;
+              line-height: 14px !important;
+
+              @include placeholder {
+                color: $placeholder;
+              }
+            }
+          }
+        }
+
+        &.ng2-tag-input--focused {
+          border-color: $light-blue !important;
+
+        }
+      }
+    }
+  }
+
+  .datepicker-new {
+    &.with-label {
+      @include box-shadow(none);
+
+      .datepicker__field {
+        input {
+          @include box-shadow($main-box-shadow);
+        }
+      }
+    }
+
+    @include box-shadow($main-box-shadow);
+    display: block;
+
+    .datepicker {
+      .datepicker__label {
+        font-size: $font-size-small;
+        font-weight: 600;
+        margin-right: 15px;
+        //not used for date picker
+        min-width: inherit !important;
+        width: inherit !important;
+        position: relative;
+        line-height: inherit !important;
+        padding-bottom: 0 !important;
+        color: inherit !important;
+
+        &:after {
+          display: none !important;
+        }
+      }
+
+      label {
+        @include flexbox();
+        @include align-items(center);
+        margin-bottom: 0 !important;
+      }
+
+      mat-form-field.datepicker__field {
+        width: 100%;
+        display: block;
+        position: relative;
+        border-bottom: none;
+
+        .cdk-text-field-autofill-monitored {
+          min-height: inherit;
+        }
+
+        .datepicker__open {
+          background: none !important;
+          border: none !important;
+          position: absolute !important;
+          top: 0 !important;
+          bottom: 0 !important;
+          margin: auto !important;
+          right: 4px !important;
+          cursor: pointer !important;
+          width: auto !important;
+
+          &:after {
+            font-family: "icomoon";
+            content: "\e905";
+            color: $light-blue;
+          }
+        }
+
+        .mat-input-element {
+          margin-top: 0;
+          border: 1px solid $border-color;
+          border-radius: 3px !important;
+          padding: 5px 10px !important;
+          font-size: 12px !important;
+          line-height: 14px !important;
+          width: 100%;
+          height: 26px;
+
+          &:disabled {
+            cursor: default !important;
+          }
+
+          &:focus {
+            border-color: $light-blue;
+
+          }
+        }
+
+        .mat-input-element:disabled,
+        .datepicker__open.disabled {
+          cursor: not-allowed !important;
+        }
+
+        .mat-form-field-underline {
+          display: none;
+        }
+
+        .mat-form-field-infix {
+          width: 100%;
+
+          .mat-form-field-label {
+            padding-left: 10px;
+            padding-right: 10px;
+            line-height: 18px;
+            color: $placeholder;
+            font-size: 12px;
+            position: unset;
+            line-height: 24px;
+          }
+        }
+      }
+    }
+
+    &.validation-error {
+
+      .mat-input-element,
+      .mat-input-element:focus {
+        border: 1px solid $danger-color !important;
+      }
+    }
+
+    &.blue-border .datepicker .datepicker__field .mat-input-element {
+      border-color: $cyan;
+    }
+  }
+}
+
+.new-label {
+  font-family: 'Segoe UI';
+  font-weight: 300;
+  font-size: 12px;
+  color: $primary-icons;
+  margin-bottom: 0;
+  @include break-word();
+
+  &-dark {
+    font-weight: 600;
+  }
+
+  &-normal {
+    font-weight: normal;
+  }
+}
+
+.button-text-bold {
+  font-size: $font-size-small;
+  color: $button-text;
+  font-weight: 600;
+}
+
+.primary-text-bold {
+  font-size: $font-size-small;
+  color: $primary-text;
+  font-weight: 600;
+}
+
+.primary-text-light {
+  font-size: $font-size-small;
+  color: $primary-text;
+  font-weight: normal;
+}
+
+.hours-input {
+  width: 50px !important;
+  text-align: right;
+}
+
+.hours-divider {
+  margin: 3px 5px;
+  display: block;
+  color: $border-color;
+}
+
+.messages {
+
+  &.text-danger,
+  &.text-warning {
+    min-height: 16px;
+    font-size: 11px;
+    font-style: italic;
+  }
+}
+
+
+.label-txt {
+  color: $button-text;
+  font-size: 12px;
+  margin-bottom: 16px;
+}
+
+.secondary-text {
+  color: $button-text;
+  font-size: 12px;
+}
+
+.new-ui-switch {
+  height: 18px;
+
+  .switch-small {
+    width: 34px !important;
+    height: 18px !important;
+    background: $border-color !important;
+    border: 0 !important;
+
+    &.checked {
+      background: $success-color !important;
+
+      small {
+        left: 17px !important;
+      }
+    }
+
+    small {
+      width: 16px !important;
+      height: 16px !important;
+      @include box-shadow(0px 0px 3px rgba(0, 0, 0, 0.4));
+      top: 1px;
+      left: 1px;
+    }
+  }
+}
+
+.calendar-badge {
+  display: inline-block;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 4px;
+  @include border-radius(2px);
+  font-size: $font-size-xs;
+  font-weight: 600;
+
+  &.working {
+    color: $st-rejected;
+    background: $rejected-status;
+  }
+
+  &.holiday {
+    color: $st-approved;
+    background: $approved-status;
+  }
+
+  &.non-working {
+    color: $st-in-progress;
+    background: $progress-status;
+  }
+
+  &.weekEnd {
+    color: $danger-color;
+    background: $danger-status;
+  }
+}
+
+.radio {
+  &.new-element {
+    label {
+      font-size: $font-size-small;
+      color: $primary-text;
+      margin-bottom: 0;
+    }
+
+    .helper {
+      &:before {
+        border: 2px solid $border-color;
+      }
+
+      &:after {
+        border: 2px solid $border-color;
+        background-color: $success-color;
+      }
+    }
+  }
+
+  &.radio-mask {
+    .helper {
+      &:after {
+        @include transform(scale(0, 0) !important);
+      }
+    }
+  }
+}
+
+.border-checkbox-section.new-element {
+  .border-checkbox-group {
+    .border-checkbox {
+      display: none;
+
+      &:checked + .border-checkbox-label {
+        &:after {
+          border-color: $success-color;
+        }
+      }
+
+      &:disabled {
+        ~ .border-checkbox-label {
+          color: $primary-text;
+
+          &:before {
+            background-color: $disabled-color;
+          }
+
+          &:after {
+            @include opacity(0.5);
+          }
+        }
+      }
+    }
+
+    .border-checkbox-label {
+      padding-left: 21px;
+      line-height: inherit;
+      height: inherit;
+      @include flexbox();
+      @include align-items(center);
+
+      &:before {
+        height: 16px;
+        width: 16px;
+        border-color: $border-color;
+      }
+
+      &:after {
+        left: 3px;
+        top: 11px;
+        width: 4px;
+        height: 10px;
+        @include animation(none !important);
+      }
+    }
+  }
+}
+
+.new-timepicker {
+  .ngb-tp-input-container {
+    width: auto;
+  }
+
+  .ngb-tp-spacer {
+    width: auto;
+    padding: 0 2px;
+  }
+
+  .ngb-tp-input,
+  .btn-outline-primary {
+    @include border-radius(3px);
+    border: 1px solid $border-color;
+    padding: 5px 1px !important;
+    font-size: 12px !important;
+    line-height: 14px !important;
+    height: 26px;
+    width: 33px;
+    color: $primary-text;
+
+    &:focus {
+      @include box-shadow(unset);
+    }
+  }
+
+  .btn-outline-primary,
+  .btn-outline-primary:active {
+    background-color: $white !important;
+    border-color: $border-color !important;
+    font-weight: 400;
+  }
+
+  fieldset.disabled {
+    .btn-outline-primary {
+      background-color: $disabled-color !important;
+      cursor: not-allowed;
+      @include opacity(1);
+      color: $placeholder !important;
+    }
+  }
+
+  &.validation-error {
+    input {
+      border-color: $danger-color;
+    }
+  }
+}
+
+.form-control:disabled,
+.form-control[readonly] {
+  background-color: $disabled-color;
+}
+
+app-employee-autocomplete.validation-error {
+  .ng-select.new-element {
+    border: 1px solid $danger-color !important;
+  }
+}

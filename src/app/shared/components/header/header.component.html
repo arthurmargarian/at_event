@@ -1,32 +1,32 @@
 <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top p-t-0 p-b-3">
   <div class="container">
     <a [routerLink]="['/dashboard']" class="navbar-brand">
-      <img src="assets/ae-logo.png" alt="" height="50" width="200">
+      <img src="assets/ae-logo.png" alt="" height="35" width="140">
     </a>
     <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+    <div class="collapse navbar-collapse text-center justify-content-between" id="navbarCollapse">
       <div class="navbar-nav">
         <a [routerLink]="['/dashboard']"
            routerLinkActive="active"
            class="nav-item nav-link">
-          <span class="p-b-5">
+          <span>
             {{'HEADER.TITLES.dashboard' | translate}}
           </span>
         </a>
         <a [routerLink]="['events/for-you']"
            routerLinkActive="active"
            class="nav-item nav-link">
-          <span class="p-b-5">
+          <span>
             {{'HEADER.TITLES.events_for_you' | translate}}
           </span>
         </a>
         <a [routerLink]="['events/navigator']"
            routerLinkActive="active"
            class="nav-item nav-link">
-          <span class="p-b-5">
+          <span>
           <i class="fa fa-search"></i>
             {{'HEADER.TITLES.event_navigator' | translate}}
           </span>
@@ -36,7 +36,7 @@
         <a [routerLink]="['events/create']"
            routerLinkActive="active"
            class="nav-item nav-link">
-          <span class="p-b-5">
+          <span>
           <i class="fa fa-plus"></i>
             {{'HEADER.TITLES.create_event' | translate}}
           </span>
@@ -44,19 +44,30 @@
         <a [routerLink]="['events/yours']"
            routerLinkActive="active"
            class="nav-item nav-link">
-          <span class="p-b-5">
+          <span>
             {{'HEADER.TITLES.your_events' | translate}}
           </span>
         </a>
         <a [routerLink]="['/sign-in']"
            routerLinkActive="active"
            class="nav-item nav-link">
-          <span class="p-b-5">
+          <span>
             {{'HEADER.TITLES.sign_in' | translate}}
           </span>
         </a>
       </div>
     </div>
   </div>
+  <div class="w-6">
+    <form class="new-form" [formGroup]="languageForm">
+      <ng-select [items]="languages"
+                 class="new-element"
+                 bindLabel="name"
+                 bindValue="id"
+                 [clearable]="false"
+                 formControlName="language">
+      </ng-select>
+    </form>
+  </div>
 </nav>
-<div style="height: 70px; width: 100%; display: block"></div>
+<div style="height: 48px; width: 100%; display: block"></div>

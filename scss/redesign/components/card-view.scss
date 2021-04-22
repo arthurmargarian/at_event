@@ -1,0 +1,194 @@
+.form-card {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid $card-border;
+
+  &.dark {
+    background: $bg-color;
+  }
+
+  @include border-radius(3px);
+  @include box-shadow(0px 0px 5px rgba(0, 0, 0, 0.05));
+
+  .form-card-header {
+    border-bottom: 1px solid $bg-color;
+    padding-bottom: 10px;
+
+    .title {
+      font-size: $font-size-base;
+      font-weight: 600;
+
+      i {
+        color: $light-blue;
+        margin-right: 6px;
+      }
+    }
+
+    .info {
+      margin-left: 15px;
+    }
+  }
+
+  .form-card-content {
+    padding: 10px 0 0 0;
+
+    .actions {
+      i {
+        cursor: pointer;
+
+        &.icon-edit {
+          color: $light-blue;
+        }
+
+        &.icon-delete {
+          color: $danger-color;
+        }
+      }
+    }
+
+    .new-label {
+      padding-left: 20px;
+    }
+  }
+
+  .actions {
+    button,
+    .btn-transparent {
+      width: 21px;
+      height: 21px;
+      margin-left: 3px;
+    }
+  }
+}
+
+.grid-item {
+  .new-card {
+    cursor: pointer;
+    @include border-radius(3px);
+    @include box-shadow(0px 1px 5px rgba(0, 0, 0, 0.08));
+    background: $white;
+    border: 1px solid $border-color !important;
+    margin-bottom: 12px;
+
+    .new-card-header {
+      padding: 5px 5px 8px 5px;
+
+      .employee-id {
+        font-size: 11px;
+        font-weight: 600;
+      }
+
+      .header-image {
+        width: 60px;
+        height: 46px;
+        object-fit: contain;
+        margin: 0 3px;
+      }
+
+      .header {
+        @include flexbox();
+        @include align-items(center);
+        @include break-word();
+        @include flex(1);
+        height: 46px;
+
+        razor-tooltip-holder {
+          font-weight: 600;
+          font-size: 14px;
+        }
+      }
+    }
+
+    .new-card-block {
+      padding: 0 0;
+
+      .new-card-profile-header {
+        padding: 0 10px;
+
+        img {
+          width: 88px;
+          height: 88px;
+          @include border-radius(50%);
+          border: 1px solid $border-color;
+        }
+
+        h4 {
+          font-weight: 600;
+          font-size: $font-size-small;
+          margin-top: 10px;
+          margin-bottom: 5px;
+        }
+
+        h6 {
+          font-size: 12px;
+          line-height: normal;
+          margin-bottom: 5px;
+          @include text-overflow();
+        }
+      }
+
+      .new-card-other-info {
+        color: $secondary-text;
+        font-size: 11px;
+        padding-bottom: 5px;
+
+        div {
+          &:first-child {
+            margin-bottom: 2px;
+          }
+
+          &.country-name {
+            .outer:before {
+              content: "\e913";
+            }
+          }
+
+          &.branch-name {
+            .outer:before {
+              content: "\e915";
+            }
+          }
+
+          razor-tooltip-holder {
+            width: 100%;
+            .outer {
+              width: 100% !important;
+              position: relative;
+              &:before {
+                margin-right: 3px;
+                font-family: "icomoon";
+                position: absolute;
+                top: 3px;
+                left: auto;
+                color: $light-blue;
+              }
+              span {
+                padding-left: 15px;
+              }
+            }
+          }
+
+          .employee-name {
+            @include text-overflow();
+            font-weight: 500;
+          }
+        }
+
+        ngb-tooltip-window {
+          .tooltip-inner {
+            font-size: 11px;
+          }
+        }
+      }
+    }
+
+    .new-card-footer {
+      border-top: 1px solid $border-color;
+      padding: 4px 0;
+
+      .link {
+        font-size: $font-size-small;
+      }
+    }
+  }
+}
