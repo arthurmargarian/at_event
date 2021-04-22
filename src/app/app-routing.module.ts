@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { NotAuthGuard } from './guards/not-auth.guard';
-import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -16,12 +15,13 @@ const routes: Routes = [
   },
   {
     path: 'events',
+    canActivate: [NotAuthGuard],
     loadChildren: './events/events.module#EventsModule',
   },
-  // {
-  //   path: '**',
-  //   redirectTo: ''
-  // }
+  {
+    path: '**',
+    redirectTo: ''
+  }
 ];
 
 @NgModule({
