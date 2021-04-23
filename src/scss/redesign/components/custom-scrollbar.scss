@@ -1,0 +1,141 @@
+perfect-scrollbar {
+  z-index: 2;
+  &.scroll-outside {
+    overflow: visible !important;
+    .ps--active-x {
+      overflow: auto !important;
+      scrollbar-width: none;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+  }
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  &.scroll-outside > .ps.ps--active-x:hover > .ps__rail-x,
+  &.scroll-outside > .ps.ps--active-x > .ps__rail-x,
+  &.scroll-outside > .ps.ps--active-x > .ps__rail-x.ps--clicking {
+    bottom: -8px !important;
+    left: -1px !important;
+    margin: 0 !important;
+    width: 100% !important;
+  }
+  &.scroll-outside > .ps.ps--active-y > .ps__rail-y,
+  &.scroll-outside > .ps.ps--active-y > .ps__rail-y,
+  &.scroll-outside > .ps.ps--active-y > .ps__rail-y.ps--clicking {
+    right: -8px !important;
+    margin: 0 !important;
+  }
+  &.scroll-outside .ps__thumb-y {
+    opacity: 0 !important;
+  }
+  &.height-280 {
+    max-height: 280px !important;
+  }
+
+  &.height-600 {
+    min-height: 600px !important;
+    max-height: 600px !important;
+  }
+
+  &.height-257 {
+    max-height: 257px !important;
+  }
+
+  &.height-200 {
+    max-height: 200px !important;
+  }
+  &:hover {
+    .ps__rail-y {
+      width: 8px !important;
+      @include opacity(1 !important);
+    }
+    .ps__thumb-y {
+      width: 6px !important;
+      @include opacity(1 !important);
+    }
+    .ps__rail-x {
+      height: 8px !important;
+      @include opacity(1 !important);
+    }
+    .ps__thumb-x {
+      height: 6px !important;
+      @include opacity(1 !important);
+    }
+  }
+  .ps:hover > .ps__rail-x,
+  .ps:hover > .ps__rail-y,
+  .ps--focus > .ps__rail-x,
+  .ps--focus > .ps__rail-y,
+  .ps--scrolling-x > .ps__rail-x,
+  .ps--scrolling-y > .ps__rail-y {
+    @include opacity(1 !important);
+  }
+
+  .ps .ps__rail-x:hover,
+  .ps .ps__rail-y:hover,
+  .ps .ps__rail-x:focus,
+  .ps .ps__rail-y:focus,
+  .ps .ps__rail-x.ps--clicking,
+  .ps .ps__rail-y.ps--clicking {
+    @include opacity(1 !important);
+  }
+  > .ps.ps--active-y > .ps__rail-y:hover,
+  > .ps.ps--active-y > .ps__rail-y.ps--clicking {
+    width: 8px !important;
+  }
+
+  .pcoded .ps__rail-y:focus > .ps__thumb-y,
+  .pcoded .ps__rail-y:hover > .ps__thumb-y,
+  .pcoded .ps__thumb-y,
+  .ps__rail-y.ps--clicking .ps__thumb-y {
+    width: 6px !important;
+  }
+
+  .ps.ps--active-x > .ps__rail-x
+  .ps__rail-x:hover > .ps__thumb-x,
+  .ps__rail-x:focus > .ps__thumb-x,
+  .ps__rail-x.ps--clicking .ps__thumb-x {
+    height: 6px !important;
+  }
+
+  .ps__rail-y,
+  .ps__rail-x {
+    z-index: 1200;
+    @include transition(unset !important);
+    background-color: $disabled-color !important;
+    @include  border-radius(2px);
+  }
+  .ps__thumb-y {
+    //width: 8px !important;
+    right: 1px !important;
+    @include  border-radius(2px);
+    background-color: $border-color !important;
+  }
+
+  .ps__thumb-x {
+    //width: 8px !important;
+    bottom: 1px !important;
+    @include  border-radius(2px);
+    background-color: $border-color !important;
+  }
+
+  .ps__thumb-x,
+  .ps__thumb-y {
+    @include transition(unset !important);
+  }
+}
+
+perfect-scrollbar > .ps.ps--active-x > .ps__rail-x {
+  height: 8px !important;
+}
+
+.scroll-200 {
+  height: 200px;
+}
+
+.scroll-150 {
+  height: 150px;
+}

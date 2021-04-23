@@ -1,0 +1,17 @@
+ul, ol {
+  list-style-position: inside !important
+}
+
+p {
+  word-break: break-word
+}
+
+.mce-content-body {
+  padding: 0 10px 10px;
+  font-family: "Segoe UI", Arial, sans-serif !important;
+  font-size: 13px !important;
+  color: #494949 !important;
+}
+
+
+

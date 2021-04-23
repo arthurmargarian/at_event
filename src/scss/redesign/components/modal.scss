@@ -1,0 +1,74 @@
+// new modal
+.new-modal {
+  .modal-dialog {
+    max-width: 500px;
+    &.modal-xl {
+      max-width: 600px;
+    }
+    &.modal-750 {
+      max-width: 750px;
+    }
+    &.modal-540 {
+      max-width: 540px;
+    }
+    .modal-content {
+      border: 1px solid $border-color;
+      background-clip: unset;
+      @include border-radius(5px);
+      @include box-shadow(0px 0px 10px rgba(0, 0, 0, 0.15));
+      .modal-body {
+        padding: 15px;
+      }
+      .modal-header {
+        @include box-shadow(unset);
+        border-bottom: 1px solid $bg-color;
+        padding: 10px 15px;
+        position: relative;
+        .modal-title {
+          font-size: $font-size-base;
+          color: $light-blue;
+          font-weight: normal;
+          &:before {
+            display: none;
+          }
+        }
+        .icon-close {
+          position: absolute;
+          top: 15px;
+          right: 15px;
+          cursor: pointer;
+          &:before {
+            font-size: 12px;
+            color: $primary-icons;
+          }
+        }
+      }
+    }
+  }
+}
+
+.modal-imageviewer {
+  .modal-dialog {
+    max-width: 467px;
+    width: 467px;
+    height: 467px;
+  }
+  .modal-content {
+    position: relative;
+    border: 1px solid $white;
+    background-clip: unset;
+    @include border-radius(0);
+    .icon-close {
+      position: absolute;
+      top: -20px;
+      right: -20px;
+      cursor: pointer;
+      &:before {
+        color: $white;
+      }
+    }
+    .modal-body {
+      padding: 0 !important;
+    }
+  }
+}

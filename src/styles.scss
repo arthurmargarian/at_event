@@ -1,5 +1,35 @@
-@import "~bootstrap/dist/css/bootstrap.css";
-@import "~font-awesome/css/font-awesome.css";
 @import "assets/general-styles/my-styles";
-@import "~@ng-select/ng-select/themes/material.theme.css";
-@import "scss/style.scss";
+
+//@import "~bootstrap/dist/css/bootstrap.css";
+//@import "~font-awesome/css/font-awesome.css";
+//@import "~@ng-select/ng-select/themes/material.theme.css";
+//@import "scss/style.scss";
+
+/* You can add global styles to this file, and also import other style files */
+//@import "~@ng-select/ng-select/themes/material.theme.css";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+// For material modal
+.cdk-overlay-container,
+.cdk-overlay-backdrop,
+.cdk-overlay-connected-position-bounding-box,
+.cdk-overlay-pane {
+  z-index: 200000;
+}
+
+.mat-expansion-panel:not([class*=mat-elevation-z]) {
+  box-shadow: none;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-wrapper {
+  padding-bottom: 10px;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-underline {
+  bottom: 10px;
+}
+
+app-raiser-list-footer {
+  width: 100%;
+}
+

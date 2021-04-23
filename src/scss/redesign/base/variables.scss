@@ -1,0 +1,81 @@
+$font-size-base: 14px;
+$font-size-xs: 10px;
+$font-size-small: 13px;
+$font-size-medium: 16px;
+$font-size-large: 18px;
+$font-size-xlarge: 24px;
+$font-size-xxlarge: 32px;
+
+
+$main-blue: #0D3772;
+$bg-color: #F0F5F7;
+$bg-hover-color: #F7FAFB;
+$sidebar-selected-bg-color: #E2E7EC;
+$sidebar-bg-color: #FAFAFA;
+$cyan: #3BB8E4;
+$button-text: #495962;
+$primary-text: #494949;
+$placeholder: #909090;
+$secondary-text: #abb1b5;
+$border-color: #E5E5E5;
+$card-border: #E5EBF0;
+$disabled-color: #F6F6F6;
+
+$white: #fff;
+
+
+//status-colors
+$st-in-progress: #5481F7;
+$st-rejected: #F4B85F;
+$st-approved: #9BBD5F;
+$st-discarded: #708090;
+$st-new: #F0354D;
+$st-posted: #43A492;
+
+$st-progress: #4976CC;
+$st-rejected-color: #E67420;
+$st-default: #909090;
+$st-weekend: #ec5f59;
+
+
+//project-colors
+
+$grey: #D3DDED;
+$light-purple: #6B72E8;
+$orange: #F9751C;
+$light-orange: #F4B860;
+$purple: #7A53F4;
+$light-green: #9CBC60;
+$green: #5DC185;
+$green2: #5AC591;
+$light-blue: #3BB8E4;
+$primary-color: #F4B860;
+$pink: #EA6B81;
+$blue: #5381F7;
+$dark-grey: #526F7C;
+$grey-blue: #B3DDDA;
+$grape: #A0788B;
+$icon-color: #abb1b5;
+
+//icons-colors
+
+$primary-icons: #797979;
+$secondary-icons: #D6D6D6;
+$danger-color: #E62A22;
+$success-color: #70C24A;
+$light-warning-status: rgba(244, 184, 96, 0.1);
+
+$scheduler-border-color: rgba(0,0,0,0.1);
+$new-status: rgba(240,53,77,0.1);
+$progress-status: rgba(73,118,204,0.1);
+$approved-status: rgba(112,194,74,0.1);
+$rejected-status: rgba(230,116,32,0.1);
+$discarded-status: rgba(112,128,144,0.1);
+$default-status: rgba(144, 144, 144,0.1);
+$active-status: rgba(90, 197, 145,0.1);
+$upcoming-status: rgba(59, 184, 228,0.1);
+$posted-status: rgba(67, 164, 146,0.1);
+$danger-status: rgba(230, 41, 34,0.1);
+//box-shadow
+
+$main-box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.07);
