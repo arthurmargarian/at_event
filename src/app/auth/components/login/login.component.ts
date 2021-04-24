@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EmailValidator } from '../../../infratructure/validators/email-validator';
-import { AuthService } from '../../auth-service.service';
+import { AuthApiService } from '../../auth-service.service';
 import { Title } from '@angular/platform-browser';
 import { LoginStatusEnum } from '../../../infratructure/enums/login-status.enum';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { AuthService, FacebookLoginProvider, GoogleLoginProvider } from 'ng-social-login';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,8 @@ export class LoginComponent implements OnInit {
               private router: Router,
               private translateService: TranslateService,
               private titleService: Title,
-              private authService: AuthService) {
+              private socialAuthService: AuthService,
+              private authApiService: AuthApiService) {
   }
 
   public form: FormGroup;
@@ -67,7 +69,7 @@ export class LoginComponent implements OnInit {
       this.isLoading = true;
       this.emailError = false;
       this.passwordError = false;
-      this.authService.signIn(this.form.value)
+      this.authApiService.signIn(this.form.value)
         .subscribe(res => {
           this.requested = true;
           switch (res.status) {
@@ -90,5 +92,27 @@ export class LoginComponent implements OnInit {
     localStorage.setItem('token', res.token);
     localStorage.setItem('loggedUser', JSON.stringify(res.user));
     this.router.navigate(['/dashboard']);
+  }
+
+  public onFacebookLogin(): void {
+    const providerId = FacebookLoginProvider.PROVIDER_ID;
+    this.socialAuthService.signIn(providerId)
+      .then(res => {
+        if (res) {
+          console.log(res);
+          this.router.navigate(['/dashboard']);
+        }
+      });
+  }
+
+  public onGoogleLogin(): void {
+    const providerId = GoogleLoginProvider.PROVIDER_ID;
+    this.socialAuthService.signIn(providerId)
+      .then(res => {
+        if (res) {
+          console.log(res);
+          this.router.navigate(['/dashboard']);
+        }
+      });
   }
 }

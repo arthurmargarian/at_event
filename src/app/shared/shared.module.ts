@@ -25,6 +25,10 @@ import { NgSelectModule } from '@ng-select/ng-select';
   exports: [
     CommonModule,
     ReactiveFormsModule,
+    RouterModule,
+    TranslateModule,
+    NgbDropdownModule,
+    NgSelectModule,
     LoaderComponent,
     HeaderComponent
   ],

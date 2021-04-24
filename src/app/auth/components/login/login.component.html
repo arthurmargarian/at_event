@@ -57,13 +57,13 @@
 </ng-template>
 <hr>
 <div class="connect-with m-t-20">
-  <div class="facebook w-65 m-l-r-auto d-flex justify-content-center">
+  <div class="facebook w-65 m-l-r-auto d-flex justify-content-center" (click)="onFacebookLogin()">
     <div>
       <i class="icon fa fa-facebook-f"></i>
       <span class="sign-in">{{'AUTH.sign_in_with_facebook' | translate}}</span>
     </div>
   </div>
-  <div class="google w-65 m-l-r-auto d-flex justify-content-center">
+  <div class="google w-65 m-l-r-auto d-flex justify-content-center" (click)="onGoogleLogin()">
     <div>
       <i class="icon fa fa-google"></i>
       <span class="sign-in">{{'AUTH.sign_in_with_google' | translate}}</span>

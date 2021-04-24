@@ -6,7 +6,7 @@ import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class AuthApiService {
 
   constructor(private http: HttpClient) {
   }
@@ -20,5 +20,9 @@ export class AuthService {
 
   public isAuthenticated(): boolean {
     return !!localStorage.getItem('token');
+  }
+
+  public googleLogin(providerId: string) {
+
   }
 }
