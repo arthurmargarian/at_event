@@ -31,7 +31,6 @@ export class LoginComponent implements OnInit {
   public submitted: boolean;
 
   ngOnInit() {
-    this.translateService.setDefaultLang('en');
     this.titleService.setTitle('Sign In');
     this.initForm();
   }

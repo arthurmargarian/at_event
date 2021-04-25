@@ -86,11 +86,11 @@
     @include align-items(center);
 
     &.blue-border {
-      border-color: $cyan;
+      border-color: $light-orange;
     }
 
     @at-root .blue-border ng-select.ng-select.new-element {
-      border-color: $cyan;
+      border-color: $light-orange;
     }
 
     &.ng-select-multiple {
@@ -203,7 +203,7 @@
 
     .select-dropdown {
       .highlighted {
-        background-color: $color-blue;
+        background-color: $light-orange;
       }
     }
 
@@ -285,7 +285,7 @@
     @include box-shadow($main-box-shadow);
 
     &:focus {
-      border-color: $light-blue !important;
+      border-color: $light-orange !important;
     }
 
     &.validation-error {
@@ -301,11 +301,11 @@
     }
 
     &.blue-border {
-      border-color: $cyan;
+      border-color: $light-orange;
     }
 
     @at-root .blue-border input.new-element {
-      border-color: $cyan;
+      border-color: $light-orange;
     }
   }
 
@@ -340,7 +340,7 @@
           tag {
             @include border-radius(2px);
             background-color: rgba(59, 184, 228, 0.1) !important;
-            color: $light-blue !important;
+            color: $light-orange !important;
             padding: 1px 5px !important;
             margin: 2px 2px 2px 0 !important;
             font-weight: 700 !important;
@@ -395,7 +395,7 @@
         }
 
         &.ng2-tag-input--focused {
-          border-color: $light-blue !important;
+          border-color: $light-orange !important;
 
         }
       }
@@ -464,7 +464,7 @@
           &:after {
             font-family: "icomoon";
             content: "\e905";
-            color: $light-blue;
+            color: $light-orange;
           }
         }
 
@@ -483,7 +483,7 @@
           }
 
           &:focus {
-            border-color: $light-blue;
+            border-color: $light-orange;
 
           }
         }
@@ -522,7 +522,7 @@
     }
 
     &.blue-border .datepicker .datepicker__field .mat-input-element {
-      border-color: $cyan;
+      border-color: $light-orange;
     }
   }
 }

@@ -6,16 +6,13 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: './auth/auth.module#AuthModule',
-    canActivate: [NotAuthGuard],
   },
   {
     path: 'dashboard',
     loadChildren: './dashboard/dashboard.module#DashboardModule',
-    canActivate: [NotAuthGuard],
   },
   {
     path: 'events',
-    canActivate: [NotAuthGuard],
     loadChildren: './events/events.module#EventsModule',
   },
   {

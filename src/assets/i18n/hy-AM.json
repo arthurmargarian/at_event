@@ -21,12 +21,11 @@
   },
   "HEADER": {
     "TITLES": {
-      "dashboard": "Dashboard",
-      "events_for_you": "Events for You",
-      "event_navigator":"Event Navigator",
-      "create_event": "Create Event",
-      "your_events": "Your Events",
-      "sign_in": "Sign In"
+      "events_for_you": "Իրադարձություն քո Համար",
+      "event_navigator":"Իրադարձությունների Նավիգատոր",
+      "create_event": "Ստեղծել Իրադարձություն",
+      "your_events": "Քո Իրադարձություները",
+      "sign_in": "Մուտք Գործել"
 
     }
   }

@@ -1,10 +1,13 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
-
-const config = require('../config/db');
+const autoIncrement = require('mongoose-auto-increment');
 
 
 const UserSchema = mongoose.Schema({
+  id: {
+    type: Number,
+    require: true,
+  },
   first_name: {
     type: String,
     require: true,
@@ -23,15 +26,35 @@ const UserSchema = mongoose.Schema({
   },
 });
 
-const User = module.exports = mongoose.model('User', UserSchema);
+// AutoIncrement Id
+const connection = mongoose.createConnection("mongodb+srv://user:pass@mean-db.cqwkl.mongodb.net/at-event", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false,
+  useCreateIndex: true
+});
+
+autoIncrement.initialize(connection);
+
+UserSchema.plugin(autoIncrement.plugin, {
+  model: 'User',
+  field: 'id',
+  startAt: 1,
+  incrementBy: 1
+});
+
+
+const UserModel = module.exports = mongoose.model('User', UserSchema);
+
+// Methods
 
 module.exports.getUserById = function (id, callback) {
-  User.findById(id, callback)
+  UserModel.findById(id, callback)
 }
 
 module.exports.getUserByEmail = function (email, callback) {
   const query = {email: email};
-  User.findOne(query, callback);
+  UserModel.findOne(query, callback);
 }
 
 module.exports.addUser = function (newUser, callback) {

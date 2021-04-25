@@ -7,6 +7,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgModule } from '@angular/core';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { SettingsService } from './components/services/settings.service';
 
 
 @NgModule({
@@ -29,10 +30,11 @@ import { NgSelectModule } from '@ng-select/ng-select';
     TranslateModule,
     NgbDropdownModule,
     NgSelectModule,
+  // Components
     LoaderComponent,
     HeaderComponent
   ],
-  providers: []
+  providers: [SettingsService]
 })
 export class SharedModule {
 }

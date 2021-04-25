@@ -1,14 +1,13 @@
-
 const jwt = require('jsonwebtoken');
 
-const User = require('../models/user');
+const User = require('../models/user.model');
 const config = require('../config/db');
 
 
 module.exports.sign_up_post = (req, res, next) => {
   let newUser = new User({
-    first_name: req.body.first_name,
-    last_name: req.body.last_name,
+    first_name: req.body.firstName,
+    last_name: req.body.lastName,
     email: req.body.email,
     password: req.body.password,
   });
@@ -44,12 +43,7 @@ module.exports.login_post = (req, res, next) => {
           success: true,
           status: 10,
           token: `Bearer ${token}`,
-          user: {
-            id: user._id,
-            first_name: user.first_name,
-            last_name: user.last_name,
-            email: user.email,
-          }
+          user: user
         });
       } else {
         res.json({
@@ -59,6 +53,26 @@ module.exports.login_post = (req, res, next) => {
         })
       }
     });
+  });
+};
+
+module.exports.by_email_get = (req, res, next) => {
+  const email = req.query.email;
+  User.getUserByEmail(email, (err, user) => {
+    if (err) throw err;
+    if (!user) {
+      return res.json({
+        success: false,
+        model: null,
+        status: 10
+      });
+    } else {
+      return res.json({
+        success: true,
+        model: user,
+        status: 1
+      });
+    }
   });
 };
 

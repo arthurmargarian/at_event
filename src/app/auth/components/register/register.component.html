@@ -1,3 +1,150 @@
+<form class="new-form" [formGroup]="form">
+  <div class="row">
+    <div class="col-sm-12 col-sm-gap">
+      <div class="form-card">
+        <div class="form-card-content">
+          <div class="card-row">
+              <div class="row">
+                <div class="col-sm-4">
+                  <label class="new-label" for="email">{{'GENERAL_LABELS.email' | translate}}:</label>
+                </div>
+                <div class="col-sm-8">
+                  <input formControlName="email"
+                         type="text"
+                         id="email"
+                         class="new-element"
+                         [ngClass]='{"validation-error": form.get("email").errors && (form.get("email").touched || submitted)}'
+                         placeholder="{{'GENERAL_PLACEHOLDERS.email' | translate}}">
+                  <div class="messages text-danger">
+                    <div *ngIf="form.get('email').errors && (form.get('email').touched || submitted)">
+                      <div [hidden]="!form.get('email').errors.required">
+                        {{'GENERAL_VALIDATIONS.required_field' | translate}}
+                      </div>
+                      <div [hidden]="!form.get('email').errors.email">
+                        {{'AUTH.validations.invalid_email' | translate}}
+                      </div>
+                      <div [hidden]="!form.get('email').errors.emailExist">
+                        {{'AUTH.validations.email_exist' | translate}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <div class="card-row">
+            <div class="row">
+              <div class="col-sm-4">
+                <label class="new-label" for="firstName">{{'GENERAL_LABELS.first_name' | translate}}:</label>
+              </div>
+              <div class="col-sm-8">
+                <input formControlName="firstName"
+                       type="text"
+                       id="firstName"
+                       class="new-element"
+                       [ngClass]='{"validation-error": form.get("firstName").errors && (form.get("firstName").touched || submitted)}'
+                       placeholder="{{'GENERAL_PLACEHOLDERS.first_name' | translate}}">
+                <div class="messages text-danger">
+                  <div *ngIf="form.get('firstName').errors && (form.get('firstName').touched || submitted)">
+                    <div [hidden]="!form.get('firstName').errors.required">
+                      {{'GENERAL_VALIDATIONS.required_field' | translate}}
+                    </div>
+                    <div [hidden]="!form.get('firstName').errors.minlength">
+                      {{'GENERAL_VALIDATIONS.min_character' | translate:{value:2} }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-row">
+            <div class="row">
+              <div class="col-sm-4">
+                <label class="new-label" for="lastName">{{'GENERAL_LABELS.last_name' | translate}}:</label>
+              </div>
+              <div class="col-sm-8">
+                <input formControlName="lastName"
+                       type="text"
+                       id="lastName"
+                       class="new-element"
+                       [ngClass]='{"validation-error": form.get("lastName").errors && (form.get("lastName").touched || submitted)}'
+                       placeholder="{{'GENERAL_PLACEHOLDERS.last_name' | translate}}">
+                <div class="messages text-danger">
+                  <div *ngIf="form.get('lastName').errors && (form.get('lastName').touched || submitted)">
+                    <div [hidden]="!form.get('lastName').errors.required">
+                      {{'GENERAL_VALIDATIONS.required_field' | translate}}
+                    </div>
+                    <div [hidden]="!form.get('lastName').errors.minlength">
+                      {{'GENERAL_VALIDATIONS.min_character' | translate:{value:2} }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-row">
+            <div class="row">
+              <div class="col-sm-4">
+                <label class="new-label" for="password">{{'GENERAL_LABELS.password' | translate}}:</label>
+              </div>
+              <div class="col-sm-8">
+                <input formControlName="password"
+                       type="password"
+                       id="password"
+                       class="new-element"
+                       [ngClass]='{"validation-error": form.get("password").errors && (form.get("password").touched || submitted)}'
+                       placeholder="{{'GENERAL_PLACEHOLDERS.password' | translate}}">
+                <div class="messages text-danger">
+                  <div *ngIf="form.get('password').errors && (form.get('password').touched || submitted)">
+                    <div [hidden]="!form.get('password').errors.required">
+                      {{'GENERAL_VALIDATIONS.required_field' | translate}}
+                    </div>
+                    <div [hidden]="!form.get('password').errors.minlength">
+                      {{'GENERAL_VALIDATIONS.min_character' | translate:{value:6} }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-row">
+            <div class="row">
+              <div class="col-sm-4">
+                <label class="new-label" for="passwordConfirm">{{'GENERAL_LABELS.password_confirm' | translate}}:</label>
+              </div>
+              <div class="col-sm-8">
+                <input formControlName="passwordConfirm"
+                       type="password"
+                       id="passwordConfirm"
+                       class="new-element"
+                       [ngClass]='{"validation-error": form.get("passwordConfirm").errors && (form.get("passwordConfirm").touched || submitted)}'
+                       placeholder="{{'GENERAL_PLACEHOLDERS.password_confirm' | translate}}">
+                <div class="messages text-danger">
+                  <div *ngIf="form.get('passwordConfirm').errors && (form.get('passwordConfirm').touched || submitted)">
+                    <div [hidden]="!form.get('passwordConfirm').errors.required">
+                      {{'GENERAL_VALIDATIONS.required_field' | translate}}
+                    </div>
+                    <div [hidden]="!form.get('passwordConfirm').errors.isNotMatch">
+                      {{'GENERAL_VALIDATIONS.password_is_not_match' | translate}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group d-flex justify-content-end">
+            <div class="d-flex">
+              <button type="submit"
+                      class="my-btn"
+                      (click)="signUpSubmit()">
+                {{'AUTH.sign_up' | translate}}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
 <hr class="m-b-5">
 <div class="form-group d-flex justify-content-center">
   <div class="d-flex">

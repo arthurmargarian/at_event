@@ -10,6 +10,7 @@ import { SharedModule } from '../shared/shared.module';
 
 const GOOGLE_OAUTH_CLIENT_ID = '174901231009-eni8jt11p1mc7hritqetmlpfj63pk0qf.apps.googleusercontent.com';
 const FACEBOOK_APP_ID = '2261974733824223';
+
 const CONFIG = new AuthServiceConfig([
   {
     id: GoogleLoginProvider.PROVIDER_ID,

@@ -6,7 +6,7 @@
              class="form-control"
              formControlName="email"
              [ngClass]="{'invalid': (form.get('email').errors && (form.get('email').touched || submitted)) || requested && emailError}"
-             placeholder="Email">
+             placeholder="{{'GENERAL_LABELS.email' | translate}}">
       <div class="form-messages">
         <div class="errors" *ngIf="form.get('email').errors && (form.get('email').touched || submitted)">
           <span *ngIf="form.get('email').errors.required">
@@ -26,7 +26,7 @@
              formControlName="password"
              [ngClass]="{'invalid': (form.get('password').errors && (form.get('password').touched || submitted)) || requested && passwordError}"
              class="form-control"
-             placeholder="Password">
+             placeholder="{{'GENERAL_LABELS.password' | translate}}">
       <div class="form-messages">
         <div class="errors" *ngIf="form.get('password').errors && (form.get('password').touched || submitted)">
           <span *ngIf="form.get('password').errors.required">

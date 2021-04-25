@@ -10,13 +10,29 @@
     "validations": {
       "user_not_found": "User Not Found",
       "wrong_password": "Wrong Password",
-      "invalid_email": "Invalid Email"
+      "invalid_email": "Invalid Email",
+      "email_exist": "This Email already in use."
     }
   },
+  "GENERAL_PLACEHOLDERS": {
+    "email": "Enter Email",
+    "first_name": "Enter First Name",
+    "last_name": "Enter Last Name",
+    "password": "Enter Password",
+    "password_confirm": "Confirm Password"
+  },
   "GENERAL_LABELS": {
+    "email": "Email",
+    "password": "Password",
+    "first_name": "First Name",
+    "last_name": "Last Name",
+    "password_confirm": "Confirm Password"
   },
   "GENERAL_VALIDATIONS": {
-    "required_field": "Required Field"
+    "required_field": "Required Field",
+    "password_is_not_match": "Passwords is not match",
+    "min_character": "This field needs to be at least {{value}} characters.",
+    "max_character": "This field needs to be more then {{value}} characters."
   },
   "HEADER": {
     "TITLES": {

@@ -6,3 +6,102 @@
   line-height: 35px;
   margin-right: 10px;
 }
+
+
+@import "~src/assets/general-styles/variables";
+
+.sing-in {
+  display: block !important;
+  text-align: center !important;
+  font-size: 20px !important;
+}
+
+.form-control{
+  border-radius: 0.25rem !important;
+}
+
+.forget {
+  color: $font-color !important;
+  cursor: pointer !important;
+  font-size: $font-size-sm !important;
+  line-height: 35px !important;
+
+  &:hover {
+    color: $ae-hover-color !important;
+  }
+}
+
+.sign-up-title {
+  color: $font-color !important;
+  font-size: $font-size-sm !important;
+  line-height: 35px !important;
+  margin-right: 10px !important;
+}
+
+.connect-with {
+  display: block !important;
+
+  .title {
+    text-align: left !important;
+    font-size: 15px !important;
+    line-height: 15px !important;
+  }
+
+  .facebook {
+    cursor: pointer !important;
+    height: 35px !important;
+    border-radius: 5px !important;
+    background: none !important;
+    border: 1px solid $font-color !important;
+    color: $font-color !important;
+    transition: 0.2s !important;
+
+    &:hover {
+      border: none !important;
+      background-color: #09459a !important;
+      color: white !important;
+    }
+
+    .sign-in {
+      font-size: 13px !important;
+      line-height: 35px !important;
+      margin-left: 20px !important;
+    }
+
+    .fa-facebook-f {
+      font-size: 25px !important;
+      transform: translateY(4px) !important;
+      margin-right: 5px !important;
+    }
+  }
+
+  .google {
+    margin-top: 10px !important;
+    cursor: pointer !important;
+    height: 35px !important;
+    color: $font-color !important;
+    border-radius: 5px !important;
+    background: none !important;
+    border: 1px solid $font-color !important;
+    transition: 0.2s !important;
+
+    &:hover {
+      border: none !important;
+      color: white !important;
+      background-color: #932a18 !important;
+    }
+
+    .sign-in {
+      font-size: 13px !important;
+      line-height: 35px !important;
+      margin-left: 20px !important;
+    }
+
+    .fa-google {
+      font-size: 25px !important;
+      transform: translate3d(-5px, 2px, 0px) !important;
+      margin-right: 5px !important;
+    }
+  }
+
+}

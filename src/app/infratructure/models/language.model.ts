@@ -1,4 +1,7 @@
 export class LanguageModel {
-  constructor(id: number, value: string) {
+  public id: number;
+  public name: string;
+
+  constructor(id: number, name: string) {
   }
 }
