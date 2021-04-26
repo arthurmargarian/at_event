@@ -10,6 +10,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { WebpackTranslateLoader } from './core/webpack-translate-loader';
 import { SharedModule } from './shared/shared.module';
 import { EventsModule } from './events/events.module';
+import { GlobalVarsService } from './global-vars.service';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { EventsModule } from './events/events.module';
     }),
   ],
   providers: [
+    GlobalVarsService,
     {provide: LocationStrategy, useClass: HashLocationStrategy}
   ],
   bootstrap: [AppComponent]

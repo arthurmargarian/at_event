@@ -7,6 +7,8 @@ import { LoginStatusEnum } from '../../../infratructure/enums/login-status.enum'
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthService, FacebookLoginProvider, GoogleLoginProvider } from 'ng-social-login';
+import { SettingsService } from '../../../shared/services/settings.service';
+import { GlobalVarsService } from '../../../global-vars.service';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +25,9 @@ export class LoginComponent implements OnInit {
               private router: Router,
               private translateService: TranslateService,
               private titleService: Title,
+              private settingsService: SettingsService,
               private socialAuthService: AuthService,
+              private globalVarsService: GlobalVarsService,
               private authApiService: AuthApiService) {
   }
 
@@ -91,6 +95,8 @@ export class LoginComponent implements OnInit {
     localStorage.setItem('token', res.token);
     localStorage.setItem('loggedUser', JSON.stringify(res.user));
     this.router.navigate(['/dashboard']);
+    this.globalVarsService.isAuthenticated.next(true);
+    this.getLanguage(res.user.id);
   }
 
   public onFacebookLogin(): void {
@@ -98,6 +104,7 @@ export class LoginComponent implements OnInit {
     this.socialAuthService.signIn(providerId)
       .then(res => {
         if (res) {
+          this.globalVarsService.isAuthenticated.next(true);
           console.log(res);
           this.router.navigate(['/dashboard']);
         }
@@ -110,7 +117,18 @@ export class LoginComponent implements OnInit {
       .then(res => {
         if (res) {
           console.log(res);
+          this.globalVarsService.isAuthenticated.next(true);
           this.router.navigate(['/dashboard']);
+        }
+      });
+  }
+
+  private getLanguage(userId: number): void {
+    this.settingsService.getUserSettings(userId)
+      .subscribe((res) => {
+        if (res && res.model && res.model.language) {
+          console.log(res.model.language);
+          this.globalVarsService.currentLanguage.next(res.model.language);
         }
       });
   }

@@ -5,7 +5,6 @@ import { CreateEventComponent } from './components/create-event/create-event.com
 import { EventNavigatorComponent } from './components/event-navigator/event-navigator.component';
 import { EventsForYouComponent } from './components/events-for-you/events-for-you.component';
 import { YoursEventsComponent } from './components/yours-events/yours-events.component';
-import { NotAuthGuard } from '../guards/not-auth.guard';
 import { EventsComponent } from './events.component';
 
 const routes: Routes = [
@@ -16,7 +15,7 @@ const routes: Routes = [
   {
     path: 'navigator',
     component: EventNavigatorComponent,
-    canActivate: [NotAuthGuard],
+    canActivate: [],
   },
   {
     path: 'create',

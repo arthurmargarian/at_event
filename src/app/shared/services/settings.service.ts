@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { environment } from '../../../../environments/environment';
-import { UserSettingModel } from '../../../infratructure/models/user-setting.model';
+import { environment } from '../../../environments/environment';
+import { UserSettingModel } from '../../infratructure/models/user-setting.model';
 
 @Injectable({
   providedIn: 'root'
