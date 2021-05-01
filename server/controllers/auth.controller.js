@@ -9,7 +9,9 @@ module.exports.sign_up_post = (req, res, next) => {
     first_name: req.body.firstName,
     last_name: req.body.lastName,
     email: req.body.email,
+    pic_url: req.body.pic_url,
     password: req.body.password,
+    is_social: req.body.isSocial
   });
   User.addUser(newUser, (err, user) => {
     if (err) {

@@ -1,3 +1,4 @@
+import { AuthService, FacebookLoginProvider, GoogleLoginProvider, SocialUser } from 'ng-social-login';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EmailValidator } from '../../../infratructure/validators/email-validator';
@@ -6,9 +7,10 @@ import { Title } from '@angular/platform-browser';
 import { LoginStatusEnum } from '../../../infratructure/enums/login-status.enum';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { AuthService, FacebookLoginProvider, GoogleLoginProvider } from 'ng-social-login';
 import { SettingsService } from '../../../shared/services/settings.service';
 import { GlobalVarsService } from '../../../global-vars.service';
+import { UserModel } from '../../../infratructure/models/user.model';
+import { UserCredentialsInterface } from '../../../infratructure/interfaces/user-credentials.interface';
 
 @Component({
   selector: 'app-login',
@@ -66,6 +68,35 @@ export class LoginComponent implements OnInit {
       });
   }
 
+  private setUserSettings(res): void {
+    localStorage.setItem('token', res.token);
+    localStorage.setItem('loggedUser', JSON.stringify(res.user));
+    this.router.navigate(['/dashboard']);
+    this.globalVarsService.isAuthenticated.next(true);
+    this.getLanguage(res.user.id);
+  }
+
+  private registerUserFromSocial(res: SocialUser): void {
+    const model = new UserModel(0);
+    const names = res.name.split(' ');
+    model.firstName = names[0];
+    model.lastName = names[1];
+    model.email = res.email;
+    model.password = res.id;
+    model.picUrl = res.photoUrl;
+    model.isSocial = true;
+    this.addUser(model);
+  }
+
+  private getLanguage(userId: number): void {
+    this.settingsService.getUserSettings(userId)
+      .subscribe((res) => {
+        if (res && res.model && res.model.language) {
+          this.globalVarsService.currentLanguage.next(res.model.language);
+        }
+      });
+  }
+
   public signInSubmit(): void {
     this.submitted = true;
     if (this.form.valid) {
@@ -91,22 +122,14 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  private setUserSettings(res): void {
-    localStorage.setItem('token', res.token);
-    localStorage.setItem('loggedUser', JSON.stringify(res.user));
-    this.router.navigate(['/dashboard']);
-    this.globalVarsService.isAuthenticated.next(true);
-    this.getLanguage(res.user.id);
-  }
-
   public onFacebookLogin(): void {
     const providerId = FacebookLoginProvider.PROVIDER_ID;
     this.socialAuthService.signIn(providerId)
       .then(res => {
         if (res) {
-          this.globalVarsService.isAuthenticated.next(true);
-          console.log(res);
-          this.router.navigate(['/dashboard']);
+          this.authForUserFromSocial(res);
+        } else {
+          alert('Facebook Social failed');
         }
       });
   }
@@ -116,20 +139,54 @@ export class LoginComponent implements OnInit {
     this.socialAuthService.signIn(providerId)
       .then(res => {
         if (res) {
-          console.log(res);
-          this.globalVarsService.isAuthenticated.next(true);
-          this.router.navigate(['/dashboard']);
+          this.authForUserFromSocial(res);
+        } else {
+          alert('Google Social failed');
         }
       });
   }
 
-  private getLanguage(userId: number): void {
-    this.settingsService.getUserSettings(userId)
-      .subscribe((res) => {
-        if (res && res.model && res.model.language) {
-          console.log(res.model.language);
-          this.globalVarsService.currentLanguage.next(res.model.language);
+  private addUser(model: UserModel): void {
+    this.authApiService.signUp(model)
+      .subscribe(res => {
+        if (res.success) {
+          const credentials = {
+            email: model.email,
+            password: model.password
+          };
+          this.singIn(credentials);
+          alert('Social Register Success');
+        } else {
+          alert('Social Register Failed');
         }
       });
+  }
+
+  private singIn(credentials: UserCredentialsInterface): void {
+    this.authApiService.signIn(credentials)
+      .subscribe((res) => {
+        if (res) {
+          this.setUserSettings(res);
+          alert('Login Success');
+        } else {
+          alert('Login Failed');
+        }
+      });
+  }
+
+  private authForUserFromSocial(res: SocialUser): void {
+    this.authApiService.findUserByEmail(res.email)
+      .subscribe(resp => {
+        if (resp.model) {
+          const credentials = {
+            email: res.email,
+            password: res.id
+          };
+          this.singIn(credentials);
+        } else {
+          this.registerUserFromSocial(res);
+        }
+      });
+
   }
 }

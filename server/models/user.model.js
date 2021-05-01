@@ -24,6 +24,14 @@ const UserSchema = mongoose.Schema({
     type: String,
     require: true,
   },
+  pic_url: {
+    type: String,
+    require: false,
+  },
+  is_social: {
+    type: Boolean,
+    require: true,
+  },
 });
 
 // AutoIncrement Id

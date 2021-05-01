@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { UserModel } from '../infratructure/models/user.model';
+import { UserCredentialsInterface } from '../infratructure/interfaces/user-credentials.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class AuthApiService {
 
   private url = `${environment.host}/auth`;
 
-  public signIn(credentials): Observable<any> {
+  public signIn(credentials: UserCredentialsInterface): Observable<any> {
     const url = `${this.url}/login`;
     return this.http.post(url, credentials);
   }

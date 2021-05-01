@@ -4,6 +4,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EmailValidator } from '../../../infratructure/validators/email-validator';
 import { AuthApiService } from '../../auth-service.service';
 import { UserModel } from '../../../infratructure/models/user.model';
+import { UserCredentialsInterface } from '../../../infratructure/interfaces/user-credentials.interface';
+import { GlobalVarsService } from '../../../global-vars.service';
+import { Router } from '@angular/router';
+import { SettingsService } from '../../../shared/services/settings.service';
 
 @Component({
   selector: 'app-register',
@@ -13,10 +17,12 @@ import { UserModel } from '../../../infratructure/models/user.model';
 export class RegisterComponent implements OnInit {
   public form: FormGroup;
   public submitted: boolean;
-  public isPassMatch: boolean;
 
   constructor(private titleService: Title,
               private authApiService: AuthApiService,
+              private settingsService: SettingsService,
+              private globalVarsService: GlobalVarsService,
+              private router: Router,
               private fb: FormBuilder) {
   }
 
@@ -99,6 +105,7 @@ export class RegisterComponent implements OnInit {
       model.lastName = values.lastName;
       model.email = values.email;
       model.password = values.password;
+      model.isSocial = false;
       this.addUser(model);
     }
   }
@@ -106,7 +113,34 @@ export class RegisterComponent implements OnInit {
   private addUser(newUser: UserModel): void {
     this.authApiService.signUp(newUser)
       .subscribe(res => {
-      console.log(res);
-    });
+        if (res.success) {
+          const credentials = {
+            email: newUser.email,
+            password: newUser.password
+          };
+          this.singIn(credentials);
+        } else {
+          alert('Failed register');
+        }
+      });
+  }
+
+  private singIn(credentials: UserCredentialsInterface): void {
+    this.authApiService.signIn(credentials)
+      .subscribe((res) => {
+        if (res) {
+          this.setUserSettings(res);
+          alert('Login Success');
+        } else {
+          alert('Login Failed');
+        }
+      });
+  }
+
+  private setUserSettings(res): void {
+    localStorage.setItem('token', res.token);
+    localStorage.setItem('loggedUser', JSON.stringify(res.user));
+    this.router.navigate(['/dashboard']);
+    this.globalVarsService.isAuthenticated.next(true);
   }
 }
