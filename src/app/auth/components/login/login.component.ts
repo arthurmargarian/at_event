@@ -82,7 +82,7 @@ export class LoginComponent implements OnInit {
     model.firstName = names[0];
     model.lastName = names[1];
     model.email = res.email;
-    model.password = res.id;
+    model.password = res.email;
     model.picUrl = res.photoUrl;
     model.isSocial = true;
     this.addUser(model);
@@ -180,7 +180,7 @@ export class LoginComponent implements OnInit {
         if (resp.model) {
           const credentials = {
             email: res.email,
-            password: res.id
+            password: res.email
           };
           this.singIn(credentials);
         } else {
