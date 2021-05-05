@@ -4,7 +4,7 @@ module.exports.user_setting_post = (req, res, next) => {
   const userId = req.body.id;
   const languageId = req.body.language;
   const userSetting = new UserSetting({
-    user_id: userId,
+    userId: userId,
     language: languageId,
   });
   UserSetting.findSettingByUserId(userId, (err, setting) => {

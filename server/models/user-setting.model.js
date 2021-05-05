@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const UserSettingSchema = mongoose.Schema({
-  user_id: {
+  userId: {
     type: Number,
     require: true,
   },
@@ -14,7 +14,7 @@ const UserSettingSchema = mongoose.Schema({
 const UserSettingModel = module.exports = mongoose.model('UserSetting', UserSettingSchema);
 
 module.exports.findSettingByUserId = function (userId, callback) {
-  const query = {user_id: userId};
+  const query = {userId: userId};
   UserSettingModel.findOne(query, callback);
 }
 module.exports.addSetting = function (newSetting, callback) {
@@ -22,5 +22,5 @@ module.exports.addSetting = function (newSetting, callback) {
 }
 
 module.exports.updateSetting = function (setting, callback) {
-  UserSettingModel.findOneAndUpdate({user_id: setting.user_id}, {language: setting.language}, {new: true}, callback);
+  UserSettingModel.findOneAndUpdate({userId: setting.userId}, {language: setting.language}, {new: true}, callback);
 }

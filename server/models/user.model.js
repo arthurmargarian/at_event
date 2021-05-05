@@ -8,11 +8,11 @@ const UserSchema = mongoose.Schema({
     type: Number,
     require: true,
   },
-  first_name: {
+  firstName: {
     type: String,
     require: true,
   },
-  last_name: {
+  lastName: {
     type: String,
     require: true,
   },
@@ -24,11 +24,11 @@ const UserSchema = mongoose.Schema({
     type: String,
     require: true,
   },
-  pic_url: {
+  photoUrl: {
     type: String,
     require: false,
   },
-  is_social: {
+  isSocial: {
     type: Boolean,
     require: true,
   },

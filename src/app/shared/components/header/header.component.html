@@ -12,14 +12,14 @@
         <a [routerLink]="['events/for-you']"
            routerLinkActive="active"
            class="nav-item nav-link">
-          <span>
+          <span class="item-inner">
             {{'HEADER.TITLES.events_for_you' | translate}}
           </span>
         </a>
         <a [routerLink]="['events/navigator']"
            routerLinkActive="active"
            class="nav-item nav-link">
-          <span>
+          <span class="item-inner">
           <i class="fa fa-search"></i>
             {{'HEADER.TITLES.event_navigator' | translate}}
           </span>
@@ -29,7 +29,7 @@
         <a [routerLink]="['events/create']"
            routerLinkActive="active"
            class="nav-item nav-link">
-          <span>
+          <span class="item-inner">
           <i class="fa fa-plus"></i>
             {{'HEADER.TITLES.create_event' | translate}}
           </span>
@@ -37,17 +37,40 @@
         <a [routerLink]="['events/yours']"
            routerLinkActive="active"
            class="nav-item nav-link">
-          <span>
+          <span class="item-inner">
             {{'HEADER.TITLES.your_events' | translate}}
           </span>
         </a>
-        <a [routerLink]="['/sign-in']"
-           routerLinkActive="active"
-           class="nav-item nav-link">
-          <span>
+        <a class="nav-item nav-link"  *ngIf="currentUser;else signIn">
+          <span class="item-inner"
+                [ngbTooltip]="more"
+                [container]="'body'"
+                [autoClose]="'outside'"
+                placement="bottom"
+                triggers="click:blur">
+            <img [src]="currentUser?.photoUrl" alt="" style="border-radius: 50%; height: 25px">
+            <span class="profile-dd-wrapper">
+             <i class="icon-arrow m-l-5"></i>
+            </span>
+          </span>
+          <ng-template #more>
+            <span>{{currentUser.firstName + ' ' + currentUser.lastName}}</span>
+            <hr>
+            <span>span1</span>
+            <hr>
+            <span>span2</span>
+          </ng-template>
+        </a>
+        <ng-template #signIn>
+          <a [routerLink]="['/sign-in']"
+             routerLinkActive="active"
+             class="nav-item nav-link">
+          <span class="item-inner">
             {{'HEADER.TITLES.sign_in' | translate}}
           </span>
-        </a>
+          </a>
+        </ng-template>
+
       </div>
     </div>
   </div>

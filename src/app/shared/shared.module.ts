@@ -4,7 +4,7 @@ import { LoaderComponent } from './components/loader/loader.component';
 import { HeaderComponent } from './components/header/header.component';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDropdownModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgModule } from '@angular/core';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { SettingsService } from './services/settings.service';
@@ -15,14 +15,15 @@ import { SettingsService } from './services/settings.service';
     LoaderComponent,
     HeaderComponent
   ],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    RouterModule,
-    TranslateModule,
-    NgbDropdownModule,
-    NgSelectModule,
-  ],
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        RouterModule,
+        TranslateModule,
+        NgbDropdownModule,
+        NgSelectModule,
+        NgbModule,
+    ],
   exports: [
     CommonModule,
     ReactiveFormsModule,

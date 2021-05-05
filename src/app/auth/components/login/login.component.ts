@@ -83,7 +83,7 @@ export class LoginComponent implements OnInit {
     model.lastName = names[1];
     model.email = res.email;
     model.password = res.email;
-    model.picUrl = res.photoUrl;
+    model.photoUrl = res.photoUrl;
     model.isSocial = true;
     this.addUser(model);
   }

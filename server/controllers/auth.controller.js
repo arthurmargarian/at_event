@@ -6,12 +6,12 @@ const config = require('../config/db');
 
 module.exports.sign_up_post = (req, res, next) => {
   let newUser = new User({
-    first_name: req.body.firstName,
-    last_name: req.body.lastName,
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
     email: req.body.email,
-    pic_url: req.body.pic_url,
+    photoUrl: req.body.photoUrl,
     password: req.body.password,
-    is_social: req.body.isSocial
+    isSocial: req.body.isSocial
   });
   User.addUser(newUser, (err, user) => {
     if (err) {

@@ -39,7 +39,6 @@ razor-multiselect.new-element ng-select.ng-select.new-element {
 
       .ng-value-label {
         font-size: 12px !important;
-        //line-height: 14px;
         font-weight: 600 !important;
         @include text-overflow();
         display: inline-block;
@@ -77,7 +76,6 @@ razor-multiselect.new-element ng-select.ng-select.new-element {
         color: $placeholder !important;
         height: inherit !important;
         margin: 0;
-        //position: static;
         @include transition(none);
         max-width: 90%;
         white-space: nowrap;
@@ -87,29 +85,6 @@ razor-multiselect.new-element ng-select.ng-select.new-element {
         max-width: 90%;
       }
     }
-
-    //.ng-arrow-wrapper {
-    //  bottom: 2px !important;
-    //  height: inherit !important;
-    //  border: none !important;
-    //  margin: 0;
-    //  padding: 0;
-    //
-    //  .ng-arrow {
-    //    border: none !important;
-    //    display: block;
-    //    width: auto !important;
-    //    height: auto !important;
-    //    margin-right: 0;
-    //
-    //    &:before {
-    //      font-family: "icomoon";
-    //      content: "\e907";
-    //      color: $icon-color;
-    //      font-size: 6px;
-    //    }
-    //  }
-    //}
 
     .ng-value,
     .ng-input,
@@ -154,4 +129,28 @@ razor-multiselect.new-element ng-select.ng-select.new-element {
   }
 
   background: $white;
+}
+
+// For material modal
+.cdk-overlay-container,
+.cdk-overlay-backdrop,
+.cdk-overlay-connected-position-bounding-box,
+.cdk-overlay-pane {
+  z-index: 200000;
+}
+
+.mat-expansion-panel:not([class*=mat-elevation-z]) {
+  box-shadow: none;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-wrapper {
+  padding-bottom: 10px;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-underline {
+  bottom: 10px;
+}
+
+app-raiser-list-footer {
+  width: 100%;
 }

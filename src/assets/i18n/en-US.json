@@ -14,6 +14,32 @@
       "email_exist": "This Email already in use."
     }
   },
+  "EVENT_TYPES": {
+    "FineArt": "Fine Art",
+    "Music": "Music",
+    "Business": "Business",
+    "Sport": "Sport",
+    "Art": "Art",
+    "Theatre": "Theatre",
+    "TripsAndAdventures": "Trips And Adventures",
+    "Movies": "Movies",
+    "Comedy": "Comedy",
+    "Conference": "Conference",
+    "LiteraryArt": "Literary Art",
+    "Cooking": "Cooking",
+    "Crafts": "Crafts",
+    "Dance": "Dance",
+    "Fashion": "Fashion",
+    "FoodAndDrinks": "Food And Drinks",
+    "Hackathons": "Hackathons",
+    "HealthAndWellness": "Health And Wellness",
+    "Kids": "Kids",
+    "PartiesAndFestivals": "Parties And Festivals",
+    "Photography": "Photography",
+    "Yoga": "Yoga",
+    "VirtualEvents": "Virtual Events",
+    "Webinar": "Webinar"
+  },
   "GENERAL_PLACEHOLDERS": {
     "email": "Enter Email",
     "first_name": "Enter First Name",

@@ -11,6 +11,8 @@ import { WebpackTranslateLoader } from './core/webpack-translate-loader';
 import { SharedModule } from './shared/shared.module';
 import { EventsModule } from './events/events.module';
 import { GlobalVarsService } from './global-vars.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { GlobalVarsService } from './global-vars.service';
     FormsModule,
     EventsModule,
     SharedModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

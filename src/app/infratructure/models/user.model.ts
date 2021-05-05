@@ -5,7 +5,7 @@ export class UserModel {
   public email: string;
   public password: string;
   public isSocial: boolean;
-  public picUrl: string;
+  public photoUrl: string;
 
   constructor(id: number) {
   }

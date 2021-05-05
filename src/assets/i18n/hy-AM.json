@@ -4,29 +4,61 @@
     "sign_up": "Sign Up",
     "sing_in_into": "Sign-in to Your Account",
     "forget_password": "Forget Password?",
-    "dont_have_an_account" : "Don't have an Account?",
-    "sign_in_with_facebook" : "Sign in with Facebook",
-    "sign_in_with_google" : "Sign in with Google",
+    "dont_have_an_account": "Don't have an Account?",
+    "sign_in_with_facebook": "Sign in with Facebook",
+    "sign_in_with_google": "Sign in with Google",
     "validations": {
       "user_not_found": "User Not Found",
       "wrong_password": "Wrong Password",
       "invalid_email": "Invalid Email"
     }
   },
+  "EVENT_TYPES": {
+    "FineArt": "Կերպարվեստ",
+    "Music": "Երաժշտություն",
+    "Business": "Բիզնես",
+    "Sport": "Սպորտ",
+    "Art": "Արվեստ",
+    "Theatre": "Թատրոն",
+    "TripsAndAdventures": "Ուղևորություններ և Արկածներ",
+    "Movies": "Ֆիլմեր",
+    "Comedy": "Կատակերգություն",
+    "Conference": "Համաժողով",
+    "LiteraryArt": "Գրականություն",
+    "Cooking": "Խոհարարություն",
+    "Crafts": "Արհեստ",
+    "Dance": "Պար",
+    "Fashion": "Նորաձևություն",
+    "FoodAndDrinks": "Սնունդ և Խմիչքներ",
+    "Hackathons": "Հեքեթոններ",
+    "HealthAndWellness": "Առողջություն և առողջ ապրելակերպ",
+    "Kids": "Երեխաներ",
+    "PartiesAndFestivals": "Խնջույքներ և Փառատոններ",
+    "Photography": "Լուսանկարչություն",
+    "Yoga": "Յոգա",
+    "VirtualEvents": "Վիրտուալ իրադարձություններ",
+    "Webinar": "Վեբինարներ"
+  },
   "GENERAL_LABELS": {
-
+    "email": "Email",
+    "password": "Password",
+    "first_name": "First Name",
+    "last_name": "Last Name",
+    "password_confirm": "Confirm Password"
   },
   "GENERAL_VALIDATIONS": {
-    "required_field": "Required Field"
+    "required_field": "Required Field",
+    "password_is_not_match": "Passwords is not match",
+    "min_character": "This field needs to be at least {{value}} characters.",
+    "max_character": "This field needs to be more then {{value}} characters."
   },
   "HEADER": {
     "TITLES": {
       "events_for_you": "Իրադարձություն քո Համար",
-      "event_navigator":"Իրադարձությունների Նավիգատոր",
+      "event_navigator": "Իրադարձությունների Նավիգատոր",
       "create_event": "Ստեղծել Իրադարձություն",
       "your_events": "Քո Իրադարձություները",
       "sign_in": "Մուտք Գործել"
-
     }
   }
 }

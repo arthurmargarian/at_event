@@ -16,20 +16,22 @@ $color: radial-gradient(circle, rgba(248, 75, 4, 1) 0%, rgba(249, 211, 35, 1) 10
 
   .nav-item {
     padding: 0 !important;
-  }
-
-  .nav-item {
     color: $font-color !important;
 
-    span {
-      padding:15px !important;
+    .profile-dd-wrapper{
+      display: inline-block;
+      transform: translateY(3px);
+    }
+
+    .item-inner {
+      padding: 15px !important;
       font-weight: 600 !important;
     }
 
     &.active {
       color: $ae-color !important;
 
-      span {
+      .item-inner {
         background: rgba(240, 151, 72, 0.1) !important;
       }
     }
@@ -37,13 +39,15 @@ $color: radial-gradient(circle, rgba(248, 75, 4, 1) 0%, rgba(249, 211, 35, 1) 10
     &:hover {
       color: $ae-hover-color !important;
 
-      span {
+      .item-inner {
         background: rgba(252, 115, 23, 0.1) !important;
       }
 
     }
   }
 }
+
+
 
 @media (min-width: 1400px) {
   .container, .container-sm, .container-md, .container-lg, .container-xl {
