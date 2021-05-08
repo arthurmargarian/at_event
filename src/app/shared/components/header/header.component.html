@@ -9,81 +9,218 @@
 
     <div class="collapse navbar-collapse text-center justify-content-between" id="navbarCollapse">
       <div class="navbar-nav">
-        <a [routerLink]="['events/for-you']"
-           routerLinkActive="active"
-           class="nav-item nav-link">
-          <span class="item-inner">
-            {{'HEADER.TITLES.events_for_you' | translate}}
-          </span>
-        </a>
-        <a [routerLink]="['events/navigator']"
-           routerLinkActive="active"
-           class="nav-item nav-link">
-          <span class="item-inner">
-          <i class="fa fa-search"></i>
-            {{'HEADER.TITLES.event_navigator' | translate}}
-          </span>
-        </a>
+        <span [container]="'body'"
+              triggers="blur"
+              [placement]="'bottom'"
+              (mouseenter)="onTooltipHover(tooltip1)"
+              (mouseleave)="closeCurrentTooltip()"
+              #tooltip1="ngbTooltip"
+              [ngbTooltip]="disabledTooltip">
+          <a [routerLink]="['events/for-you']"
+             routerLinkActive="active"
+             [class.disabled]="!isAuth"
+             class="nav-item nav-link">
+            <span class="item-inner">
+              {{'HEADER.TITLES.events_for_you' | translate}}
+            </span>
+          </a>
+        </span>
+        <span>
+          <a [routerLink]="['events/navigator']"
+             routerLinkActive="active"
+             class="nav-item nav-link">
+            <span class="item-inner">
+            <i class="fa fa-search"></i>
+              {{'HEADER.TITLES.event_navigator' | translate}}
+            </span>
+          </a>
+        </span>
       </div>
       <div class="navbar-nav">
-        <a [routerLink]="['events/create']"
-           routerLinkActive="active"
-           class="nav-item nav-link">
-          <span class="item-inner">
-          <i class="fa fa-plus"></i>
-            {{'HEADER.TITLES.create_event' | translate}}
-          </span>
-        </a>
-        <a [routerLink]="['events/yours']"
-           routerLinkActive="active"
-           class="nav-item nav-link">
-          <span class="item-inner">
-            {{'HEADER.TITLES.your_events' | translate}}
-          </span>
-        </a>
-        <a class="nav-item nav-link"  *ngIf="currentUser;else signIn">
+        <span [container]="'body'"
+              triggers="blur"
+              [placement]="'bottom'"
+              (mouseenter)="onTooltipHover(tooltip2)"
+              (mouseleave)="closeCurrentTooltip()"
+              #tooltip2="ngbTooltip"
+              [ngbTooltip]="disabledTooltip">
+          <a [routerLink]="['events/create']"
+             routerLinkActive="active"
+             [class.disabled]="!isAuth"
+             class="nav-item nav-link">
+            <span class="item-inner">
+            <i class="icon-plus fs-11"></i>
+              {{'HEADER.TITLES.create_event' | translate}}
+            </span>
+          </a>
+        </span>
+        <span [container]="'body'"
+              triggers="blur"
+              [placement]="'bottom'"
+              (mouseenter)="onTooltipHover(tooltip3)"
+              (mouseleave)="closeCurrentTooltip()"
+              #tooltip3="ngbTooltip"
+              [ngbTooltip]="disabledTooltip">
+          <a [routerLink]="['events/yours']"
+             routerLinkActive="active"
+             [class.disabled]="!isAuth"
+             class="nav-item nav-link">
+            <span class="item-inner">
+              {{'HEADER.TITLES.your_events' | translate}}
+            </span>
+          </a>
+        </span>
+        <a class="nav-item nav-link" *ngIf="isAuth && currentUser; else signIn">
           <span class="item-inner"
                 [ngbTooltip]="more"
                 [container]="'body'"
                 [autoClose]="'outside'"
                 placement="bottom"
                 triggers="click:blur">
-            <img [src]="currentUser?.photoUrl" alt="" style="border-radius: 50%; height: 25px">
+            <img [src]="currentUser?.photoUrl ? currentUser?.photoUrl : defaultProfilePic" alt=""
+                 style="border-radius: 50%; height: 25px">
             <span class="profile-dd-wrapper">
-             <i class="icon-arrow m-l-5"></i>
+              <span class="m-l-5">
+              {{currentUser.firstName}}
+                <i class="icon-arrow m-l-3"></i>
+              </span>
             </span>
           </span>
           <ng-template #more>
-            <span>{{currentUser.firstName + ' ' + currentUser.lastName}}</span>
-            <hr>
-            <span>span1</span>
-            <hr>
-            <span>span2</span>
+            <div class="user-more">
+              <span class="font-weight-bold">{{currentUser.firstName + ' ' + currentUser.lastName}}</span>
+              <hr class="m-t-5 m-b-5">
+              <span class="my-link">
+                <i class="icon-company color-ae m-r-5"></i>
+                {{'HEADER.LABELS.create_new_org' | translate}}
+              </span>
+              <hr class="m-t-5 m-b-5">
+              <span class="my-link">
+                <i class="icon-my-profile color-ae m-r-5"></i>
+                {{'HEADER.LABELS.my_profile' | translate}}
+              </span>
+              <span class="my-link" (click)="onSignOutClick()">
+                <i class="icon-logout color-ae m-r-5"></i>
+                {{'HEADER.LABELS.sign_out' | translate}}
+              </span>
+            </div>
           </ng-template>
         </a>
         <ng-template #signIn>
-          <a [routerLink]="['/sign-in']"
-             routerLinkActive="active"
-             class="nav-item nav-link">
+          <a class="nav-item nav-link" (click)="onSignInClick()">
           <span class="item-inner">
             {{'HEADER.TITLES.sign_in' | translate}}
           </span>
           </a>
         </ng-template>
+      </div>
+    </div>
+    <ng-template #disabledTooltip>
+      <span class="color-ae line-height-26 p-15">
+      {{'HEADER.MESSAGES.need_sign_in' | translate}}
+      </span>
+    </ng-template>
+  </div>
+</nav>
+<div class="language">
+  <i class="icon-language color-ae m-r-5"></i>
+  <form class="new-form" [formGroup]="languageForm">
+    <ng-select [items]="languages"
+               id="language"
+               class="new-element"
+               bindLabel="name"
+               bindValue="id"
+               [clearable]="false"
+               formControlName="language">
+    </ng-select>
+  </form>
+</div>
+<div style="height: 48px; width: 100%; display: block"></div>
 
+<!--Sign Out Confirm modal -->
+<div bsModal
+     #signOutModal="bs-modal"
+     class="modal fade new-modal"
+     tabindex="-1"
+     [config]="{backdrop: 'static', focus: false}"
+     role="dialog"
+     aria-labelledby="Modal"
+     aria-hidden="true"
+     (onHidden)="onHideSignOutModal()">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title color-ae">{{'HEADER.LABELS.sign_out_confirm' | translate}}</h4>
+        <i class="icon-close" (click)=onHideSignOutModal()></i>
+      </div>
+      <div class="modal-body">
+          <span>
+            {{'HEADER.MESSAGES.sign_out' | translate}}
+          </span>
+        <div class="row">
+          <div class="col-sm-12 d-flex flex-end">
+            <button type="button"
+                    class="btn-default"
+                    (click)="onHideSignOutModal()">
+              {{'BUTTONS.cancel' | translate}}
+            </button>
+            <button type="button"
+                    class="btn-default color-ae m-l-10"
+                    (click)="onSignOutConfirmed()">
+              {{'HEADER.LABELS.sign_out' | translate}}
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  <div class="w-6">
-    <form class="new-form" [formGroup]="languageForm">
-      <ng-select [items]="languages"
-                 class="new-element"
-                 bindLabel="name"
-                 bindValue="id"
-                 [clearable]="false"
-                 formControlName="language">
-      </ng-select>
-    </form>
+</div>
+<!--/Sign Out Confirm modal -->
+
+<!--Sign in modal -->
+<div bsModal
+     #signInModal="bs-modal"
+     class="modal fade new-modal"
+     tabindex="-1"
+     [config]="{backdrop: 'static', focus: false}"
+     role="dialog"
+     aria-labelledby="Modal"
+     aria-hidden="true"
+     (onHidden)="onHideSignInModal()">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title color-ae"> {{'HEADER.TITLES.sign_in' | translate}}</h4>
+        <i class="icon-close" (click)=onHideSignInModal()></i>
+      </div>
+      <div class="modal-body">
+        <div class="connect-with">
+          <div class="facebook w-50 m-l-r-auto d-flex justify-content-center" (click)="onFacebookLogin()">
+            <div>
+              <i class="icon fa fa-facebook-f"></i>
+              <span class="sign-in">{{'AUTH.sign_in_with_facebook' | translate}}</span>
+            </div>
+          </div>
+          <div class="google w-50 m-l-r-auto d-flex justify-content-center" (click)="onGoogleLogin()">
+            <div>
+              <i class="icon fa fa-google"></i>
+              <span class="sign-in">{{'AUTH.sign_in_with_google' | translate}}</span>
+            </div>
+          </div>
+          <div class="at-event w-50 m-l-r-auto d-flex justify-content-center"
+               (mouseenter)="changeAtEventPhoto(true)"
+               (mouseleave)="changeAtEventPhoto(false)"
+               (click)="onAtEventLogin()">
+            <div>
+              <span class="img-wrapper">
+                <img [src]="atEventPhotoUrl" alt="" style="object-fit: cover">
+              </span>
+              <span class="sign-in">{{'AUTH.sign_in_with_at_event' | translate}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-</nav>
-<div style="height: 48px; width: 100%; display: block"></div>
+</div>
+<!--/Sign in modal -->

@@ -8,6 +8,26 @@ import { NgbDropdownModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgModule } from '@angular/core';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { SettingsService } from './services/settings.service';
+import { ModalModule } from 'ngx-bootstrap';
+import { AuthServiceConfig, FacebookLoginProvider, GoogleLoginProvider, SocialLoginModule } from 'ng-social-login';
+
+const GOOGLE_OAUTH_CLIENT_ID = '174901231009-eni8jt11p1mc7hritqetmlpfj63pk0qf.apps.googleusercontent.com';
+const FACEBOOK_APP_ID = '2261974733824223';
+
+const CONFIG = new AuthServiceConfig([
+  {
+    id: GoogleLoginProvider.PROVIDER_ID,
+    provider: new GoogleLoginProvider(GOOGLE_OAUTH_CLIENT_ID)
+  },
+  {
+    id: FacebookLoginProvider.PROVIDER_ID,
+    provider: new FacebookLoginProvider(FACEBOOK_APP_ID)
+  }
+]);
+
+export function provideConfig() {
+  return CONFIG;
+}
 
 
 @NgModule({
@@ -15,15 +35,17 @@ import { SettingsService } from './services/settings.service';
     LoaderComponent,
     HeaderComponent
   ],
-    imports: [
-        CommonModule,
-        ReactiveFormsModule,
-        RouterModule,
-        TranslateModule,
-        NgbDropdownModule,
-        NgSelectModule,
-        NgbModule,
-    ],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    RouterModule,
+    TranslateModule,
+    NgbDropdownModule,
+    NgSelectModule,
+    NgbModule,
+    SocialLoginModule,
+    ModalModule.forRoot(),
+  ],
   exports: [
     CommonModule,
     ReactiveFormsModule,
@@ -37,6 +59,10 @@ import { SettingsService } from './services/settings.service';
   ],
   providers: [
     SettingsService,
+    {
+      provide: AuthServiceConfig,
+      useFactory: provideConfig
+    }
   ]
 })
 export class SharedModule {

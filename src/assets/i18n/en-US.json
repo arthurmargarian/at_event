@@ -4,15 +4,20 @@
     "sign_up": "Sign Up",
     "sing_in_into": "Sign-in to Your Account",
     "forget_password": "Forget Password?",
-    "dont_have_an_account": "Don't have an Account?",
-    "sign_in_with_facebook": "Sign in with Facebook",
-    "sign_in_with_google": "Sign in with Google",
+    "dont_have_an_account": "Don't Have an Account?",
+    "sign_in_with_facebook": "Sign in With Facebook",
+    "sign_in_with_google": "Sign in With Google",
+    "sign_in_with_at_event": "Sign in With At Event",
     "validations": {
       "user_not_found": "User Not Found",
       "wrong_password": "Wrong Password",
       "invalid_email": "Invalid Email",
       "email_exist": "This Email already in use."
     }
+  },
+  "BUTTONS": {
+    "sign_out": "Sign Out",
+    "cancel": "Cancel"
   },
   "EVENT_TYPES": {
     "FineArt": "Fine Art",
@@ -67,8 +72,29 @@
       "event_navigator": "Event Navigator",
       "create_event": "Create Event",
       "your_events": "Your Events",
-      "sign_in": "Sign In",
-      "language": "Language"
+      "sign_in": "Sign In"
+    },
+    "LABELS": {
+      "my_profile": "My Profile",
+      "my_org_profile": "My Organization Profile",
+      "create_new_org": "Create New Organization Profile",
+      "checkout_to_user": "Checkout to My User Profile",
+      "checkout_to_org": "Checkout to My Organization Profile",
+      "sign_out": "Sign Out",
+      "sign_out_confirm": "Sign Out Confirmation"
+    },
+    "MESSAGES": {
+      "sign_out": "Аre you sure you want Sign Out?",
+      "need_sign_in": "You must Sign In to use this part."
     }
+  },
+  "NOTIFY_MESSAGES": {
+    "sign_out": "You are Signed Out.",
+    "sign_up": "You have successfully Signed Up",
+    "sign_in": "You have successfully Signed In"
+  },
+  "FOOTER": {
+    "copyright": "© Copyright 2021. All Rights Reserved.",
+    "to_top": "Back to Top"
   }
 }

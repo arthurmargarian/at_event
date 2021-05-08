@@ -11,6 +11,7 @@ import { SettingsService } from '../../../shared/services/settings.service';
 import { GlobalVarsService } from '../../../global-vars.service';
 import { UserModel } from '../../../infratructure/models/user.model';
 import { UserCredentialsInterface } from '../../../infratructure/interfaces/user-credentials.interface';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -27,6 +28,7 @@ export class LoginComponent implements OnInit {
               private router: Router,
               private translateService: TranslateService,
               private titleService: Title,
+              private toastr: ToastrService,
               private settingsService: SettingsService,
               private socialAuthService: AuthService,
               private globalVarsService: GlobalVarsService,
@@ -122,14 +124,19 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  private showNotificationMessage(key: string): void {
+    this.translateService.get(key)
+      .subscribe(message => {
+        this.toastr.success(message, '', {positionClass: 'toast-bottom-right', progressBar: true, progressAnimation: 'decreasing'});
+      });
+  }
+
   public onFacebookLogin(): void {
     const providerId = FacebookLoginProvider.PROVIDER_ID;
     this.socialAuthService.signIn(providerId)
       .then(res => {
         if (res) {
           this.authForUserFromSocial(res);
-        } else {
-          alert('Facebook Social failed');
         }
       });
   }
@@ -140,8 +147,6 @@ export class LoginComponent implements OnInit {
       .then(res => {
         if (res) {
           this.authForUserFromSocial(res);
-        } else {
-          alert('Google Social failed');
         }
       });
   }
@@ -154,22 +159,20 @@ export class LoginComponent implements OnInit {
             email: model.email,
             password: model.password
           };
-          this.singIn(credentials);
-          alert('Social Register Success');
-        } else {
-          alert('Social Register Failed');
+          this.showNotificationMessage('NOTIFY_MESSAGES.sign_up');
+          this.singIn(credentials, false);
         }
       });
   }
 
-  private singIn(credentials: UserCredentialsInterface): void {
+  private singIn(credentials: UserCredentialsInterface, showNotify: boolean): void {
     this.authApiService.signIn(credentials)
       .subscribe((res) => {
         if (res) {
           this.setUserSettings(res);
-          alert('Login Success');
-        } else {
-          alert('Login Failed');
+          if (showNotify) {
+            this.showNotificationMessage('NOTIFY_MESSAGES.sign_in');
+          }
         }
       });
   }
@@ -182,11 +185,10 @@ export class LoginComponent implements OnInit {
             email: res.email,
             password: res.email
           };
-          this.singIn(credentials);
+          this.singIn(credentials, true);
         } else {
           this.registerUserFromSocial(res);
         }
       });
-
   }
 }

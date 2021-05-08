@@ -1,0 +1,25 @@
+<div class="layout-left"></div>
+<div class="layout-center">
+  <router-outlet></router-outlet>
+</div>
+<div class="layout-right"></div>
+<div class="ae-footer">
+  <div class="row ae-footer-content d-flex flex-space-between">
+    <div class="col-sm-5 text-left color-ae">
+      <span>
+        {{'FOOTER.copyright' | translate}}
+      </span>
+    </div>
+    <div class="col-sm-2 text-center">
+      <a [routerLink]="['/dashboard']">
+        <img src="assets/ae-logo.png" alt="" height="25" width="100">
+      </a>
+    </div>
+    <div class="col-sm-5 text-right color-ae">
+      <span class="to-top" (click)="scrollToTop()">
+      <i class="fa fa-chevron-up m-r-5"></i>
+        {{'FOOTER.to_top' | translate}}
+      </span>
+    </div>
+  </div>
+</div>

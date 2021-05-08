@@ -47,9 +47,13 @@
     transition: 0.2s !important;
 
     &:hover {
-      border: none !important;
+      border: 1px solid white !important;
       background-color: #09459a !important;
       color: white !important;
+
+      i {
+        color: white !important;
+      }
     }
 
     .sign-in {
@@ -59,6 +63,7 @@
     }
 
     .fa-facebook-f {
+      color: #09459a;
       font-size: 25px !important;
       transform: translateY(4px) !important;
       margin-right: 5px !important;
@@ -76,9 +81,12 @@
     transition: 0.2s !important;
 
     &:hover {
-      border: none !important;
       color: white !important;
+      border: 1px solid white !important;
       background-color: #932a18 !important;
+      i {
+        color: white !important;
+      }
     }
 
     .sign-in {
@@ -88,6 +96,7 @@
     }
 
     .fa-google {
+      color: #932a18;
       font-size: 25px !important;
       transform: translate3d(-5px, 2px, 0px) !important;
       margin-right: 5px !important;

@@ -8,6 +8,8 @@ import { UserCredentialsInterface } from '../../../infratructure/interfaces/user
 import { GlobalVarsService } from '../../../global-vars.service';
 import { Router } from '@angular/router';
 import { SettingsService } from '../../../shared/services/settings.service';
+import { TranslateService } from '@ngx-translate/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -20,6 +22,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(private titleService: Title,
               private authApiService: AuthApiService,
+              private translateService: TranslateService,
+              private toastr: ToastrService,
               private settingsService: SettingsService,
               private globalVarsService: GlobalVarsService,
               private router: Router,
@@ -118,10 +122,16 @@ export class RegisterComponent implements OnInit {
             email: newUser.email,
             password: newUser.password
           };
+          this.showNotificationMessage('NOTIFY_MESSAGES.sign_up');
           this.singIn(credentials);
-        } else {
-          alert('Failed register');
         }
+      });
+  }
+
+  private showNotificationMessage(key: string): void {
+    this.translateService.get(key)
+      .subscribe(message => {
+        this.toastr.success(message, '', {positionClass: 'toast-bottom-right', progressBar: true, progressAnimation: 'decreasing'});
       });
   }
 
@@ -130,9 +140,6 @@ export class RegisterComponent implements OnInit {
       .subscribe((res) => {
         if (res) {
           this.setUserSettings(res);
-          alert('Login Success');
-        } else {
-          alert('Login Failed');
         }
       });
   }

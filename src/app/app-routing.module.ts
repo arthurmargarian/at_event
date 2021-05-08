@@ -1,18 +1,20 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { NotAuthGuard } from './guards/not-auth.guard';
+import { LayoutComponent } from './layout/layout.component';
 
 const routes: Routes = [
+  {
+    path: '',
+    component: LayoutComponent,
+    loadChildren: './dashboard/dashboard.module#DashboardModule',
+  },
   {
     path: '',
     loadChildren: './auth/auth.module#AuthModule',
   },
   {
-    path: 'dashboard',
-    loadChildren: './dashboard/dashboard.module#DashboardModule',
-  },
-  {
     path: 'events',
+    component: LayoutComponent,
     loadChildren: './events/events.module#EventsModule',
   },
   {

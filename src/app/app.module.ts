@@ -13,6 +13,7 @@ import { EventsModule } from './events/events.module';
 import { GlobalVarsService } from './global-vars.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { LayoutModule } from './layout/layout.module';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { ToastrModule } from 'ngx-toastr';
     EventsModule,
     SharedModule,
     BrowserAnimationsModule,
+    LayoutModule,
     ToastrModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
