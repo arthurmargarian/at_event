@@ -1,0 +1,116 @@
+@import "~src/assets/general-styles/variables";
+
+$color: radial-gradient(circle, rgba(248, 75, 4, 1) 0%, rgba(249, 211, 35, 1) 100%);
+
+.layout-left {
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 15%;
+  background: #EFF5F7;
+  box-shadow: inset 0 8px 25px 0 rgba(69, 90, 100, 0.3);
+}
+
+.layout-center {
+  margin: 0 auto;
+  width: 70%;
+  background: white;
+  padding: 15px 20px 55px 20px;
+}
+
+.layout-right {
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 15%;
+  background: #EFF5F7;
+  box-shadow: inset 0 8px 25px 0 rgba(69, 90, 100, 0.3);
+}
+
+.ae-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  height: 40px;
+  background-color: #F8F9FA !important;
+  line-height: 20px;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    z-index: -1;
+    background: $color;
+  }
+
+  .ae-footer-content {
+    width: 70%;
+    margin: 0 auto;
+
+    .to-top {
+      cursor: pointer;
+
+      &:hover {
+        color: $ae-hover-color;
+
+        .fa-chevron-up {
+          color: $ae-hover-color;
+        }
+      }
+
+      .fa-chevron-up {
+        font-weight: normal;
+        transform: translate3d(0, -1px, 0);
+      }
+    }
+  }
+}
+
+.not-found-wrapper {
+  align-items: center;
+  vertical-align: center;
+  img{
+    margin: 100px auto 50px;
+  }
+}
+
+.at-event {
+  margin-top: 40px !important;
+  cursor: pointer !important;
+  height: 35px !important;
+  color: $font-color !important;
+  border-radius: 5px !important;
+  background: none !important;
+  border: 1px solid $font-color !important;
+  transition: 0.2s !important;
+
+  &:hover {
+    border: 1px solid white !important;
+    color: white !important;
+    background-color: $ae-color !important;
+  }
+
+  .sign-in {
+    font-size: 13px !important;
+    line-height: 35px !important;
+    margin-left: 20px !important;
+  }
+
+  .img-wrapper {
+    display: inline-block;
+    height: 25px;
+    width: 25px;
+    transform: translate3d(-2px, -3px, 0px) !important;
+    margin-right: 5px !important;
+  }
+}

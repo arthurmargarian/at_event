@@ -14,6 +14,7 @@ import { GlobalVarsService } from './global-vars.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { LayoutModule } from './layout/layout.module';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { LayoutModule } from './layout/layout.module';
     FormsModule,
     EventsModule,
     SharedModule,
+    CoreModule,
     BrowserAnimationsModule,
     LayoutModule,
     ToastrModule.forRoot(),

@@ -96,5 +96,8 @@
   "FOOTER": {
     "copyright": "© Copyright 2021. All Rights Reserved.",
     "to_top": "Back to Top"
+  },
+  "NOT_FOUND": {
+    "navigate": "Navigate to Dashboard"
   }
 }

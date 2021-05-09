@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LayoutComponent } from './layout/layout.component';
+import { NotFoundComponent } from './core/not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -18,8 +19,12 @@ const routes: Routes = [
     loadChildren: './events/events.module#EventsModule',
   },
   {
+    path: 'not-found',
+    component: NotFoundComponent
+  },
+  {
     path: '**',
-    redirectTo: ''
+    redirectTo: 'not-found'
   }
 ];
 
