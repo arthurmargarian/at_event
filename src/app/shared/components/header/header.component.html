@@ -73,6 +73,7 @@
         <a class="nav-item nav-link" *ngIf="isAuth && currentUser; else signIn">
           <span class="item-inner"
                 [ngbTooltip]="more"
+                #moreTooltip="ngbTooltip"
                 [container]="'body'"
                 [autoClose]="'outside'"
                 placement="bottom"
@@ -99,7 +100,7 @@
                 <i class="icon-my-profile color-ae m-r-5"></i>
                 {{'HEADER.LABELS.my_profile' | translate}}
               </span>
-              <span class="my-link" (click)="onSignOutClick()">
+              <span class="my-link" (click)="onSignOutClick(moreTooltip)">
                 <i class="icon-logout color-ae m-r-5"></i>
                 {{'HEADER.LABELS.sign_out' | translate}}
               </span>

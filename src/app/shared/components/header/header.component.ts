@@ -105,7 +105,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
       });
   }
 
-  public onSignOutClick(): void {
+  public onSignOutClick(moreTooltip: NgbTooltip): void {
+    moreTooltip.close();
     this.signOutModal.show();
   }
 

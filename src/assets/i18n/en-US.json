@@ -84,7 +84,7 @@
       "sign_out_confirm": "Sign Out Confirmation"
     },
     "MESSAGES": {
-      "sign_out": "Аre you sure you want Sign Out?",
+      "sign_out": "Аre you sure you want to Sign Out?",
       "need_sign_in": "You must Sign In to use this part."
     }
   },
