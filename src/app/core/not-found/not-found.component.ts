@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./not-found.component.scss']
 })
 export class NotFoundComponent implements OnInit {
-  public atEventPhotoUrl = 'assets/ae-icon.ico';
+  public atEventPhotoUrl = 'assets/images/ae-icon.ico';
 
   constructor(private router: Router) {
   }
@@ -24,7 +24,7 @@ export class NotFoundComponent implements OnInit {
   }
 
   public changeAtEventPhoto(isHover: boolean): void {
-    this.atEventPhotoUrl = isHover ? 'assets/ae-white.png' : 'assets/ae-icon.png';
+    this.atEventPhotoUrl = isHover ? 'assets/images/ae-white.png' : 'assets/images/ae-icon.png';
   }
 
   onNavigateDashboard() {

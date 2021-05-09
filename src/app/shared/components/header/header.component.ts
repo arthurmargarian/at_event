@@ -33,8 +33,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private ngDestroy = new Subject();
   public isAuth: boolean;
   private currentTooltip: NgbTooltip;
-  public atEventPhotoUrl = 'assets/ae-icon.ico';
-  public defaultProfilePic = 'assets/default-profile-pic.png';
+  public atEventPhotoUrl = 'assets/images/ae-icon.ico';
+  public defaultProfilePic = 'assets/images//default-profile-pic.png';
 
   constructor(private fb: FormBuilder,
               private router: Router,
@@ -159,7 +159,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   public changeAtEventPhoto(isHover: boolean): void {
-    this.atEventPhotoUrl = isHover ? 'assets/ae-white.png' : 'assets/ae-icon.png';
+    this.atEventPhotoUrl = isHover ? 'assets/images/ae-white.png' : 'assets/images/ae-icon.png';
   }
 
   public onFacebookLogin(): void {
