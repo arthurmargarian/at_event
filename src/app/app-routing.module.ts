@@ -14,6 +14,11 @@ const routes: Routes = [
     loadChildren: './auth/auth.module#AuthModule',
   },
   {
+    path: 'profile',
+    component: LayoutComponent,
+    loadChildren: './profiles/profiles.module#ProfilesModule',
+  },
+  {
     path: 'events',
     component: LayoutComponent,
     loadChildren: './events/events.module#EventsModule',

@@ -1,0 +1,36 @@
+<div class="modal-dialog modal-lg">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4 class="modal-title color-ae"> {{'HEADER.TITLES.sign_in' | translate}}</h4>
+      <i class="icon-close" (click)=hideModal.emit()></i>
+    </div>
+    <div class="modal-body">
+      <div class="connect-with">
+        <div class="facebook w-50 m-l-r-auto d-flex justify-content-center" (click)="onFacebookLogin()">
+          <div>
+            <i class="icon fa fa-facebook-f"></i>
+            <span class="sign-in">{{'AUTH.sign_in_with_facebook' | translate}}</span>
+          </div>
+        </div>
+        <div class="google w-50 m-l-r-auto d-flex justify-content-center" (click)="onGoogleLogin()">
+          <div>
+            <i class="icon fa fa-google"></i>
+            <span class="sign-in">{{'AUTH.sign_in_with_google' | translate}}</span>
+          </div>
+        </div>
+        <div class="at-event w-50 m-l-r-auto d-flex justify-content-center"
+             (mouseenter)="changeAtEventPhoto(true)"
+             (mouseleave)="changeAtEventPhoto(false)"
+             (click)="onAtEventLogin()">
+          <div>
+        <span class="img-wrapper">
+          <img [src]="atEventPhotoUrl" alt="" style="object-fit: cover">
+        </span>
+            <span class="sign-in">{{'AUTH.sign_in_with_at_event' | translate}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

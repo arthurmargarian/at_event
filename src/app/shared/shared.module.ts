@@ -10,6 +10,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { SettingsService } from './services/settings.service';
 import { ModalModule } from 'ngx-bootstrap';
 import { AuthServiceConfig, FacebookLoginProvider, GoogleLoginProvider, SocialLoginModule } from 'ng-social-login';
+import { SocialAuthComponent } from './components/social-auth/social-auth.component';
 
 const GOOGLE_OAUTH_CLIENT_ID = '174901231009-eni8jt11p1mc7hritqetmlpfj63pk0qf.apps.googleusercontent.com';
 const FACEBOOK_APP_ID = '2261974733824223';
@@ -33,7 +34,8 @@ export function provideConfig() {
 @NgModule({
   declarations: [
     LoaderComponent,
-    HeaderComponent
+    HeaderComponent,
+    SocialAuthComponent
   ],
   imports: [
     CommonModule,

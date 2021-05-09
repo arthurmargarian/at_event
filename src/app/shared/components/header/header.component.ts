@@ -33,14 +33,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private ngDestroy = new Subject();
   public isAuth: boolean;
   private currentTooltip: NgbTooltip;
-  public atEventPhotoUrl = 'assets/images/ae-icon.ico';
   public defaultProfilePic = 'assets/images//default-profile-pic.png';
 
   constructor(private fb: FormBuilder,
               private router: Router,
               private toastr: ToastrService,
-              public authApiService: AuthApiService,
-              private socialAuthService: AuthService,
+              private authApiService: AuthApiService,
               private globalVarsService: GlobalVarsService,
               private settingsService: SettingsService,
               private translateService: TranslateService) {
@@ -89,8 +87,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
       .subscribe((res) => {
         if (res && res.model && res.model.language) {
           this.languageForm.get('language').patchValue(res.model.language);
-        } else {
-          console.error('not found');
         }
       });
   }
@@ -154,106 +150,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.signInModal.show();
   }
 
-  public onAtEventLogin(): void {
-    this.signInModal.hide();
-    this.router.navigate(['sign-in']);
-  }
-
-  public changeAtEventPhoto(isHover: boolean): void {
-    this.atEventPhotoUrl = isHover ? 'assets/images/ae-white.png' : 'assets/images/ae-icon.png';
-  }
-
-  public onFacebookLogin(): void {
-    this.signInModal.hide();
-    const providerId = FacebookLoginProvider.PROVIDER_ID;
-    this.socialAuthService.signIn(providerId)
-      .then(res => {
-        if (res) {
-          this.authForUserFromSocial(res);
-        }
-      });
-  }
-
-  public onGoogleLogin(): void {
-    this.signInModal.hide();
-    const providerId = GoogleLoginProvider.PROVIDER_ID;
-    this.socialAuthService.signIn(providerId)
-      .then(res => {
-        if (res) {
-          this.authForUserFromSocial(res);
-        }
-      });
-  }
-
-  private authForUserFromSocial(res: SocialUser): void {
-    this.authApiService.findUserByEmail(res.email)
-      .subscribe(resp => {
-        if (resp.model) {
-          const credentials = {
-            email: res.email,
-            password: res.email
-          };
-          this.singIn(credentials, true);
-        } else {
-          this.registerUserFromSocial(res);
-        }
-      });
-  }
-
-  private singIn(credentials: UserCredentialsInterface, showNotify): void {
-    this.authApiService.signIn(credentials)
-      .subscribe((res) => {
-        if (res) {
-          this.setUserSettings(res);
-          if (showNotify) {
-            this.showNotificationMessage('NOTIFY_MESSAGES.sign_in');
-          }
-        }
-      });
-  }
-
-  private registerUserFromSocial(res: SocialUser): void {
-    const model = new UserModel(0);
-    const names = res.name.split(' ');
-    model.firstName = names[0];
-    model.lastName = names[1];
-    model.email = res.email;
-    model.password = res.email;
-    model.photoUrl = res.photoUrl;
-    model.isSocial = true;
-    this.addUser(model);
-  }
-
-  private addUser(model: UserModel): void {
-    this.authApiService.signUp(model)
-      .subscribe(res => {
-        if (res.success) {
-          const credentials = {
-            email: model.email,
-            password: model.password
-          };
-          this.showNotificationMessage('NOTIFY_MESSAGES.sign_up');
-          this.singIn(credentials, false);
-        }
-      });
-  }
-
-  private setUserSettings(res): void {
-    localStorage.setItem('token', res.token);
-    localStorage.setItem('loggedUser', JSON.stringify(res.user));
-    this.router.navigate(['/dashboard']);
-    this.globalVarsService.isAuthenticated.next(true);
-    this.getLanguage(res.user.id);
-  }
-
-  private getLanguage(userId: number): void {
-    this.settingsService.getUserSettings(userId)
-      .subscribe((res) => {
-        if (res && res.model && res.model.language) {
-          this.globalVarsService.currentLanguage.next(res.model.language);
-        }
-      });
-  }
 
   public onTooltipHover(tooltip: NgbTooltip): void {
     if (!this.isAuth) {

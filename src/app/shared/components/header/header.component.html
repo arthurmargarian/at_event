@@ -96,7 +96,7 @@
                 {{'HEADER.LABELS.create_new_org' | translate}}
               </span>
               <hr class="m-t-5 m-b-5">
-              <span class="my-link">
+              <span [routerLink]="['/profile', currentUser.id]" class="my-link" (click)="moreTooltip.close()">
                 <i class="icon-my-profile color-ae m-r-5"></i>
                 {{'HEADER.LABELS.my_profile' | translate}}
               </span>
@@ -178,7 +178,7 @@
 </div>
 <!--/Sign Out Confirm modal -->
 
-<!--Sign in modal -->
+<!--Social Auth modal -->
 <div bsModal
      #signInModal="bs-modal"
      class="modal fade new-modal"
@@ -188,40 +188,7 @@
      aria-labelledby="Modal"
      aria-hidden="true"
      (onHidden)="onHideSignInModal()">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title color-ae"> {{'HEADER.TITLES.sign_in' | translate}}</h4>
-        <i class="icon-close" (click)=onHideSignInModal()></i>
-      </div>
-      <div class="modal-body">
-        <div class="connect-with">
-          <div class="facebook w-50 m-l-r-auto d-flex justify-content-center" (click)="onFacebookLogin()">
-            <div>
-              <i class="icon fa fa-facebook-f"></i>
-              <span class="sign-in">{{'AUTH.sign_in_with_facebook' | translate}}</span>
-            </div>
-          </div>
-          <div class="google w-50 m-l-r-auto d-flex justify-content-center" (click)="onGoogleLogin()">
-            <div>
-              <i class="icon fa fa-google"></i>
-              <span class="sign-in">{{'AUTH.sign_in_with_google' | translate}}</span>
-            </div>
-          </div>
-          <div class="at-event w-50 m-l-r-auto d-flex justify-content-center"
-               (mouseenter)="changeAtEventPhoto(true)"
-               (mouseleave)="changeAtEventPhoto(false)"
-               (click)="onAtEventLogin()">
-            <div>
-              <span class="img-wrapper">
-                <img [src]="atEventPhotoUrl" alt="" style="object-fit: cover">
-              </span>
-              <span class="sign-in">{{'AUTH.sign_in_with_at_event' | translate}}</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <app-social-auth (hideModal)="onHideSignInModal()">
+  </app-social-auth>
 </div>
-<!--/Sign in modal -->
+<!--/Social Auth modal -->
