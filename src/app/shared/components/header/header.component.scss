@@ -185,7 +185,7 @@ $color: radial-gradient(circle, rgba(248, 75, 4, 1) 0%, rgba(249, 211, 35, 1) 10
   justify-content: space-between;
   position: fixed;
   top: 10px;
-  width: 140px;
+  width: 9%;
   z-index: 1040;
   right: 1%;
 
@@ -194,7 +194,7 @@ $color: radial-gradient(circle, rgba(248, 75, 4, 1) 0%, rgba(249, 211, 35, 1) 10
   }
 
   .new-form {
-    width: 120px;
+    width: 90%;
     display: inline;
   }
 }
@@ -202,5 +202,11 @@ $color: radial-gradient(circle, rgba(248, 75, 4, 1) 0%, rgba(249, 211, 35, 1) 10
 @media (min-width: 1400px) {
   .container, .container-sm, .container-md, .container-lg, .container-xl {
     max-width: 1362px !important;
+  }
+}
+
+@media (max-width: 1640px) {
+  .language {
+    top: 60px;
   }
 }
