@@ -1,0 +1,38 @@
+<div>
+  <ul class="nav nav-tabs second-level">
+    <li class="nav-item">
+      <a class="nav-link" routerLinkActive="active" [routerLink]="['upcoming']">
+        <span>{{'EVENT_STATUSES.upcoming' | translate}}</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLinkActive="active" [routerLink]="['active']">
+        <span>{{'EVENT_STATUSES.active' | translate}}</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLinkActive="active" [routerLink]="['past']">
+        <span>{{'EVENT_STATUSES.past' | translate}}</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLinkActive="active" [routerLink]="['canceled']">
+        <span>{{'EVENT_STATUSES.canceled' | translate}}</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLinkActive="active" [routerLink]="['closed']">
+        <span>{{'EVENT_STATUSES.closed' | translate}}</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLinkActive="active" [routerLink]="['all']">
+        <span>{{'EVENT_STATUSES.all' | translate}}</span>
+      </a>
+    </li>
+  </ul>
+
+  <div class="tab-content">
+    <router-outlet></router-outlet>
+  </div>
+</div>

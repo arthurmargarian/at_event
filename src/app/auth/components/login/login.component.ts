@@ -12,6 +12,7 @@ import { GlobalVarsService } from '../../../global-vars.service';
 import { UserModel } from '../../../infratructure/models/user.model';
 import { UserCredentialsInterface } from '../../../infratructure/interfaces/user-credentials.interface';
 import { ToastrService } from 'ngx-toastr';
+import { UserInterface } from '../../../infratructure/interfaces/user.interface';
 
 @Component({
   selector: 'app-login',
@@ -151,7 +152,7 @@ export class LoginComponent implements OnInit {
       });
   }
 
-  private addUser(model: UserModel): void {
+  private addUser(model: UserInterface): void {
     this.authApiService.signUp(model)
       .subscribe(res => {
         if (res.success) {
@@ -178,7 +179,7 @@ export class LoginComponent implements OnInit {
   }
 
   private authForUserFromSocial(res: SocialUser): void {
-    this.authApiService.findUserByEmail(res.email)
+    this.authApiService.checkByEmail(res.email)
       .subscribe(resp => {
         if (resp.model) {
           const credentials = {

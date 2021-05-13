@@ -4,20 +4,31 @@ const User = require('../models/user.model');
 const config = require('../config/db');
 
 
-module.exports.sign_up_post = (req, res, next) => {
+module.exports.sign_up_post = (req, res) => {
   let newUser = new User({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
+    fullName: `${req.body.firstName} ${req.body.lastName}`,
     email: req.body.email,
     photoUrl: req.body.photoUrl,
     password: req.body.password,
-    isSocial: req.body.isSocial
+    isSocial: req.body.isSocial,
+    contactNumber: req.body.contactNumber ? req.body.contactNumber : '',
+    contactEmail: req.body.contactEmail ? req.body.contactEmail : req.body.email,
+    orgIds : req.body.orgIds ? req.body.orgIds : [],
+    activeOrgId : req.body.activeOrgId ? req.body.activeOrgId : 0,
+    eventIds: req.body.eventIds ? req.body.eventIds : [],
+    followerIds: req.body.followerIds ? req.body.followerIds : [],
+    interestedTypeIds: req.body.interestedTypeIds ? req.body.interestedTypeIds : [],
+    followingUserIds: req.body.followingUserIds ? req.body.followingUserIds : [],
+    followingEventIds: req.body.followingEventIds ? req.body.followingEventIds : [],
+    followingOrgIds: req.body.followingOrgIds ? req.body.followingOrgIds : []
   });
   User.addUser(newUser, (err, user) => {
     if (err) {
-      res.json({success: false, msg: 'Failed register', user: user})
+      res.json({success: false, status: 1, msg: 'Failed register'})
     } else {
-      res.json({success: true, msg: 'User registered'})
+      res.json({success: true,  status: 10, msg: 'User registered', user: user})
     }
   })
 }
@@ -72,7 +83,7 @@ module.exports.by_email_get = (req, res, next) => {
       return res.json({
         success: true,
         model: user,
-        status: 1
+        status: 10
       });
     }
   });

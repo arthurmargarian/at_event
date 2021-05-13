@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { SettingsService } from '../../../shared/services/settings.service';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
+import { UserInterface } from '../../../infratructure/interfaces/user.interface';
 
 @Component({
   selector: 'app-register',
@@ -80,7 +81,7 @@ export class RegisterComponent implements OnInit {
   }
 
   private checkEmail(userEmail: string): void {
-    this.authApiService.findUserByEmail(userEmail)
+    this.authApiService.checkByEmail(userEmail)
       .subscribe(res => {
         if (res.model) {
           this.form.get('email').setErrors({emailExist: true});
@@ -114,7 +115,7 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  private addUser(newUser: UserModel): void {
+  private addUser(newUser: UserInterface): void {
     this.authApiService.signUp(newUser)
       .subscribe(res => {
         if (res.success) {

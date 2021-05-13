@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { UserModel } from '../infratructure/models/user.model';
 import { UserCredentialsInterface } from '../infratructure/interfaces/user-credentials.interface';
+import { UserInterface } from '../infratructure/interfaces/user.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -21,8 +21,8 @@ export class AuthApiService {
     return this.http.post(url, credentials);
   }
 
-  public findUserByEmail(email: string): Observable<any> {
-    const url = `${this.url}/getbyemail`;
+  public checkByEmail(email: string): Observable<any> {
+    const url = `${this.url}/checkbyemail`;
     return this.http.get(url, {
       headers: this.headers,
       params: {
@@ -35,7 +35,7 @@ export class AuthApiService {
     return !!localStorage.getItem('token');
   }
 
-  public getCurrentUser(): UserModel {
+  public getCurrentUser(): UserInterface {
     return JSON.parse(localStorage.getItem('loggedUser'));
   }
 
@@ -43,7 +43,7 @@ export class AuthApiService {
     localStorage.clear();
   }
 
-  public signUp(newUser: UserModel): Observable<any> {
+  public signUp(newUser: UserInterface): Observable<any> {
     const url = `${this.url}/register`;
     return this.http.post(url, newUser);
   }

@@ -8,6 +8,7 @@ import { GlobalVarsService } from '../../../global-vars.service';
 import { SettingsService } from '../../services/settings.service';
 import { TranslateService } from '@ngx-translate/core';
 import { UserModel } from '../../../infratructure/models/user.model';
+import { UserInterface } from '../../../infratructure/interfaces/user.interface';
 
 @Component({
   selector: 'app-social-auth',
@@ -62,7 +63,7 @@ export class SocialAuthComponent implements OnInit {
   }
 
   private authForUserFromSocial(res: SocialUser): void {
-    this.authApiService.findUserByEmail(res.email)
+    this.authApiService.checkByEmail(res.email)
       .subscribe(resp => {
         if (resp.model) {
           const credentials = {
@@ -100,7 +101,7 @@ export class SocialAuthComponent implements OnInit {
     this.addUser(model);
   }
 
-  private addUser(model: UserModel): void {
+  private addUser(model: UserInterface): void {
     this.authApiService.signUp(model)
       .subscribe(res => {
         if (res.success) {

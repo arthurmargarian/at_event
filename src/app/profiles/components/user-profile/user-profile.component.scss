@@ -1,0 +1,150 @@
+@import "~src/assets/general-styles/variables";
+@import "~src/assets/general-styles/mixins";
+
+.person-profile {
+  padding: 20px;
+
+  .profile-img-wrapper {
+    height: 90%;
+    width: 90%;
+    object-fit: cover;
+
+    img {
+      border-radius: 50%;
+    }
+
+  }
+
+  .user-name {
+    font-size: 20px;
+    font-weight: 600;
+  }
+  .msg-tooltip{
+    min-width: 100px;
+    white-space: break-spaces;
+  }
+}
+
+:host {
+  .contact-info {
+    .new-label {
+      min-width: 190px;
+      padding-right: 10px;
+      @include flexbox();
+      @include align-items(center);
+    }
+
+    .no-wrap {
+      width: calc(100% - 190px);
+    }
+  }
+
+  .progress {
+    width: 120px;
+  }
+
+  .col-sm-34 {
+    @include flex-value(0 0 34%);
+    max-width: 34%;
+    padding: 0 15px;
+  }
+
+  .col-sm-36 {
+    @include flex-value(0 0 36%);
+    max-width: 36%;
+    padding: 0 15px;
+  }
+
+  .col-sm-30 {
+    @include flex-value(0 0 30%);
+    max-width: 30%;
+    padding: 0 15px;
+  }
+
+  .col-sm-46 {
+    @include flex-value(0 0 46%);
+    max-width: 46%;
+    padding: 0 15px;
+  }
+
+  .col-sm-20 {
+    @include flex-value(0 0 20%);
+    max-width: 20%;
+    padding: 0 15px;
+  }
+
+  .invitation-status {
+    padding-right: 1px;
+  }
+
+  .al-baseline {
+    @include align-items(baseline);
+  }
+
+  /deep/ .img-uploader {
+    .image-tooltip {
+      width: 110px !important;
+      padding: 5px !important;
+      height: unset !important;
+      bottom: 90% !important;
+      @include box-shadow(0px 0px 10px rgba(0, 0, 0, 0.15));
+
+      button {
+        font-size: 12px !important;
+
+        i {
+          margin-right: 7px !important;
+          font-size: 12px !important;
+
+          &.icon-delete {
+            color: $danger-color;
+          }
+        }
+      }
+
+      &:after {
+        border-width: 7px !important;
+        left: 48px !important;
+      }
+    }
+  }
+
+  .name-group {
+    .status-label {
+      margin: 3px 0 0 5px;
+    }
+  }
+
+  .name-hyperlink {
+    text-decoration: none;
+  }
+}
+
+@media only screen and (max-width: 1199px) {
+  :host {
+    .col-sm-34 {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+
+    .col-sm-36 {
+      flex: 0 0 60%;
+      max-width: 60%;
+    }
+
+    .col-sm-30 {
+      flex: 0 0 40%;
+      max-width: 40%;
+    }
+
+    .col-sm-46 {
+      flex: 0 0 70%;
+      max-width: 70%;
+    }
+
+    .col-sm-20 {
+      flex: 0 0 30%;
+      max-width: 30%;
+    }
+  }
+}

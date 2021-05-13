@@ -91,19 +91,19 @@
             <div class="user-more">
               <span class="font-weight-bold">{{currentUser.firstName + ' ' + currentUser.lastName}}</span>
               <hr class="m-t-5 m-b-5">
-              <span class="my-link">
+              <a class="my-link">
                 <i class="icon-company color-ae m-r-5"></i>
                 {{'HEADER.LABELS.create_new_org' | translate}}
-              </span>
+              </a>
               <hr class="m-t-5 m-b-5">
-              <span [routerLink]="['/profile', currentUser.id]" class="my-link" (click)="moreTooltip.close()">
+              <a [routerLink]="['profile', currentUser.id , 'events', 'upcoming']" class="my-link" (click)="moreTooltip.close()">
                 <i class="icon-my-profile color-ae m-r-5"></i>
                 {{'HEADER.LABELS.my_profile' | translate}}
-              </span>
-              <span class="my-link" (click)="onSignOutClick(moreTooltip)">
+              </a>
+              <a class="my-link" (click)="onSignOutClick(moreTooltip)">
                 <i class="icon-logout color-ae m-r-5"></i>
                 {{'HEADER.LABELS.sign_out' | translate}}
-              </span>
+              </a>
             </div>
           </ng-template>
         </a>

@@ -12,6 +12,21 @@ body {
   text-decoration: none;
 }
 
+.my-link {
+  color: $ae-color !important;
+  cursor: pointer !important;
+  transition: 0.2s;
+
+  &:hover {
+    text-decoration: underline;
+    color: $ae-hover-color !important;
+
+    i {
+      color: $ae-hover-color !important;
+    }
+  }
+}
+
 
 ng-select.ng-select.new-element,
 razor-multiselect.new-element ng-select.ng-select.new-element {

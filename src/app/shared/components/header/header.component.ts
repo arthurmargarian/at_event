@@ -6,17 +6,15 @@ import { LanguageModel } from '../../../infratructure/models/language.model';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthApiService } from '../../../auth/auth-service.service';
 import { SettingsService } from '../../services/settings.service';
-import { UserModel } from '../../../infratructure/models/user.model';
 import { UserSettingModel } from '../../../infratructure/models/user-setting.model';
 import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { GlobalVarsService } from '../../../global-vars.service';
 import { ModalDirective } from 'ngx-bootstrap';
-import { AuthService, FacebookLoginProvider, GoogleLoginProvider, SocialUser } from 'ng-social-login';
-import { UserCredentialsInterface } from '../../../infratructure/interfaces/user-credentials.interface';
 import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
+import { UserInterface } from '../../../infratructure/interfaces/user.interface';
 
 @Component({
   selector: 'app-header',
@@ -29,7 +27,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   public languageForm: FormGroup;
   public languages: LanguageModel[];
-  public currentUser: UserModel;
+  public currentUser: UserInterface;
   private ngDestroy = new Subject();
   public isAuth: boolean;
   private currentTooltip: NgbTooltip;

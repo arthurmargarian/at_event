@@ -16,6 +16,10 @@ const UserSchema = mongoose.Schema({
     type: String,
     require: true,
   },
+  fullName: {
+    type: String,
+    require: true,
+  },
   email: {
     type: String,
     require: true,
@@ -24,14 +28,54 @@ const UserSchema = mongoose.Schema({
     type: String,
     require: true,
   },
-  photoUrl: {
-    type: String,
-    require: false,
-  },
   isSocial: {
     type: Boolean,
     require: true,
   },
+  activeOrgId: {
+    type: Number,
+    require: false,
+  },
+  photoUrl: {
+    type: String,
+    require: false,
+  },
+  contactNumber: {
+    type: String,
+    require: false,
+  },
+  contactEmail: {
+    type: String,
+    require: false,
+  },
+  orgIds: {
+    type: Array,
+    require: false,
+  },
+  eventIds: {
+    type: Array,
+    require: false,
+  },
+  interestedTypeIds: {
+    type: Array,
+    require: false,
+  },
+  followingUserIds: {
+    type: Array,
+    require: false,
+  },
+  followingEventIds: {
+    type: Array,
+    require: false,
+  },
+  followingOrgIds: {
+    type: Array,
+    require: false,
+  },
+  followerIds: {
+    type: Array,
+    require: false,
+  }
 });
 
 // AutoIncrement Id
@@ -56,8 +100,13 @@ const UserModel = module.exports = mongoose.model('User', UserSchema);
 
 // Methods
 
-module.exports.getUserById = function (id, callback) {
+module.exports.findUserById = function (id, callback) {
   UserModel.findById(id, callback)
+}
+
+module.exports.getUserById = function (id, callback) {
+  const query = {id: id};
+  UserModel.findOne(query, callback);
 }
 
 module.exports.getUserByEmail = function (email, callback) {

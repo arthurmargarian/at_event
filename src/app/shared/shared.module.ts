@@ -11,6 +11,10 @@ import { SettingsService } from './services/settings.service';
 import { ModalModule } from 'ngx-bootstrap';
 import { AuthServiceConfig, FacebookLoginProvider, GoogleLoginProvider, SocialLoginModule } from 'ng-social-login';
 import { SocialAuthComponent } from './components/social-auth/social-auth.component';
+import { UserService } from './services/user.service';
+import { EventsGridComponent } from './components/events-grid/events-grid.component';
+import { UsersGridComponent } from './components/users-grid/users-grid.component';
+import { OrganizationsGridComponent } from './components/organizations-grid/organizations-grid.component';
 
 const GOOGLE_OAUTH_CLIENT_ID = '174901231009-eni8jt11p1mc7hritqetmlpfj63pk0qf.apps.googleusercontent.com';
 const FACEBOOK_APP_ID = '2261974733824223';
@@ -35,7 +39,10 @@ export function provideConfig() {
   declarations: [
     LoaderComponent,
     HeaderComponent,
-    SocialAuthComponent
+    SocialAuthComponent,
+    EventsGridComponent,
+    UsersGridComponent,
+    OrganizationsGridComponent
   ],
   imports: [
     CommonModule,
@@ -61,6 +68,7 @@ export function provideConfig() {
   ],
   providers: [
     SettingsService,
+    UserService,
     {
       provide: AuthServiceConfig,
       useFactory: provideConfig

@@ -99,5 +99,32 @@
   },
   "NOT_FOUND": {
     "navigate": "Navigate to Dashboard"
+  },
+  "USER_PROFILE":{
+    "event_creator": "Event Creator",
+    "edit": "Edit",
+    "followers": "Followers",
+    "events": "Events",
+    "followings": "Followings",
+    "follow": "Follow",
+    "follow_msg": "Get instantly notified when {{value}} creates a new event.",
+    "contact_email": "Contact Email",
+    "contact_number": "Contact Number",
+    "created_events": "Created Events",
+    "FOLLOWINGS": {
+      "TITLES": {
+        "events": "Events",
+        "users":"Users",
+        "organizations": "Organizations"
+      }
+    }
+  },
+  "EVENT_STATUSES":{
+    "active": "Active",
+    "upcoming": "Upcoming",
+    "past": "Past",
+    "canceled": "Canceled",
+    "closed": "Closed",
+    "all": "All"
   }
 }

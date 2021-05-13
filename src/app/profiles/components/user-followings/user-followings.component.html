@@ -1,0 +1,23 @@
+<div>
+  <ul class="nav nav-tabs second-level">
+    <li class="nav-item">
+      <a class="nav-link" routerLinkActive="active" [routerLink]="['events']">
+        <span>{{'USER_PROFILE.FOLLOWINGS.TITLES.events' | translate}}</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLinkActive="active" [routerLink]="['users']">
+        <span>{{'USER_PROFILE.FOLLOWINGS.TITLES.users' | translate}}</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLinkActive="active" [routerLink]="['organizations']">
+        <span>{{'USER_PROFILE.FOLLOWINGS.TITLES.organizations' | translate}}</span>
+      </a>
+    </li>
+  </ul>
+
+  <div class="tab-content">
+    <router-outlet></router-outlet>
+  </div>
+</div>

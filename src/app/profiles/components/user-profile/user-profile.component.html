@@ -1,3 +1,91 @@
-<p>
-  user-profile works!
-</p>
+<!--Profile Header View-->
+<div class="row person-profile" *ngIf="!isLoading">
+  <div class="col-sm-4">
+    <div class="row">
+      <div class="col-sm-5 flex-center">
+        <div class="profile-img-wrapper d-flex">
+          <img [src]="currentUser.photoUrl" alt="">
+        </div>
+      </div>
+      <div class="col-sm-7 d-flex flex-col">
+        <div class="d-flex m-b-5">
+          <span class="user-name">{{currentUser.fullName}}</span>
+        </div>
+        <div class="d-flex m-b-20">
+          <span class="font-italic">{{'USER_PROFILE.event_creator' | translate}}</span>
+        </div>
+        <div class="d-flex m-b-5">
+          <a class="my-link" [routerLink]="['events', 'all']">{{currentUser.eventIds.length}} {{'USER_PROFILE.created_events' | translate}}</a>
+        </div>
+        <div class="d-flex">
+          <a class="my-link">{{currentUser.followerIds.length}} {{'USER_PROFILE.followers' | translate}}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 contact-info d-flex flex-col m-t-10">
+    <div class="row m-b-5">
+      <div class="col-sm-4">
+        <label class="new-label"><i class="icon-email color-ae"></i> {{'USER_PROFILE.contact_email' | translate}}
+          :</label>
+      </div>
+      <div class="col-sm-8">
+        <a class="my-link" href="mailto:{{currentUser.contactEmail}}">{{currentUser.contactEmail}}</a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <label class="new-label"><i class="icon-telephone color-ae"></i> {{'USER_PROFILE.contact_number' | translate}} :</label>
+      </div>
+      <div class="col-sm-8">
+        <span>{{currentUser.contactNumber}}</span>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-2  d-flex flex-col m-t-10">
+    <div class="d-flex flex-end">
+      <button class="my-btn">{{'USER_PROFILE.edit' | translate}}<i class="m-l-5 icon-edit"></i></button>
+    </div>
+    <div class="d-flex"></div>
+    <div class="d-flex flex-end">
+      <button class="my-btn" placement="bottom" [ngbTooltip]="followMsg">{{'USER_PROFILE.follow' | translate}}<i
+        class="m-l-5 icon-plus"></i></button>
+      <ng-template #followMsg>
+        <div class="msg-tooltip">
+          <span>{{'USER_PROFILE.follow_msg' | translate:{value:currentUser.fullName} }}</span>
+        </div>
+      </ng-template>
+    </div>
+
+    <div class="d-flex"></div>
+  </div>
+</div>
+<!--/Profile Header View-->
+
+<div class="row add-edit-employee m-b-30">
+  <div class="col-sm-12">
+    <div class="new-ui-panel">
+      <p-panel>
+        <ul class="nav nav-tabs first-level">
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="active" [routerLink]="['events']">
+              <span>{{'USER_PROFILE.events' | translate}}</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="active" [routerLink]="['followings']">
+              <span>{{'USER_PROFILE.followings' | translate}}</span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="tab-content">
+          <router-outlet></router-outlet>
+        </div>
+      </p-panel>
+    </div>
+  </div>
+</div>
+
+<app-loader *ngIf="isLoading"></app-loader>
+

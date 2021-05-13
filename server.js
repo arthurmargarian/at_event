@@ -27,6 +27,7 @@ const app = express();
 
 const auth = require('./server/routes/auth.route');
 const userSettings = require('./server/routes/user-settings.route');
+const user = require('./server/routes/user.route');
 
 // Port Number
 const port = process.env.PORT || 3000;
@@ -49,11 +50,8 @@ require('./server/config/passport')(passport);
 // Routes
 app.use('/auth', auth);
 app.use('/settings', userSettings);
+app.use('/user', user);
 
-// Index Route
-app.get('/', (req, res) => {
-  res.send('Invalid Endpoint');
-})
 
 app.listen(port, () => {
   console.log(`Server started on ${port}`);
