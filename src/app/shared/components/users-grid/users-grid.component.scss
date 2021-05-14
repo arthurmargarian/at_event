@@ -1,0 +1,22 @@
+:host {
+  .employee-grid-view {
+    .row {
+      margin-left: -6px !important;
+      margin-right: -6px !important;
+      [class*='col-sm'] {
+        padding-left: 6px !important;
+        padding-right: 6px !important;
+      }
+    }
+  }
+
+  /deep/.paginator {
+    padding: 0 !important;
+  }
+}
+.grid-item .new-card {
+  display: block;
+  &:hover {
+    color: unset;
+  }
+}

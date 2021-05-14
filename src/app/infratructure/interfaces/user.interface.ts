@@ -10,11 +10,11 @@ export interface UserInterface {
   contactNumber?: string;
   contactEmail?: string;
   activeOrgId?: number;
-  orgIds?: [];
-  eventIds?: [];
-  followerIds?: [];
-  interestedTypeIds?: [];
-  followingUserIds?: [];
-  followingOrgIds?: [];
-  followingEventIds?: [];
+  orgIds?: number[];
+  eventIds?: number[];
+  followerIds?: number[];
+  interestedTypeIds?: number[];
+  followingUserIds?: number[];
+  followingOrgIds?: number[];
+  followingEventIds?: number[];
 }

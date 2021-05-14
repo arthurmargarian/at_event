@@ -117,9 +117,10 @@ export class SocialAuthComponent implements OnInit {
 
   private setUserSettings(res): void {
     localStorage.setItem('token', res.token);
-    localStorage.setItem('loggedUser', JSON.stringify(res.user));
+    localStorage.setItem('user', JSON.stringify(res.user));
     this.router.navigate(['/dashboard']);
     this.globalVarsService.isAuthenticated.next(true);
+    this.globalVarsService.signedInUser.next(res.user);
     this.getLanguage(res.user.id);
   }
 

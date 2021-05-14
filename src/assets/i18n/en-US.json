@@ -57,7 +57,8 @@
     "password": "Password",
     "first_name": "First Name",
     "last_name": "Last Name",
-    "password_confirm": "Confirm Password"
+    "password_confirm": "Confirm Password",
+    "no_data": "No data to display"
   },
   "GENERAL_VALIDATIONS": {
     "required_field": "Required Field",
@@ -105,13 +106,18 @@
     "edit": "Edit",
     "followers": "Followers",
     "events": "Events",
-    "followings": "Followings",
+    "following": "Following",
+    "view_profile": "View Profile",
+    "followers_title": "{{value}}'s followers",
+    "followings_users_title": "{{value}}'s following users",
     "follow": "Follow",
+    "unfollow": "Unfollow",
     "follow_msg": "Get instantly notified when {{value}} creates a new event.",
     "contact_email": "Contact Email",
     "contact_number": "Contact Number",
     "created_events": "Created Events",
-    "FOLLOWINGS": {
+    "interested_events": "Interested Events",
+    "FOLLOWING": {
       "TITLES": {
         "events": "Events",
         "users":"Users",

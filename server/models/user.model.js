@@ -108,6 +108,38 @@ module.exports.getUserById = function (id, callback) {
   const query = {id: id};
   UserModel.findOne(query, callback);
 }
+module.exports.getUsersById = function (ids, callback) {
+  const query = {id: ids};
+  UserModel.find(query, callback);
+}
+
+module.exports.addFollower = function (followerId, followingId, callback) {
+  const findQuery = {id: followingId};
+  const updateQuery = {$push: {followerIds: followerId}};
+  const options = {new: true};
+  UserModel.findOneAndUpdate(findQuery, updateQuery, options, callback);
+}
+
+module.exports.addFollowing = function (followerId, followingId, callback) {
+  const findQuery = {id: followerId};
+  const updateQuery = {$push: {followingUserIds: followingId}};
+  const options = {new: true};
+  UserModel.findOneAndUpdate(findQuery, updateQuery, options, callback);
+}
+
+module.exports.removeFollower = function (followerId, followingId, callback) {
+  const findQuery = {id: followingId};
+  const updateQuery = {$pull: {followerIds: followerId}};
+  const options = {new: true};
+  UserModel.findOneAndUpdate(findQuery, updateQuery, options, callback);
+}
+
+module.exports.removeFollowing = function (followerId, followingId, callback) {
+  const findQuery = {id: followerId};
+  const updateQuery = {$pull: {followingUserIds: followingId}};
+  const options = {new: true};
+  UserModel.findOneAndUpdate(findQuery, updateQuery, options, callback);
+}
 
 module.exports.getUserByEmail = function (email, callback) {
   const query = {email: email};

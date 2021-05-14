@@ -36,7 +36,7 @@ export class AuthApiService {
   }
 
   public getCurrentUser(): UserInterface {
-    return JSON.parse(localStorage.getItem('loggedUser'));
+    return JSON.parse(localStorage.getItem('user'));
   }
 
   public signOut(): void {

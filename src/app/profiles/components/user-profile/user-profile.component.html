@@ -15,10 +15,10 @@
           <span class="font-italic">{{'USER_PROFILE.event_creator' | translate}}</span>
         </div>
         <div class="d-flex m-b-5">
-          <a class="my-link" [routerLink]="['events', 'all']">{{currentUser.eventIds.length}} {{'USER_PROFILE.created_events' | translate}}</a>
+          <a class="my-link" [routerLink]="['created-events', 'all']">{{currentUser.eventIds.length}} {{'USER_PROFILE.created_events' | translate}}</a>
         </div>
         <div class="d-flex">
-          <a class="my-link">{{currentUser.followerIds.length}} {{'USER_PROFILE.followers' | translate}}</a>
+          <a class="my-link"  [routerLink]="['followers']">{{currentUser.followerIds.length}} {{'USER_PROFILE.followers' | translate}}</a>
         </div>
       </div>
     </div>
@@ -43,13 +43,29 @@
     </div>
   </div>
   <div class="col-sm-2  d-flex flex-col m-t-10">
-    <div class="d-flex flex-end">
-      <button class="my-btn">{{'USER_PROFILE.edit' | translate}}<i class="m-l-5 icon-edit"></i></button>
+    <div class="d-flex flex-end" *ngIf="currentUser?.id === signedUser?.id">
+      <button class="my-btn">
+        {{'USER_PROFILE.edit' | translate}}
+        <i class="m-l-5 icon-edit"></i>
+      </button>
     </div>
     <div class="d-flex"></div>
-    <div class="d-flex flex-end">
-      <button class="my-btn" placement="bottom" [ngbTooltip]="followMsg">{{'USER_PROFILE.follow' | translate}}<i
-        class="m-l-5 icon-plus"></i></button>
+    <div class="d-flex flex-end" *ngIf="currentUser?.id !== signedUser?.id">
+      <button class="my-btn"
+              *ngIf="canFollow;else unFollow"
+              placement="bottom"
+              (click)="onFollowClick()"
+              [ngbTooltip]="followMsg">
+        {{'USER_PROFILE.follow' | translate}}
+        <i class="m-l-5 icon-plus"></i>
+      </button>
+      <ng-template #unFollow>
+        <button class="my-btn"
+                (click)="onUnFollowClick()">
+          {{'USER_PROFILE.unfollow' | translate}}
+          <i class="m-l-5 text-danger fs-9 icon-close"></i>
+        </button>
+      </ng-template>
       <ng-template #followMsg>
         <div class="msg-tooltip">
           <span>{{'USER_PROFILE.follow_msg' | translate:{value:currentUser.fullName} }}</span>
@@ -62,19 +78,29 @@
 </div>
 <!--/Profile Header View-->
 
-<div class="row add-edit-employee m-b-30">
+<div class="row add-edit-employee m-b-30" *ngIf="!isLoading">
   <div class="col-sm-12">
     <div class="new-ui-panel">
       <p-panel>
         <ul class="nav nav-tabs first-level">
           <li class="nav-item">
-            <a class="nav-link" routerLinkActive="active" [routerLink]="['events']">
-              <span>{{'USER_PROFILE.events' | translate}}</span>
+            <a class="nav-link" routerLinkActive="active" [routerLink]="['created-events']">
+              <span>{{'USER_PROFILE.created_events' | translate}}</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLinkActive="active" [routerLink]="['followings']">
-              <span>{{'USER_PROFILE.followings' | translate}}</span>
+            <a class="nav-link" routerLinkActive="active" [routerLink]="['interested-events']">
+              <span>{{'USER_PROFILE.interested_events' | translate}}</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="active" [routerLink]="['following']">
+              <span>{{'USER_PROFILE.following' | translate}}</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="active" [routerLink]="['followers']">
+              <span>{{'USER_PROFILE.followers' | translate}}</span>
             </a>
           </li>
         </ul>
@@ -89,3 +115,17 @@
 
 <app-loader *ngIf="isLoading"></app-loader>
 
+<!--Social Auth modal -->
+<div bsModal
+     #signInModal="bs-modal"
+     class="modal fade new-modal"
+     tabindex="-1"
+     [config]="{backdrop: 'static', focus: false}"
+     role="dialog"
+     aria-labelledby="Modal"
+     aria-hidden="true"
+     (onHidden)="onHideSignInModal()">
+  <app-social-auth (hideModal)="onHideSignInModal()">
+  </app-social-auth>
+</div>
+<!--/Social Auth modal -->

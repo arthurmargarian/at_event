@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CreateEventComponent } from './components/create-event/create-event.component';
 import { EventNavigatorComponent } from './components/event-navigator/event-navigator.component';
-import { YoursEventsComponent } from './components/yours-events/yours-events.component';
 import { EventsForYouComponent } from './components/events-for-you/events-for-you.component';
 import { SharedModule } from '../shared/shared.module';
 import { EventsComponent } from './events.component';
@@ -13,7 +12,6 @@ import { EventsRoutingModule } from './events-routing.module';
     EventsComponent,
     CreateEventComponent,
     EventNavigatorComponent,
-    YoursEventsComponent,
     EventsForYouComponent
   ],
   imports: [

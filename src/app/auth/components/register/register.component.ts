@@ -32,7 +32,7 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.titleService.setTitle('Sign Up');
+    this.titleService.setTitle('At Event | Sign Up');
     this.initForm();
     this.initFormWatchers();
   }
@@ -147,8 +147,9 @@ export class RegisterComponent implements OnInit {
 
   private setUserSettings(res): void {
     localStorage.setItem('token', res.token);
-    localStorage.setItem('loggedUser', JSON.stringify(res.user));
+    localStorage.setItem('user', JSON.stringify(res.user));
     this.router.navigate(['/dashboard']);
     this.globalVarsService.isAuthenticated.next(true);
+    this.globalVarsService.signedInUser.next(res.user);
   }
 }

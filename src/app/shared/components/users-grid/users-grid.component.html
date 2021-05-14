@@ -1,3 +1,54 @@
-<p>
-  users-grid works!
-</p>
+<div class="employee-grid-view p-20" *ngIf="!isLoading">
+  <div class="row">
+    <div *ngFor="let user of users" class="col-xl-2 col-lg-3 col-sm-4 col-6 grid-item">
+      <a class="new-card"
+         [routerLink]="['/profile', user.id, 'created-events','all']">
+        <div class="new-card-block text-center">
+          <div class="new-card-profile-header">
+            <div class="m-t-10">
+              <img [src]="user.photoUrl" alt="">
+            </div>
+            <div class="flex">
+              <h4>
+                <span>{{user['fullName']}}</span>
+              </h4>
+              <h6>
+                <span class="font-italic">{{'USER_PROFILE.event_creator' | translate}}</span>
+              </h6>
+            </div>
+            <div class="new-card-other-info">
+              <div class="d-flex flex-center align-center branch-name">
+                <span class="employee-name">
+                  {{user.eventIds.length}} {{'USER_PROFILE.events' | translate}}
+                </span>
+              </div>
+              <div class="country-name">
+                <span class="tooltip-holder">
+                  {{user.followerIds.length}} {{'USER_PROFILE.followers' | translate}}
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="new-card-footer text-center">
+            <a class="my-link"
+               [routerLink]="['/profile', user.id, 'created-events','all']">
+              {{ 'USER_PROFILE.view_profile' | translate}}
+            </a>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- /Grid View -->
+</div>
+
+<!-- Loader -->
+<app-loader *ngIf="isLoading"></app-loader>
+<!-- /Loader -->
+
+<div *ngIf="!isLoading && !users.length" class="card-block">
+  <div class="no-data text-center">
+    {{ 'GENERAL_LABELS.no_data' | translate}}
+  </div>
+</div>

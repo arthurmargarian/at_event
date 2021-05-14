@@ -22,4 +22,25 @@ export class UserService {
       }
     });
   }
+
+  public followToUser(followerId: number, followingId: number): Observable<any> {
+    return this.http.put(`${this.url}/followToUser`, {
+      followerId, followingId
+    });
+  }
+
+  public unFollowToUser(followerId: number, followingId: number): Observable<any> {
+    return this.http.put(`${this.url}/unFollowToUser`, {
+      followerId, followingId
+    });
+  }
+
+  public getUsersById(followerIds: number[]): Observable<any> {
+    return this.http.get(`${this.url}/getUsersById`, {
+      headers: this.headers,
+      params: {
+        userIds: followerIds.toString()
+      }
+    });
+  }
 }

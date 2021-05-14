@@ -1,6 +1,11 @@
 <div>
   <ul class="nav nav-tabs second-level">
     <li class="nav-item">
+      <a class="nav-link" routerLinkActive="active" [routerLink]="['all']">
+        <span>{{'EVENT_STATUSES.all' | translate}}</span>
+      </a>
+    </li>
+    <li class="nav-item">
       <a class="nav-link" routerLinkActive="active" [routerLink]="['upcoming']">
         <span>{{'EVENT_STATUSES.upcoming' | translate}}</span>
       </a>
@@ -23,11 +28,6 @@
     <li class="nav-item">
       <a class="nav-link" routerLinkActive="active" [routerLink]="['closed']">
         <span>{{'EVENT_STATUSES.closed' | translate}}</span>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" routerLinkActive="active" [routerLink]="['all']">
-        <span>{{'EVENT_STATUSES.all' | translate}}</span>
       </a>
     </li>
   </ul>

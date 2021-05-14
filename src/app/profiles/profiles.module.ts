@@ -7,21 +7,27 @@ import { ProfilesRoutingModule } from './profiles-routing.module';
 import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 import { PanelModule } from 'primeng/panel';
 import { UserEventsComponent } from './components/user-events/user-events.component';
-import { UserFollowingsComponent } from './components/user-followings/user-followings.component';
+import { UserFollowingComponent } from './components/user-following/user-following.component';
+import { UserProfileService } from './services/user-profile.service';
+import { ModalModule } from 'ngx-bootstrap';
 
 @NgModule({
   declarations: [
     ProfilesComponent,
     UserProfileComponent,
     UserEventsComponent,
-    UserFollowingsComponent
+    UserFollowingComponent
   ],
-  imports: [
-    CommonModule,
-    SharedModule,
-    ProfilesRoutingModule,
-    NgbTooltipModule,
-    PanelModule
+    imports: [
+        CommonModule,
+        SharedModule,
+        ProfilesRoutingModule,
+        NgbTooltipModule,
+        PanelModule,
+        ModalModule
+    ],
+  providers: [
+    UserProfileService
   ]
 })
 export class ProfilesModule {

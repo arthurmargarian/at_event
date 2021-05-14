@@ -61,14 +61,25 @@
               (mouseleave)="closeCurrentTooltip()"
               #tooltip3="ngbTooltip"
               [ngbTooltip]="disabledTooltip">
-          <a [routerLink]="['events/yours']"
+          <a [routerLink]="['profile', currentUser.id, 'created-events']"
              routerLinkActive="active"
+             *ngIf="currentUser; else empty"
              [class.disabled]="!isAuth"
              class="nav-item nav-link">
             <span class="item-inner">
               {{'HEADER.TITLES.your_events' | translate}}
             </span>
           </a>
+          <ng-template #empty>
+            <a [routerLink]="['profile']"
+               routerLinkActive="active"
+               [class.disabled]="!isAuth"
+               class="nav-item nav-link">
+            <span class="item-inner">
+              {{'HEADER.TITLES.your_events' | translate}}
+            </span>
+          </a>
+          </ng-template>
         </span>
         <a class="nav-item nav-link" *ngIf="isAuth && currentUser; else signIn">
           <span class="item-inner"
@@ -96,7 +107,8 @@
                 {{'HEADER.LABELS.create_new_org' | translate}}
               </a>
               <hr class="m-t-5 m-b-5">
-              <a [routerLink]="['profile', currentUser.id , 'events', 'upcoming']" class="my-link" (click)="moreTooltip.close()">
+              <a [routerLink]="['profile', currentUser.id , 'created-events', 'all']" class="my-link"
+                 (click)="moreTooltip.close()">
                 <i class="icon-my-profile color-ae m-r-5"></i>
                 {{'HEADER.LABELS.my_profile' | translate}}
               </a>

@@ -55,17 +55,19 @@ export function provideConfig() {
     SocialLoginModule,
     ModalModule.forRoot(),
   ],
-  exports: [
-    CommonModule,
-    ReactiveFormsModule,
-    RouterModule,
-    TranslateModule,
-    NgbDropdownModule,
-    NgSelectModule,
-    // Components
-    LoaderComponent,
-    HeaderComponent
-  ],
+    exports: [
+        CommonModule,
+        ReactiveFormsModule,
+        RouterModule,
+        TranslateModule,
+        NgbDropdownModule,
+        NgSelectModule,
+        // Components
+        LoaderComponent,
+        HeaderComponent,
+        EventsGridComponent,
+        SocialAuthComponent
+    ],
   providers: [
     SettingsService,
     UserService,

@@ -12,7 +12,7 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.titleService.setTitle('Dashboard');
+    this.titleService.setTitle('At Event | Dashboard');
   }
 
 }

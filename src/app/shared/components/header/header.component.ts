@@ -111,6 +111,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   public onSignOutConfirmed(): void {
     this.authApiService.signOut();
     this.globalVarsService.isAuthenticated.next(false);
+    this.globalVarsService.signedInUser.next(null);
     this.signOutModal.hide();
     this.showNotificationMessage('NOTIFY_MESSAGES.sign_out');
     this.router.navigate(['sign-in']);

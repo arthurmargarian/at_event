@@ -10,13 +10,13 @@ export class UserModel {
   public activeOrgId?: number;
   public contactNumber?: string;
   public contactEmail?: string;
-  public orgIds?: [];
-  public eventIds?: [];
-  public followerIds?: [];
-  public interestedTypeIds?: [];
-  public followingEventIds?: [];
-  public followingUserIds?: [];
-  public followingOrgIds?: [];
+  public orgIds?: number[];
+  public eventIds?: number[];
+  public followerIds?: number[];
+  public interestedTypeIds?: number[];
+  public followingEventIds?: number[];
+  public followingUserIds?: number[];
+  public followingOrgIds?: number[];
   constructor(id: number) {
   }
 }
