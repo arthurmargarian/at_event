@@ -108,6 +108,19 @@ module.exports.getUserById = function (id, callback) {
   const query = {id: id};
   UserModel.findOne(query, callback);
 }
+
+module.exports.updateUsersById = function (user, callback) {
+  const query = {id: user.id};
+  const updateQuery = {
+    firstName: user.firstName,
+    lastName: user.lastName,
+    fullName: user.firstName + ' ' + user.lastName,
+    contactNumber: user.contactNumber,
+    contactEmail: user.contactEmail,
+  };
+  UserModel.findOneAndUpdate(query, updateQuery, callback);
+}
+
 module.exports.getUsersById = function (ids, callback) {
   const query = {id: ids};
   UserModel.find(query, callback);

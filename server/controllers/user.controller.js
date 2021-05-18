@@ -40,7 +40,25 @@ module.exports.get_users_by_id = (req, res) => {
       })
     }
   })
+}
 
+module.exports.put_update_user_by_id = (req, res) => {
+  User.updateUsersById(req.body, (err, user) => {
+    if (err) throw err;
+    if (user) {
+      res.json({
+        success: true,
+        model: user,
+        status: 10
+      })
+    } else {
+      res.json({
+        success: false,
+        model: null,
+        status: 0
+      })
+    }
+  })
 }
 
 module.exports.put_follow_to_user = (req, res) => {

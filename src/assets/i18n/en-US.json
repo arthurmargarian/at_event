@@ -119,6 +119,7 @@
     "follow": "Following {{value}}",
     "unfollow": "Unfollowing {{value}}",
     "hidden_info": "This information was hidden from others.",
+    "profile_info_updated": "Profile Info Updated.",
     "new_org_created": "New Organization Created.",
     "org_updated": "Your Organization Updated.",
     "org_deleted": "Your {{value}} Organization Deleted."
@@ -134,6 +135,7 @@
     "event_creator": "Event Creator",
     "edit_organization": "Edit Organization",
     "edit_profile": "Edit Profile",
+    "update_profile": "Update Profile",
     "edit_event": "Edit Event",
     "edit": "Edit Event",
     "followers": "Followers",
