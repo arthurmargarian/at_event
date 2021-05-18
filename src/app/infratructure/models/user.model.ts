@@ -18,5 +18,6 @@ export class UserModel {
   public followingUserIds?: number[];
   public followingOrgIds?: number[];
   constructor(id: number) {
+    this.id = id;
   }
 }

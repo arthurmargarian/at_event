@@ -8,6 +8,8 @@ import { UserProfileService } from '../../services/user-profile.service';
 import { Title } from '@angular/platform-browser';
 import { GlobalVarsService } from '../../../global-vars.service';
 import { ModalDirective } from 'ngx-bootstrap';
+import { TranslateService } from '@ngx-translate/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-user-profile',
@@ -17,13 +19,15 @@ import { ModalDirective } from 'ngx-bootstrap';
 export class UserProfileComponent implements OnInit, OnDestroy {
   @ViewChild('signInModal') public signInModal: ModalDirective;
   public currentUser: UserInterface;
+  public signedUser: UserInterface;
   public isLoading: boolean;
   public canFollow: boolean;
   private ngUnsubscribe: Subject<boolean> = new Subject();
-  public signedUser: UserInterface;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
+              private translateService: TranslateService,
+              private toastr: ToastrService,
               private titleService: Title,
               private userProfileService: UserProfileService,
               private globalVarsService: GlobalVarsService,
@@ -33,6 +37,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.getUserIdFromRoute();
     this.getSignedUserFromService();
+    this.getCurrentUserFormService();
   }
 
   ngOnDestroy(): void {
@@ -62,6 +67,8 @@ export class UserProfileComponent implements OnInit, OnDestroy {
           this.userProfileService.currentUser.next(this.currentUser);
           if (this.signedUser) {
             this.checkFollow();
+          } else {
+            this.canFollow = true;
           }
         }
       });
@@ -90,10 +97,18 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     this.signInModal.hide();
   }
 
+  private showNotificationMessage(key: string, params: object): void {
+    this.translateService.get(key, params)
+      .subscribe(message => {
+        this.toastr.success(message, '', {positionClass: 'toast-bottom-right', progressBar: true, progressAnimation: 'decreasing'});
+      });
+  }
+
   public followToUser(followerId: number, followingId: number): void {
     this.userService.followToUser(followerId, followingId)
       .subscribe(res => {
         if (res) {
+          this.showNotificationMessage('NOTIFY_MESSAGES.follow', {value: this.currentUser.fullName});
           this.updateView();
         }
       });
@@ -103,6 +118,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     this.userService.unFollowToUser(followerId, followingId)
       .subscribe(res => {
         if (res) {
+          this.showNotificationMessage('NOTIFY_MESSAGES.unfollow', {value: this.currentUser.fullName});
           this.updateView();
         }
       });
@@ -115,5 +131,14 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   private checkFollow(): void {
     const isFollow = this.currentUser.followerIds.find(id => id === this.signedUser.id);
     this.canFollow = !isFollow;
+  }
+
+  private getCurrentUserFormService() {
+    this.userProfileService.currentUser
+      .subscribe(user => {
+        if (user) {
+          this.currentUser = user;
+        }
+      });
   }
 }

@@ -25,11 +25,20 @@ module.exports.get_users_by_id = (req, res) => {
   const userIds = req.query.userIds.split(',');
   User.getUsersById(userIds, (err, users) => {
     if (err) throw err;
-    res.json({
-      status: 10,
-      model: users,
-      success: true
-    })
+    if (users) {
+      users.password = null;
+      res.json({
+        success: true,
+        model: users,
+        status: 10
+      })
+    } else {
+      res.json({
+        success: false,
+        model: null,
+        status: 0
+      })
+    }
   })
 
 }

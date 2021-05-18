@@ -1,0 +1,103 @@
+@import "src/scss/partials/_variables.scss";
+@import "src/scss/partials/_mixins.scss";
+@import "src/scss/redesign/base/variables";
+
+.form-control-default {
+  ng-select.ng-select {
+    .ng-value{
+      .ng-value-icon{
+        display: block;
+      }
+    }
+  }
+}
+
+.new-option {
+  color: $light-blue;
+  font-weight: 600;
+}
+
+/deep/ tag-input.tag-select {
+  .ng2-tag-input {
+    padding: 0 !important;
+    @include border-radius(0);
+    @include transition(inherit !important);
+    border: 0 !important;
+    .ng2-tags-container {
+      width: 100%;
+      tag-input-form {
+        padding: 0 !important;
+        width: 100%;
+        @include flex-value(1);
+        input {
+          padding: 0 !important;
+          background: transparent !important;
+          width: 100%;
+          @include placeholder-color($gray-light);
+        }
+      }
+      tag:nth-last-child(1) {
+        display: block !important;
+      }
+      tag {
+        color: #3bb8e4 !important;
+        white-space: nowrap;
+        font-weight: 700;
+        max-width: 100%;
+        cursor: default;
+        flex-shrink: 0;
+        font-size: 14px;
+        line-height: 22px !important;
+        background-color: rgba(59, 184, 228, 0.1) !important;
+        margin-right: .4375em;
+        margin-bottom: .4375em;
+        @include border-radius(12px);
+        padding: 2px 10px !important;
+        @include transition(inherit !important);
+
+        .ng-value {
+          .ng-value-label {
+            line-height: 26px;
+            margin-right: 5px;
+            max-width: 134px;
+            display: inline-block;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            vertical-align: middle;
+          }
+          .ng-value-icon {
+            color: $danger-color;
+            font-weight: 300;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 3px;
+          }
+        }
+        delete-icon {
+          svg {
+            path {
+              fill: #aaa;
+            }
+          }
+        }
+        &:not(:focus):not(.tag--editing):not(:active):not(.readonly):hover {
+          box-shadow: none;
+        }
+        + tag {
+          display: none;
+        }
+        tag-ripple {
+          .tag-ripple {
+            background: transparent;
+            transform: translate(0) !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+

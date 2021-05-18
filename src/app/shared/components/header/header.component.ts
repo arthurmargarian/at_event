@@ -31,7 +31,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private ngDestroy = new Subject();
   public isAuth: boolean;
   private currentTooltip: NgbTooltip;
-  public defaultProfilePic = 'assets/images//default-profile-pic.png';
+  public defaultProfilePic = 'assets/images/default-profile-pic.png';
 
   constructor(private fb: FormBuilder,
               private router: Router,

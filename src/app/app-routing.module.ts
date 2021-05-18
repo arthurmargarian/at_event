@@ -19,6 +19,11 @@ const routes: Routes = [
     loadChildren: './profiles/profiles.module#ProfilesModule',
   },
   {
+    path: 'organizations',
+    component: LayoutComponent,
+    loadChildren: './organizations/organizations.module#OrganizationsModule',
+  },
+  {
     path: 'events',
     component: LayoutComponent,
     loadChildren: './events/events.module#EventsModule',

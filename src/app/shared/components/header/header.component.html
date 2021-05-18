@@ -9,16 +9,9 @@
 
     <div class="collapse navbar-collapse text-center justify-content-between" id="navbarCollapse">
       <div class="navbar-nav">
-        <span [container]="'body'"
-              triggers="blur"
-              [placement]="'bottom'"
-              (mouseenter)="onTooltipHover(tooltip1)"
-              (mouseleave)="closeCurrentTooltip()"
-              #tooltip1="ngbTooltip"
-              [ngbTooltip]="disabledTooltip">
+        <span *ngIf="isAuth">
           <a [routerLink]="['events/for-you']"
              routerLinkActive="active"
-             [class.disabled]="!isAuth"
              class="nav-item nav-link">
             <span class="item-inner">
               {{'HEADER.TITLES.events_for_you' | translate}}
@@ -37,16 +30,9 @@
         </span>
       </div>
       <div class="navbar-nav">
-        <span [container]="'body'"
-              triggers="blur"
-              [placement]="'bottom'"
-              (mouseenter)="onTooltipHover(tooltip2)"
-              (mouseleave)="closeCurrentTooltip()"
-              #tooltip2="ngbTooltip"
-              [ngbTooltip]="disabledTooltip">
-          <a [routerLink]="['events/create']"
+        <span *ngIf="isAuth">
+          <a [routerLink]="['profile', currentUser.id, 'create-event']"
              routerLinkActive="active"
-             [class.disabled]="!isAuth"
              class="nav-item nav-link">
             <span class="item-inner">
             <i class="icon-plus fs-11"></i>
@@ -54,32 +40,14 @@
             </span>
           </a>
         </span>
-        <span [container]="'body'"
-              triggers="blur"
-              [placement]="'bottom'"
-              (mouseenter)="onTooltipHover(tooltip3)"
-              (mouseleave)="closeCurrentTooltip()"
-              #tooltip3="ngbTooltip"
-              [ngbTooltip]="disabledTooltip">
+        <span *ngIf="isAuth">
           <a [routerLink]="['profile', currentUser.id, 'created-events']"
              routerLinkActive="active"
-             *ngIf="currentUser; else empty"
-             [class.disabled]="!isAuth"
              class="nav-item nav-link">
             <span class="item-inner">
               {{'HEADER.TITLES.your_events' | translate}}
             </span>
           </a>
-          <ng-template #empty>
-            <a [routerLink]="['profile']"
-               routerLinkActive="active"
-               [class.disabled]="!isAuth"
-               class="nav-item nav-link">
-            <span class="item-inner">
-              {{'HEADER.TITLES.your_events' | translate}}
-            </span>
-          </a>
-          </ng-template>
         </span>
         <a class="nav-item nav-link" *ngIf="isAuth && currentUser; else signIn">
           <span class="item-inner"
@@ -102,8 +70,12 @@
             <div class="user-more">
               <span class="font-weight-bold">{{currentUser.firstName + ' ' + currentUser.lastName}}</span>
               <hr class="m-t-5 m-b-5">
-              <a class="my-link">
-                <i class="icon-company color-ae m-r-5"></i>
+              <a class="my-link" (click)="moreTooltip.close()" [routerLink]="['profile', currentUser.id, 'create-event']">
+                <i class="icon-plus color-ae m-r-5 fs-11"></i>
+                {{'HEADER.TITLES.create_event' | translate}}
+              </a>
+              <a class="my-link" (click)="moreTooltip.close()" [routerLink]="['profile', currentUser.id , 'organizations', 'new']">
+                <i class="icon-plus color-ae m-r-5 fs-11"></i>
                 {{'HEADER.LABELS.create_new_org' | translate}}
               </a>
               <hr class="m-t-5 m-b-5">
@@ -111,6 +83,11 @@
                  (click)="moreTooltip.close()">
                 <i class="icon-my-profile color-ae m-r-5"></i>
                 {{'HEADER.LABELS.my_profile' | translate}}
+              </a>
+              <a [routerLink]="['profile', currentUser.id , 'organizations', 'your']" class="my-link"
+                 (click)="moreTooltip.close()">
+                <i class="icon-company color-ae m-r-5"></i>
+                {{'HEADER.LABELS.my_orgs' | translate}}
               </a>
               <a class="my-link" (click)="onSignOutClick(moreTooltip)">
                 <i class="icon-logout color-ae m-r-5"></i>
@@ -128,11 +105,6 @@
         </ng-template>
       </div>
     </div>
-    <ng-template #disabledTooltip>
-      <span class="color-ae line-height-26 p-15">
-      {{'HEADER.MESSAGES.need_sign_in' | translate}}
-      </span>
-    </ng-template>
   </div>
 </nav>
 <div class="language">

@@ -10,13 +10,19 @@ import { UserEventsComponent } from './components/user-events/user-events.compon
 import { UserFollowingComponent } from './components/user-following/user-following.component';
 import { UserProfileService } from './services/user-profile.service';
 import { ModalModule } from 'ngx-bootstrap';
+import { EventAddEditComponent } from './components/event-add-edit/event-add-edit.component';
+import { OrgAddEditComponent } from './components/org-add-edit/org-add-edit.component';
+import { OrganizationsComponent } from './components/organizations/organizations.component';
 
 @NgModule({
   declarations: [
     ProfilesComponent,
     UserProfileComponent,
     UserEventsComponent,
-    UserFollowingComponent
+    UserFollowingComponent,
+    EventAddEditComponent,
+    OrgAddEditComponent,
+    OrganizationsComponent
   ],
     imports: [
         CommonModule,

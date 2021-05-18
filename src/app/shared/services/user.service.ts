@@ -23,6 +23,15 @@ export class UserService {
     });
   }
 
+  public getUsersById(followerIds: number[]): Observable<any> {
+    return this.http.get(`${this.url}/getUsersById`, {
+      headers: this.headers,
+      params: {
+        userIds: followerIds.toString()
+      }
+    });
+  }
+
   public followToUser(followerId: number, followingId: number): Observable<any> {
     return this.http.put(`${this.url}/followToUser`, {
       followerId, followingId
@@ -35,12 +44,4 @@ export class UserService {
     });
   }
 
-  public getUsersById(followerIds: number[]): Observable<any> {
-    return this.http.get(`${this.url}/getUsersById`, {
-      headers: this.headers,
-      params: {
-        userIds: followerIds.toString()
-      }
-    });
-  }
 }

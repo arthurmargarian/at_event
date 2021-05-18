@@ -1,0 +1,236 @@
+<div class="row">
+  <div class="col-sm-3"></div>
+  <div class="col-sm-6">
+    <form class="new-form" [formGroup]="form">
+      <div *ngIf="!isLoading">
+        <div class="form-card">
+          <div class="form-card-header">
+            <div class="row align-center">
+              <div class="col-sm-6">
+              <span class="title d-flex align-center color-ae">
+                <i class="icon-company color-ae"></i>
+                <span *ngIf="!isEditMode;else edit">
+                {{ "GENERAL_LABELS.new_org" | translate }}
+                </span>
+                <ng-template #edit>
+                {{ "GENERAL_LABELS.edit_org" | translate: {value:currentOrg.name} }}
+                </ng-template>
+              </span>
+              </div>
+            </div>
+          </div>
+          <div class="img-wrapper d-flex flex-center m-t-10" *ngIf="isEditMode">
+            <img [src]="currentOrg?.photoUrl" alt="" style="width: 25%">
+          </div>
+          <hr *ngIf="isEditMode">
+          <div class="form-card-content">
+            <div class="row">
+              <div class="col-sm-4">
+                <label class="new-label">
+                  {{ "GENERAL_LABELS.name" | translate }}:
+                </label>
+              </div>
+              <div class="col-sm-8">
+                <input formControlName="name"
+                       [class.validation-error]="form.get('name').errors && (form.get('name').touched || submitted)"
+                       class="new-element"
+                       placeholder="{{ 'GENERAL_LABELS.enter' | translate }}">
+                <div class="messages text-danger">
+                  <div *ngIf="form.get('name').errors && (form.get('name').touched || submitted)">
+                    <div [hidden]="!form.get('name').errors.required">
+                      {{'GENERAL_VALIDATIONS.required_field' | translate}}
+                    </div>
+                    <div [hidden]="!form.get('name').errors.minlength">
+                      {{'GENERAL_VALIDATIONS.min_character' | translate:{value: 5} }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <label class="new-label">
+                  {{ "GENERAL_LABELS.contact_number" | translate }}:
+                </label>
+              </div>
+              <div class="col-sm-8">
+                <input formControlName="contactNumber"
+                       [class.validation-error]="form.get('contactNumber').errors && (form.get('contactNumber').touched || submitted)"
+                       class="new-element"
+                       type="number"
+                       placeholder="{{ 'GENERAL_LABELS.enter' | translate }}">
+                <div class="messages text-danger">
+                  <div *ngIf="form.get('contactNumber').errors && (form.get('contactNumber').touched || submitted)">
+                    <div [hidden]="!form.get('contactNumber').errors.required">
+                      {{'GENERAL_VALIDATIONS.required_field' | translate}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <label class="new-label">
+                  {{ "GENERAL_LABELS.contact_email" | translate }}:
+                </label>
+              </div>
+              <div class="col-sm-8">
+                <input formControlName="contactMail"
+                       [class.validation-error]="form.get('contactMail').errors && (form.get('contactMail').touched || submitted)"
+                       class="new-element"
+                       placeholder="{{ 'GENERAL_LABELS.enter' | translate }}">
+                <div class="messages text-danger">
+                  <div *ngIf="form.get('contactMail').errors && (form.get('contactMail').touched || submitted)">
+                    <div [hidden]="!form.get('contactMail').errors.required">
+                      {{'GENERAL_VALIDATIONS.required_field' | translate}}
+                    </div>
+                    <div [hidden]="!form.get('contactMail').errors.email">
+                      {{'AUTH.validations.invalid_email' | translate}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <label class="new-label">
+                  {{ "GENERAL_LABELS.address" | translate }}:
+                </label>
+              </div>
+              <div class="col-sm-8">
+                <input formControlName="address"
+                       [class.validation-error]="form.get('address').errors && (form.get('address').touched || submitted)"
+                       class="new-element"
+                       placeholder="{{ 'GENERAL_LABELS.enter' | translate }}">
+                <div class="messages text-danger">
+                  <div *ngIf="form.get('address').errors && (form.get('address').touched || submitted)">
+                    <div [hidden]="!form.get('address').errors.required">
+                      {{'GENERAL_VALIDATIONS.required_field' | translate}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <label class="new-label">
+                  {{ "GENERAL_LABELS.event_types" | translate }}:
+                </label>
+              </div>
+              <div class="col-sm-8">
+                <razor-multiselect class="new-element"
+                                   [bindValue]="'value'"
+                                   [class.validation-error]="form.get('eventTypes').errors && (form.get('eventTypes').touched || submitted)"
+                                   [items]="eventTypes"
+                                   formControlName="eventTypes"
+                                   [placeholder]="'GENERAL_LABELS.select' | translate">
+                </razor-multiselect>
+                <div class="messages text-danger">
+                  <div *ngIf="form.get('eventTypes').errors && (form.get('eventTypes').touched || submitted)">
+                    <div [hidden]="!form.get('eventTypes').errors.required">
+                      {{'GENERAL_VALIDATIONS.required_field' | translate}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <label class="new-label">
+                  {{ "GENERAL_LABELS.about" | translate }}:
+                </label>
+              </div>
+              <div class="col-sm-8">
+              <textarea cols="30"
+                        rows="5"
+                        class="new-element"
+                        formControlName="about"
+                        [ngClass]='{"validation-error": form.get("about").errors && (form.get("about").touched || submitted)}'
+                        placeholder="{{'GENERAL_LABELS.enter' | translate}}">
+              </textarea>
+                <div class="messages text-danger">
+                  <div *ngIf="form.get('about').errors && (form.get('about').touched || submitted)">
+                    <div [hidden]="!form.get('about').errors.required">
+                      {{'GENERAL_VALIDATIONS.required_field' | translate}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group d-flex flex-space-between">
+            <div class="d-flex">
+              <button type="submit"
+                      *ngIf="isEditMode"
+                      [disabled]="isLoading"
+                      class="my-btn"
+                      (click)="onDeleteClick()">
+                {{'GENERAL_LABELS.delete' | translate}}
+                <i class="icon-delete m-l-5 color-ae"></i>
+              </button>
+            </div>
+            <div class="d-flex">
+              <button type="submit"
+                      *ngIf="!isEditMode; else update"
+                      [disabled]="isLoading"
+                      class="my-btn"
+                      (click)="createSubmit()">
+                {{'GENERAL_LABELS.create' | translate}}
+              </button>
+              <ng-template #update>
+                <button type="submit"
+                        [disabled]="isLoading"
+                        class="my-btn"
+                        (click)="updateSubmit()">
+                  {{'GENERAL_LABELS.update' | translate}}
+                </button>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="col-sm-3"></div>
+</div>
+
+<div bsModal
+     #deleteConfirmModal="bs-modal"
+     class="modal fade new-modal"
+     tabindex="-1"
+     *ngIf="currentOrg"
+     [config]="{backdrop: 'static', focus: false}"
+     role="dialog"
+     aria-labelledby="Modal"
+     aria-hidden="true"
+     (onHidden)="onHideModal()">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title color-ae">{{'GENERAL_LABELS.org_delete_title' | translate:{value:currentOrg.name} }}</h4>
+        <i class="icon-close" (click)=onHideModal()></i>
+      </div>
+      <div class="modal-body">
+          <span>
+            {{'GENERAL_LABELS.org_delete_message' | translate:{value:currentOrg.name} }}
+          </span>
+        <div class="row m-t-15">
+          <div class="col-sm-12 d-flex flex-end">
+            <button type="button"
+                    class="btn-default"
+                    (click)="onHideModal()">
+              {{'BUTTONS.cancel' | translate}}
+            </button>
+            <button type="button"
+                    class="btn-default color-ae m-l-10"
+                    (click)="onDeleteConfirmed()">
+              {{'GENERAL_LABELS.delete' | translate}}
+              <i class="icon-delete m-l-5 color-ae"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--/Sign Out Confirm modal -->

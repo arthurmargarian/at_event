@@ -112,6 +112,7 @@ export class LoginComponent implements OnInit {
           this.requested = true;
           switch (res.status) {
             case LoginStatusEnum.Success:
+              this.showNotificationMessage('NOTIFY_MESSAGES.sign_in');
               this.setUserSettings(res);
               break;
             case LoginStatusEnum.UserNotFound:

@@ -42,6 +42,8 @@ export class RegisterComponent implements OnInit {
       email: [null, [EmailValidator, Validators.required]],
       firstName: [null, [Validators.required, Validators.minLength(2)]],
       lastName: [null, [Validators.required, Validators.minLength(2)]],
+      contactNumber: [null, [Validators.required]],
+      contactEmail: [null, [Validators.required, EmailValidator]],
       password: [null, [Validators.required, Validators.minLength(6)]],
       passwordConfirm: [null, [Validators.required]],
     });
@@ -108,7 +110,10 @@ export class RegisterComponent implements OnInit {
       const values = this.form.value;
       model.firstName = values.firstName;
       model.lastName = values.lastName;
+      model.contactNumber = values.contactNumber;
+      model.contactEmail = values.contactEmail;
       model.email = values.email;
+      model.photoUrl = 'assets/images/default-profile-pic.png';
       model.password = values.password;
       model.isSocial = false;
       this.addUser(model);

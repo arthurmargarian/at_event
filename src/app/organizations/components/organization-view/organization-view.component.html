@@ -1,0 +1,145 @@
+<!--Profile Header View-->
+<div class="row person-profile" *ngIf="!isLoading && currentOrg">
+  <div class="col-sm-4">
+    <div class="row">
+      <div class="col-sm-5 flex-center">
+        <div class="profile-img-wrapper d-flex">
+          <img [src]="currentOrg?.photoUrl" alt="" style="border-radius: 5px !important;">
+        </div>
+      </div>
+      <div class="col-sm-7 d-flex flex-col">
+        <div class="d-flex m-b-5">
+          <span class="user-name">{{currentOrg?.name}}</span>
+        </div>
+        <div class="d-flex m-b-20">
+          <span class="font-italic">{{'GENERAL_LABELS.event_organization' | translate}}</span>
+        </div>
+        <div class="d-flex m-b-5">
+          <span class="employee-name m-r-5" *ngFor="let typeId of currentOrg?.orgEventTypeIds; let i = index">
+             {{"EVENT_TYPES." + getEventTypeLabel(typeId) + "" | translate}} <span *ngIf="i !== currentOrg.orgEventTypeIds.length-1"> | </span>
+          </span>
+        </div>
+        <div class="d-flex m-b-5">
+          <a class="my-link"
+             [routerLink]="['created-events', 'all']">{{currentOrg?.eventIds.length}} {{'USER_PROFILE.created_events' | translate}}</a>
+        </div>
+        <div class="d-flex">
+          <a class="my-link"
+             [routerLink]="['followers']">{{currentOrg?.followerIds.length}} {{'USER_PROFILE.followers' | translate}}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 contact-info d-flex flex-col m-t-10">
+    <div class="row m-b-5">
+      <div class="col-sm-4">
+        <label class="new-label"><i class="icon-email color-ae"></i> {{'USER_PROFILE.contact_email' | translate}}
+          :</label>
+      </div>
+      <div class="col-sm-8">
+        <a class="my-link" href="mailto:{{currentOrg?.contactEmail}}">{{currentOrg?.contactEmail}}</a>
+      </div>
+    </div>
+    <div class="row m-b-5">
+      <div class="col-sm-4">
+        <label class="new-label"><i class="icon-telephone color-ae"></i> {{'USER_PROFILE.contact_number' | translate}} :</label>
+      </div>
+      <div class="col-sm-8">
+        <span>{{currentOrg?.contactNumber}}</span>
+      </div>
+    </div>
+    <div class="row m-b-20">
+      <div class="col-sm-4">
+        <label class="new-label"><i class="icon-location color-ae"></i> {{'GENERAL_LABELS.address' | translate}} :</label>
+      </div>
+      <div class="col-sm-8">
+        <span>{{currentOrg?.address}}</span>
+      </div>
+    </div>
+    <div class="row p-l-15">
+      <span [innerHTML]="currentOrg?.about"></span>
+    </div>
+  </div>
+  <div class="col-sm-2  d-flex flex-col m-t-10">
+    <div class="d-flex flex-end" *ngIf="signedUserId === currentOrg?.ownerId">
+      <a class="my-btn" [routerLink]="['/profile', signedUser.id , 'organizations', currentOrg.id]">
+        {{'USER_PROFILE.edit_organization' | translate}}
+        <i class="m-l-5 icon-edit"></i>
+      </a>
+    </div>
+    <div class="d-flex"></div>
+    <div class="d-flex flex-end" *ngIf="signedUserId !== currentOrg?.ownerId">
+      <button class="my-btn"
+              *ngIf="canFollow; else unFollow"
+              placement="bottom"
+              (click)="onFollowClick()"
+              [ngbTooltip]="followMsg">
+        {{'USER_PROFILE.follow' | translate}}
+        <i class="m-l-5 icon-plus"></i>
+      </button>
+      <ng-template #unFollow>
+        <button class="my-btn"
+                (click)="onUnFollowClick()">
+          {{'USER_PROFILE.unfollow' | translate}}
+          <i class="m-l-5 text-danger fs-9 icon-close"></i>
+        </button>
+      </ng-template>
+      <ng-template #followMsg>
+        <div class="msg-tooltip">
+          <span class="color-ae p-10">{{'USER_PROFILE.follow_msg' | translate:{value: currentOrg?.name} }}</span>
+        </div>
+      </ng-template>
+    </div>
+
+    <div class="d-flex"></div>
+  </div>
+</div>
+<!--/Profile Header View-->
+
+<div class="row add-edit-employee m-b-30" *ngIf="!isLoading">
+  <div class="col-sm-12">
+    <div class="new-ui-panel">
+      <p-panel>
+        <ul class="nav nav-tabs first-level">
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="active" [routerLink]="['created-events']">
+              <span>{{'USER_PROFILE.created_events' | translate}} ({{currentOrg?.eventIds.length}})</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="active" [routerLink]="['followers']">
+              <span>{{'USER_PROFILE.followers' | translate}} ({{currentOrg?.followerIds.length}})</span>
+            </a>
+          </li>
+          <li class="nav-item m-l-auto" *ngIf="currentOrg?.ownerId === signedUserId">
+            <a class="nav-link" routerLinkActive="active" [routerLink]="['create-org-event']">
+              <i class="icon-plus fs-11"></i>
+              {{'GENERAL_LABELS.create_event_from_org' | translate:{value:currentOrg?.name} }}
+            </a>
+          </li>
+        </ul>
+
+        <div class="tab-content">
+          <router-outlet></router-outlet>
+        </div>
+      </p-panel>
+    </div>
+  </div>
+</div>
+
+<app-loader *ngIf="isLoading"></app-loader>
+
+<!--Social Auth modal -->
+<div bsModal
+     #signInModal="bs-modal"
+     class="modal fade new-modal"
+     tabindex="-1"
+     [config]="{backdrop: 'static', focus: false}"
+     role="dialog"
+     aria-labelledby="Modal"
+     aria-hidden="true"
+     (onHidden)="onHideSignInModal()">
+  <app-social-auth (hideModal)="onHideSignInModal()">
+  </app-social-auth>
+</div>
+<!--/Social Auth modal -->

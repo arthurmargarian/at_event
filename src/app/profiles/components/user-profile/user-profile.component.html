@@ -45,7 +45,7 @@
   <div class="col-sm-2  d-flex flex-col m-t-10">
     <div class="d-flex flex-end" *ngIf="currentUser?.id === signedUser?.id">
       <button class="my-btn">
-        {{'USER_PROFILE.edit' | translate}}
+        {{'USER_PROFILE.edit_profile' | translate}}
         <i class="m-l-5 icon-edit"></i>
       </button>
     </div>
@@ -68,7 +68,7 @@
       </ng-template>
       <ng-template #followMsg>
         <div class="msg-tooltip">
-          <span>{{'USER_PROFILE.follow_msg' | translate:{value:currentUser.fullName} }}</span>
+          <span class="color-ae p-10">{{'USER_PROFILE.follow_msg' | translate:{value:currentUser.fullName} }}</span>
         </div>
       </ng-template>
     </div>
@@ -85,22 +85,41 @@
         <ul class="nav nav-tabs first-level">
           <li class="nav-item">
             <a class="nav-link" routerLinkActive="active" [routerLink]="['created-events']">
-              <span>{{'USER_PROFILE.created_events' | translate}}</span>
+              <span>{{'USER_PROFILE.created_events' | translate}} ({{currentUser.eventIds.length}})</span>
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" routerLinkActive="active" [routerLink]="['interested-events']">
-              <span>{{'USER_PROFILE.interested_events' | translate}}</span>
+              <span>{{'USER_PROFILE.interested_events' | translate}} ({{currentUser.followingEventIds.length}})</span>
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" routerLinkActive="active" [routerLink]="['following']">
-              <span>{{'USER_PROFILE.following' | translate}}</span>
+              <span>{{'USER_PROFILE.following' | translate}} ({{currentUser.followingUserIds.length}})</span>
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" routerLinkActive="active" [routerLink]="['followers']">
-              <span>{{'USER_PROFILE.followers' | translate}}</span>
+              <span>{{'USER_PROFILE.followers' | translate}} ({{currentUser.followerIds.length}})</span>
+            </a>
+          </li>
+          <li class="nav-item"
+              *ngIf="currentUser?.id === signedUser?.id"
+              [ngbTooltip]="hiddenInfo"
+              [placement]="'bottom'">
+            <a class="nav-link" routerLinkActive="active" [routerLink]="['organizations', 'your']">
+              <span>{{'USER_PROFILE.organizations' | translate}} ({{currentUser.orgIds.length}})</span>
+            </a>
+          </li>
+            <ng-template #hiddenInfo>
+               <span class="color-ae p-10">
+                {{'NOTIFY_MESSAGES.hidden_info' | translate}}
+               </span>
+            </ng-template>
+          <li class="nav-item m-l-auto" *ngIf="currentUser?.id === signedUser?.id">
+            <a class="nav-link" routerLinkActive="active" [routerLink]="['create-event']">
+              <i class="icon-plus fs-11"></i>
+              {{'HEADER.TITLES.create_event' | translate}}
             </a>
           </li>
         </ul>

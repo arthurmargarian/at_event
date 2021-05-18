@@ -15,7 +15,7 @@
   /* Firefox 1-3.6 */
   -moz-border-radius: $radius !important;
   /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
-  border-radius: $radius !important;
+  border-radius: $radius ;
 }
 
 @mixin border-radius-seperate($topleft:0, $topright:0, $bottomright:0, $bottomleft:0) {

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoaderComponent } from './components/loader/loader.component';
 import { HeaderComponent } from './components/header/header.component';
 import { RouterModule } from '@angular/router';
@@ -15,6 +15,9 @@ import { UserService } from './services/user.service';
 import { EventsGridComponent } from './components/events-grid/events-grid.component';
 import { UsersGridComponent } from './components/users-grid/users-grid.component';
 import { OrganizationsGridComponent } from './components/organizations-grid/organizations-grid.component';
+import { OrganizationService } from './services/organization.service';
+import { SelectSorterDirective } from './directives/select-sorter.directive';
+import { MultiselectComponent } from './components/multiselect/multiselect.component';
 
 const GOOGLE_OAUTH_CLIENT_ID = '174901231009-eni8jt11p1mc7hritqetmlpfj63pk0qf.apps.googleusercontent.com';
 const FACEBOOK_APP_ID = '2261974733824223';
@@ -42,7 +45,9 @@ export function provideConfig() {
     SocialAuthComponent,
     EventsGridComponent,
     UsersGridComponent,
-    OrganizationsGridComponent
+    OrganizationsGridComponent,
+    SelectSorterDirective,
+    MultiselectComponent,
   ],
   imports: [
     CommonModule,
@@ -54,23 +59,26 @@ export function provideConfig() {
     NgbModule,
     SocialLoginModule,
     ModalModule.forRoot(),
+    FormsModule,
   ],
-    exports: [
-        CommonModule,
-        ReactiveFormsModule,
-        RouterModule,
-        TranslateModule,
-        NgbDropdownModule,
-        NgSelectModule,
-        // Components
-        LoaderComponent,
-        HeaderComponent,
-        EventsGridComponent,
-        SocialAuthComponent
-    ],
+  exports: [
+    CommonModule,
+    ReactiveFormsModule,
+    RouterModule,
+    TranslateModule,
+    NgbDropdownModule,
+    NgSelectModule,
+    // Components
+    LoaderComponent,
+    HeaderComponent,
+    EventsGridComponent,
+    SocialAuthComponent,
+    MultiselectComponent
+  ],
   providers: [
     SettingsService,
     UserService,
+    OrganizationService,
     {
       provide: AuthServiceConfig,
       useFactory: provideConfig

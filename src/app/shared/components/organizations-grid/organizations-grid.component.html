@@ -1,3 +1,59 @@
-<p>
-  organizations-grid works!
-</p>
+<div class="employee-grid-view p-20" *ngIf="!isLoading">
+  <div class="row">
+    <div *ngFor="let organization of organizations" class="col-xl-2 col-lg-3 col-sm-4 col-6 grid-item">
+      <a class="new-card"
+         [routerLink]="['/organizations', organization.id, 'created-events', 'all']">
+        <div class="new-card-block text-center">
+          <div class="new-card-profile-header m-t-5">
+            <div>
+              <img [src]="organization.photoUrl" alt="" style="object-fit: cover;">
+            </div>
+            <div class="flex">
+              <h4>
+                <span>{{organization.name}}</span>
+              </h4>
+              <h6>
+                <span class="font-italic">{{'GENERAL_LABELS.event_organization' | translate}}</span>
+              </h6>
+            </div>
+            <div class="new-card-other-info">
+              <div class="d-flex flex-center align-center branch-name color-ae-font">
+                <span class="employee-name m-r-5" *ngFor="let typeId of organization.orgEventTypeIds; let i = index">
+                   {{"EVENT_TYPES." + getEventTypeLabel(typeId) + "" | translate}}<span *ngIf="i !== organization.orgEventTypeIds.length-1"> | </span>
+                </span>
+              </div>
+              <div class="d-flex flex-center align-center branch-name">
+                <span class="employee-name">
+                  {{organization.eventIds.length}} {{'USER_PROFILE.events' | translate}}
+                </span>
+              </div>
+              <div class="country-name">
+                <span class="tooltip-holder">
+                  {{organization.followerIds.length}} {{'USER_PROFILE.followers' | translate}}
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="new-card-footer text-center">
+            <a class="my-link"
+               [routerLink]="['/organizations', organization.id, 'created-events', 'all']">
+              {{ 'GENERAL_LABELS.view_organization' | translate}}
+            </a>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- /Grid View -->
+</div>
+
+<!-- Loader -->
+<app-loader *ngIf="isLoading"></app-loader>
+<!-- /Loader -->
+
+<div *ngIf="!isLoading && !organizations.length" class="card-block">
+  <div class="no-data text-center">
+    {{ 'GENERAL_LABELS.no_data' | translate}}
+  </div>
+</div>

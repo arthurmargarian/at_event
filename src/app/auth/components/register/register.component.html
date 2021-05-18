@@ -59,6 +59,53 @@
           <div class="card-row">
             <div class="row">
               <div class="col-sm-4">
+                <label class="new-label" for="contactNumber">{{'GENERAL_LABELS.contact_number' | translate}}:</label>
+              </div>
+              <div class="col-sm-8">
+                <input formControlName="contactNumber"
+                       type="number"
+                       id="contactNumber"
+                       class="new-element"
+                       [ngClass]='{"validation-error": form.get("contactNumber").errors && (form.get("contactNumber").touched || submitted)}'
+                       placeholder="{{'GENERAL_PLACEHOLDERS.contact_number' | translate}}">
+                <div class="messages text-danger">
+                  <div *ngIf="form.get('contactNumber').errors && (form.get('contactNumber').touched || submitted)">
+                    <div [hidden]="!form.get('contactNumber').errors.required">
+                      {{'GENERAL_VALIDATIONS.required_field' | translate}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-row">
+            <div class="row">
+              <div class="col-sm-4">
+                <label class="new-label" for="contactEmail">{{'GENERAL_LABELS.contact_email' | translate}}:</label>
+              </div>
+              <div class="col-sm-8">
+                <input formControlName="contactEmail"
+                       type="text"
+                       id="contactEmail"
+                       class="new-element"
+                       [ngClass]='{"validation-error": form.get("contactEmail").errors && (form.get("contactEmail").touched || submitted)}'
+                       placeholder="{{'GENERAL_PLACEHOLDERS.contact_email' | translate}}">
+                <div class="messages text-danger">
+                  <div *ngIf="form.get('contactEmail').errors && (form.get('contactEmail').touched || submitted)">
+                    <div [hidden]="!form.get('contactEmail').errors.required">
+                      {{'GENERAL_VALIDATIONS.required_field' | translate}}
+                    </div>
+                    <div [hidden]="!form.get('contactEmail').errors.email">
+                      {{'AUTH.validations.invalid_email' | translate}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-row">
+            <div class="row">
+              <div class="col-sm-4">
                 <label class="new-label" for="lastName">{{'GENERAL_LABELS.last_name' | translate}}:</label>
               </div>
               <div class="col-sm-8">

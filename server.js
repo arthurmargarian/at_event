@@ -26,8 +26,10 @@ mongoose.connection.on('error', (err) => {
 const app = express();
 
 const auth = require('./server/routes/auth.route');
-const userSettings = require('./server/routes/user-settings.route');
 const user = require('./server/routes/user.route');
+const userSettings = require('./server/routes/user-settings.route');
+const organization = require('./server/routes/organization.route');
+const values = require('./server/routes/values.route');
 
 // Port Number
 const port = process.env.PORT || 3000;
@@ -49,8 +51,10 @@ require('./server/config/passport')(passport);
 
 // Routes
 app.use('/auth', auth);
-app.use('/settings', userSettings);
 app.use('/user', user);
+app.use('/settings', userSettings);
+app.use('/organization', organization);
+app.use('/values', values);
 
 
 app.listen(port, () => {

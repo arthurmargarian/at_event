@@ -2,16 +2,22 @@
   "AUTH": {
     "sign_in": "Մուտք գործել",
     "sign_up": "Գրանցվել",
-    "sing_in_into": "Մուտք գործել ձեր հաշիվ",
-    "forget_password": "Մոռացե՞լ եք գաղտնաբառը",
-    "dont_have_an_account" : "Չունե՞ք հաշիվ",
+    "sing_in_into": "Մուտք գործել ձեր Հաշիվ",
+    "forget_password": "Մոռացե՞լ եք Գաղտնաբառը",
+    "dont_have_an_account" : "Չունե՞ք Հաշիվ",
     "sign_in_with_facebook" : "Մուտք գործել Facebook-ով",
     "sign_in_with_google" : "Մուտք գործել Google-ով",
+    "sign_in_with_at_event": "Մուտք գործել At Event-ով",
     "validations": {
       "user_not_found": "Օգտատերը չի գտնվել",
-      "wrong_password": "Սխալ գաղտնաբառ",
-      "invalid_email": "Սխալ Էլ. փոստի հասցե"
+      "wrong_password": "Սխալ Գաղտնաբառ",
+      "invalid_email": "Սխալ Էլ. Փոստ",
+      "email_exist": "Այս էլ. Փոստը արդեն օգտագործվում է"
     }
+  },
+  "BUTTONS": {
+    "sign_out": "Դուրս գալ",
+    "cancel": "Չեղարկել"
   },
   "EVENT_TYPES": {
     "FineArt" : "Կերպարվեստ",
@@ -39,26 +45,90 @@
     "VirtualEvents" : "Վիրտուալ իրադարձություններ",
     "Webinar" : "Վեբինարներ"
   },
+  "GENERAL_PLACEHOLDERS": {
+    "email": "Մուտքագրել Էլ. Փոստը",
+    "first_name": "Մուտքագրել Անունը",
+    "last_name": "Մուտքագերել Ազգանունը",
+    "password": "Մուտքագրել Գաղտնաբառը",
+    "password_confirm": "Հաստատել Գաղտնաբառը"
+  },
   "GENERAL_LABELS": {
-    "email": "Էլ. փոստ",
+    "email": "Էլ. Փոստ",
     "password": "Գաղտնաբառ",
     "first_name": "Անուն",
     "last_name": "Ազգանուն",
-    "password_confirm": "Հաստատել գաղտնաբառը"
+    "password_confirm": "Հաստատել Գաղտնաբառը",
+    "no_data": "Ցուցադրման տվյալներ չկան"
   },
   "GENERAL_VALIDATIONS": {
     "required_field": "Պարտադիր Դաշտ",
-    "password_is_not_match": "Անհամապատասխան գաղտնաբառ",
+    "password_is_not_match": "Անհամապատասխան Գաղտնաբառ",
     "min_character": "Այս դաշտը պետք է ունենա առնվազն {{value}} նիշ",
-    "max_character": "Այս դաշտը պետք է ունենա ավելի քան {{value}} նիշ"
+    "max_character": "Այս դաշտը պետք է ունենա ավելի քան {{արժեք}} նիշ"
   },
   "HEADER": {
     "TITLES": {
+      "dashboard": "Վահանակ",
       "events_for_you": "Իրադարձություններ քո Համար",
       "event_navigator":"Իրադարձությունների Նավիգատոր",
       "create_event": "Ստեղծել Իրադարձություն",
       "your_events": "Քո Իրադարձությունները",
       "sign_in": "Մուտք Գործել"
+    },
+    "LABELS": {
+      "my_profile": "Իմ Էջը",
+      "my_org_profile": "Իմ Կազմակերպության Էջը",
+      "create_new_org": "Ստեղծել Կազմակերպության նոր Էջ",
+      "checkout_to_user": "Դուրս գալ Իմ Էջ",
+      "checkout_to_org": "Դուրս գալ իմ Կազմակերպության էջ",
+      "sign_out": "Դուրս Գալ",
+      "sign_out_confirm": "Դուրս Գալու Հաստատում"
+    },
+    "MESSAGES": {
+      "sign_out": "Վստա՞հ եք, որ ուզում եք դուրս գալ",
+      "need_sign_in": "Այս հատվածը օգտագործելու համար պետք է մուտք գործել"
     }
+  },
+  "NOTIFY_MESSAGES": {
+    "sign_out": "Դուք Դուրս եք եսել",
+    "sign_up": "Դուք հաջողությամբ Գրանցվեցիք",
+    "sign_in": "Դուք հաջողությամբ Մուտք Գործեցիք"
+  },
+  "FOOTER": {
+    "copyright": "© Copyright 2021. All Rights Reserved",
+    "to_top": "Վերադառնալ Սկիզբ"
+  },
+  "NOT_FOUND": {
+    "navigate": "Անցել կառավարման վահանակ"
+  },
+  "USER_PROFILE":{
+    "event_creator": "Իրադարձություններ ստեղծող",
+    "edit": "Խմբագրել",
+    "followers": "Հետևորդներ",
+    "events": "Իրադարձություններ",
+    "following": "Հետևում է",
+    "view_profile": "Դիտել Էջը",
+    "follow": "Հետևել",
+    "unfollow": "Չհետևել",
+    "follow_msg": "Անմիջապես տեղեկացեք, երբ {{value}}-ն ստեծի նոր իրադարձություն",
+    "contact_email": "Կոնտակտային Էլ. Փոստ",
+    "contact_number": "Կոնտակտային Հեռախոսահամար",
+    "created_events": "Ստեղծված Իրադարձություններ",
+    "interested_events": "Հետաքրքրող Իրրադարձություններ",
+    "FOLLOWING": {
+      "TITLES": {
+        "events": "Իրադարձություններ",
+        "users":"Օգտատերեր",
+        "organizations": "Կազմակերպություններ"
+      }
+    }
+  },
+  "EVENT_STATUSES":{
+    "active": "Ակտիվ",
+    "upcoming": "Առաջիկա",
+    "past": "Անցած",
+    "canceled": "Չեղարկված",
+    "closed": "Փակված",
+    "all": "Բոլորը"
   }
 }

@@ -18,7 +18,6 @@ export class EventsGridComponent implements OnInit {
 
   private checkUrl(): void {
     const paths = this.router.url.split('/');
-    console.log(paths);
     switch (paths[1]) {
       case 'profile':
         const isCreatedEvents = paths[3] === 'created-events';

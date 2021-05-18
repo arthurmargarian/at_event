@@ -7,6 +7,10 @@ import { UserFollowingComponent } from './components/user-following/user-followi
 import { EventsGridComponent } from '../shared/components/events-grid/events-grid.component';
 import { UsersGridComponent } from '../shared/components/users-grid/users-grid.component';
 import { OrganizationsGridComponent } from '../shared/components/organizations-grid/organizations-grid.component';
+import { AuthGuard } from '../guards/auth.guard';
+import { EventAddEditComponent } from './components/event-add-edit/event-add-edit.component';
+import { OrgAddEditComponent } from './components/org-add-edit/org-add-edit.component';
+import { OrganizationsComponent } from './components/organizations/organizations.component';
 
 const routes: Routes = [
   {
@@ -98,6 +102,29 @@ const routes: Routes = [
       {
         path: 'followers',
         component: UsersGridComponent,
+      },
+      {
+        path: 'organizations',
+        component: OrganizationsComponent,
+        children: [
+          {
+            path: 'your',
+            component: OrganizationsGridComponent
+          },
+          {
+            path: 'new',
+            component: OrgAddEditComponent
+          },
+          {
+            path: ':orgId',
+            component: OrgAddEditComponent
+          }
+        ]
+      },
+      {
+        path: 'create-event',
+        component: EventAddEditComponent,
+        canActivate: [AuthGuard],
       }
     ]
   }

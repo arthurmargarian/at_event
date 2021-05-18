@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UserProfileService } from '../../../profiles/services/user-profile.service';
 import { UserInterface } from '../../../infratructure/interfaces/user.interface';
 import { UserService } from '../../services/user.service';
+import { GlobalVarsService } from '../../../global-vars.service';
+import { OrganizationInterface } from '../../../infratructure/interfaces/organization.interface';
 
 @Component({
   selector: 'app-users-grid',
@@ -14,9 +16,11 @@ export class UsersGridComponent implements OnInit {
   public users: UserInterface[];
   public isLoading: boolean;
   public isFollowersTab: boolean;
+  private currentOrg: OrganizationInterface;
 
   constructor(private route: ActivatedRoute,
               private userProfileService: UserProfileService,
+              private globalVarsService: GlobalVarsService,
               private userService: UserService) {
   }
 
@@ -35,9 +39,13 @@ export class UsersGridComponent implements OnInit {
   private getCurrentUserFormService(isFollowersTab: boolean): void {
     this.userProfileService.currentUser
       .subscribe(user => {
-        this.currentUser = user;
-        const userIds = isFollowersTab ? this.currentUser.followerIds : this.currentUser.followingUserIds;
-        this.getUsers(userIds);
+        if (user) {
+          this.currentUser = user;
+          const userIds = isFollowersTab ? this.currentUser.followerIds : this.currentUser.followingUserIds;
+          this.getUsers(userIds);
+        } else {
+          this.getUserFormService();
+        }
       });
   }
 
@@ -47,8 +55,21 @@ export class UsersGridComponent implements OnInit {
         if (res.model) {
           this.users = res.model;
           this.isLoading = false;
-          console.log(this.users);
         }
       });
+  }
+
+  private getUserFormService() {
+    this.globalVarsService.signedInUser.subscribe(user => {
+      this.currentUser = user;
+      this.getOrgFromService();
+    });
+  }
+
+  private getOrgFromService() {
+    this.globalVarsService.currentOrg.subscribe(org => {
+      this.currentOrg = org;
+      this.getUsers(this.currentOrg.followerIds);
+    });
   }
 }

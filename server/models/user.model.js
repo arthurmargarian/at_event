@@ -127,6 +127,13 @@ module.exports.addFollowing = function (followerId, followingId, callback) {
   UserModel.findOneAndUpdate(findQuery, updateQuery, options, callback);
 }
 
+module.exports.addFollowingToOrg = function (followerId, orgId, callback) {
+  const findQuery = {id: followerId};
+  const updateQuery = {$push: {followingOrgIds: orgId}};
+  const options = {new: true};
+  UserModel.findOneAndUpdate(findQuery, updateQuery, options, callback);
+}
+
 module.exports.removeFollower = function (followerId, followingId, callback) {
   const findQuery = {id: followingId};
   const updateQuery = {$pull: {followerIds: followerId}};
@@ -137,6 +144,27 @@ module.exports.removeFollower = function (followerId, followingId, callback) {
 module.exports.removeFollowing = function (followerId, followingId, callback) {
   const findQuery = {id: followerId};
   const updateQuery = {$pull: {followingUserIds: followingId}};
+  const options = {new: true};
+  UserModel.findOneAndUpdate(findQuery, updateQuery, options, callback);
+}
+
+module.exports.removeFollowingToOrg = function (followerId, orgId, callback) {
+  const findQuery = {id: followerId};
+  const updateQuery = {$pull: {followingOrgIds: orgId}};
+  const options = {new: true};
+  UserModel.findOneAndUpdate(findQuery, updateQuery, options, callback);
+}
+
+module.exports.addOrganization = function (userId, orgId, callback) {
+  const findQuery = {id: userId};
+  const updateQuery = {$push: {orgIds: orgId}};
+  const options = {new: true};
+  UserModel.findOneAndUpdate(findQuery, updateQuery, options, callback);
+}
+
+module.exports.removeOrganization = function (userId, orgId, callback) {
+  const findQuery = {id: userId};
+  const updateQuery = {$pull: {orgIds: orgId}};
   const options = {new: true};
   UserModel.findOneAndUpdate(findQuery, updateQuery, options, callback);
 }

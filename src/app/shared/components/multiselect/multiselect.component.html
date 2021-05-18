@@ -1,0 +1,95 @@
+<ng-select *ngIf="!(sorted || isCustomSearch)"
+           placeholder="{{placeholder}}"
+           [(ngModel)]="innerValues"
+           [items]="items"
+           #input
+           [multiple]="true"
+           [bindValue]="bindValue"
+           [bindLabel]="searchable? bindLabel : ''"
+           [disabled]="disabled"
+           (change)="onValueChange($event)"
+           [closeOnSelect]="false"
+           class="new-element">
+
+  <ng-template ng-option-tmp let-item="item">
+    <span class="ng-option-label" title="{{item[bindLabel]}}">{{item[bindLabel]}}</span>
+  </ng-template>
+
+  <ng-template ng-multi-label-tmp let-items="items" let-clear="clear">
+    <div class="ng-value ng-star-inserted" *ngFor="let item of (items && items['length'] <= showCount ? items : [])">
+      <span class="ng-value-label ng-star-inserted" >{{item[bindLabel]}}</span>
+      <span class="ng-value-icon" (click)="clear(item)" aria-hidden="true"></span>
+    </div>
+    <div class="ng-value ng-star-inserted" *ngIf="items['length'] > showCount">
+      <span class="ng-value-label ng-star-inserted">{{items['length']}} {{'GENERAL_LABELS.selected' | translate}}</span>
+      <span class="ng-value-icon" (click)="onRemove()" aria-hidden="true"></span>
+    </div>
+  </ng-template>
+</ng-select>
+
+<ng-select *ngIf="sorted && renderTemplate"
+           select-sorter
+           placeholder="{{placeholder}}"
+           [(ngModel)]="innerValues"
+           [items]="items"
+           #input
+           [multiple]="true"
+           [addTag]="addTag"
+           [bindValue]="bindValue"
+           [disabled]="disabled"
+           (open)="setOpenedState(true)"
+           (close)="setOpenedState(false)"
+           (change)="onValueChange($event)"
+           [closeOnSelect]="false"
+           class="new-element">
+
+  <ng-template ng-option-tmp let-item="item">
+    <span class="ng-option-label" title="{{item[bindLabel]}}">{{item[bindLabel]}}</span>
+  </ng-template>
+
+  <ng-template ng-tag-tmp>
+    <span class="new-option">+ {{'GENERAL_LABEL.add_new_option' | translate}}</span>
+  </ng-template>
+
+  <ng-template ng-multi-label-tmp let-items="items" let-clear="clear">
+    <div class="ng-value ng-star-inserted" *ngFor="let item of (items && items['length'] == showCount ? items : [])">
+      <span class="ng-value-label ng-star-inserted">{{item[bindLabel]}}</span>
+      <span class="ng-value-icon" (click)="clear(item)" aria-hidden="true"></span>
+    </div>
+    <div class="ng-value ng-star-inserted" *ngIf="items['length'] > showCount">
+      <span class="ng-value-label ng-star-inserted">{{items['length']}} {{'GENERAL_LABELS.selected' | translate}}</span>
+      <span class="ng-value-icon" (click)="onRemove()" aria-hidden="true"></span>
+    </div>
+  </ng-template>
+</ng-select>
+
+<ng-select *ngIf="isCustomSearch"
+           placeholder="{{placeholder}}"
+           [(ngModel)]="innerValues"
+           [items]="searchCollection || items"
+           #input
+           [multiple]="true"
+           [bindValue]="bindValue"
+           [disabled]="disabled"
+           (open)="setOpenedState(true)"
+           (close)="setOpenedState(false)"
+           (change)="onValueChange($event)"
+           (search)="onCustomSearch($event)"
+           [closeOnSelect]="false"
+           class="new-element">
+
+  <ng-template ng-option-tmp let-item="item">
+    <span class="ng-option-label" title="{{item[bindLabel]}}">{{item[bindLabel]}}</span>
+  </ng-template>
+
+  <ng-template ng-multi-label-tmp let-items="items" let-clear="clear">
+    <div class="ng-value ng-star-inserted" *ngFor="let item of (items && items['length'] == showCount ? items : [])">
+      <span class="ng-value-label ng-star-inserted">{{item[bindLabel]}}</span>
+      <span class="ng-value-icon" (click)="clear(item)" aria-hidden="true"></span>
+    </div>
+    <div class="ng-value ng-star-inserted" *ngIf="items['length'] > showCount">
+      <span class="ng-value-label ng-star-inserted">{{items['length']}} {{'GENERAL_LABELS.selected' | translate}}</span>
+      <span class="ng-value-icon" (click)="onRemove()" aria-hidden="true"></span>
+    </div>
+  </ng-template>
+</ng-select>
