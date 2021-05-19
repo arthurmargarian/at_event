@@ -68,6 +68,8 @@
     "update": "Update",
     "delete": "Delete",
     "enter": "Enter",
+    "later": "Later",
+    "save": "Save",
     "create_event_from_org": "Create Event from {{value}}",
     "select": "Select",
     "contact_email": "Contact Email",
@@ -102,8 +104,7 @@
       "my_profile": "My Profile",
       "my_orgs": "My Organizations",
       "create_new_org": "Create New Organization Profile",
-      "checkout_to_user": "Checkout to My User Profile",
-      "checkout_to_org": "Checkout to My Organization Profile",
+      "set_interests": "Set Interests",
       "sign_out": "Sign Out",
       "sign_out_confirm": "Sign Out Confirmation"
     },
@@ -120,6 +121,9 @@
     "unfollow": "Unfollowing {{value}}",
     "hidden_info": "This information was hidden from others.",
     "profile_info_updated": "Profile Info Updated.",
+    "interests_title": "Let us know Your interests",
+    "interests": "Your Interests are set.",
+    "interests_message": "Please select the types of events that may interest you.",
     "new_org_created": "New Organization Created.",
     "org_updated": "Your Organization Updated.",
     "org_deleted": "Your {{value}} Organization Deleted."

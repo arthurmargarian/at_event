@@ -18,6 +18,7 @@ import { OrganizationsGridComponent } from './components/organizations-grid/orga
 import { OrganizationService } from './services/organization.service';
 import { SelectSorterDirective } from './directives/select-sorter.directive';
 import { MultiselectComponent } from './components/multiselect/multiselect.component';
+import { InterestsComponent } from './components/interests/interests.component';
 
 const GOOGLE_OAUTH_CLIENT_ID = '174901231009-eni8jt11p1mc7hritqetmlpfj63pk0qf.apps.googleusercontent.com';
 const FACEBOOK_APP_ID = '2261974733824223';
@@ -48,6 +49,7 @@ export function provideConfig() {
     OrganizationsGridComponent,
     SelectSorterDirective,
     MultiselectComponent,
+    InterestsComponent,
   ],
   imports: [
     CommonModule,
@@ -61,20 +63,21 @@ export function provideConfig() {
     ModalModule.forRoot(),
     FormsModule,
   ],
-  exports: [
-    CommonModule,
-    ReactiveFormsModule,
-    RouterModule,
-    TranslateModule,
-    NgbDropdownModule,
-    NgSelectModule,
-    // Components
-    LoaderComponent,
-    HeaderComponent,
-    EventsGridComponent,
-    SocialAuthComponent,
-    MultiselectComponent
-  ],
+    exports: [
+        CommonModule,
+        ReactiveFormsModule,
+        RouterModule,
+        TranslateModule,
+        NgbDropdownModule,
+        NgSelectModule,
+        // Components
+        LoaderComponent,
+        HeaderComponent,
+        EventsGridComponent,
+        SocialAuthComponent,
+        MultiselectComponent,
+        InterestsComponent
+    ],
   providers: [
     SettingsService,
     UserService,

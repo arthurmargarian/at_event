@@ -120,6 +120,13 @@ module.exports.updateUsersById = function (user, callback) {
   };
   UserModel.findOneAndUpdate(query, updateQuery, callback);
 }
+module.exports.updateUserInterests = function (id, eventTypeIds, callback) {
+  const query = {id: id};
+  const updateQuery = {
+    interestedTypeIds: eventTypeIds,
+  };
+  UserModel.findOneAndUpdate(query, updateQuery, callback);
+}
 
 module.exports.getUsersById = function (ids, callback) {
   const query = {id: ids};

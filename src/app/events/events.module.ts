@@ -5,6 +5,7 @@ import { SharedModule } from '../shared/shared.module';
 import { EventsComponent } from './events.component';
 import { RouterModule } from '@angular/router';
 import { EventsRoutingModule } from './events-routing.module';
+import { ModalModule } from 'ngx-bootstrap';
 
 @NgModule({
   declarations: [
@@ -12,11 +13,12 @@ import { EventsRoutingModule } from './events-routing.module';
     EventNavigatorComponent,
     EventsForYouComponent
   ],
-  imports: [
-    SharedModule,
-    RouterModule,
-    EventsRoutingModule
-  ]
+    imports: [
+        SharedModule,
+        RouterModule,
+        EventsRoutingModule,
+        ModalModule
+    ]
 })
 export class EventsModule {
 }

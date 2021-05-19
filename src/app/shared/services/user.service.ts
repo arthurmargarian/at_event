@@ -48,4 +48,8 @@ export class UserService {
   updateUserInfo(model: UserModel): Observable<any> {
     return this.http.put(`${this.url}/updateUserById`, model);
   }
+
+  updateUserInterests(userId: number, eventTypeIds: number[]): Observable<any> {
+    return this.http.post(`${this.url}/updateUserInterests`, {userId, eventTypeIds});
+  }
 }

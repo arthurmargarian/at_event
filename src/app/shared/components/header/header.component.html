@@ -79,6 +79,11 @@
                 {{'HEADER.LABELS.create_new_org' | translate}}
               </a>
               <hr class="m-t-5 m-b-5">
+              <a class="my-link"
+                 (click)="moreTooltip.close(); setInterestsClick()">
+                <i class="icon-skills color-ae m-r-5"></i>
+                {{'HEADER.LABELS.set_interests' | translate}}
+              </a>
               <a [routerLink]="['profile', currentUser.id , 'created-events', 'all']" class="my-link"
                  (click)="moreTooltip.close()">
                 <i class="icon-my-profile color-ae m-r-5"></i>
@@ -176,3 +181,20 @@
   </app-social-auth>
 </div>
 <!--/Social Auth modal -->
+
+
+<div bsModal
+     #interestsModal="bs-modal"
+     class="modal fade new-modal"
+     *ngIf="currentUser"
+     tabindex="-1"
+     [config]="{backdrop: 'static', focus: false}"
+     role="dialog"
+     aria-labelledby="Modal"
+     aria-hidden="true"
+     (onHidden)="onHideInterestsModalModal()">
+  <app-interests (hideModal)="onHideInterestsModalModal()"
+                 [currentUserId]="currentUser.id"
+                 [eventTypeIds]="currentUser.interestedTypeIds">
+  </app-interests>
+</div>

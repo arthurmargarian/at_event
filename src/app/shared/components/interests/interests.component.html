@@ -1,0 +1,57 @@
+<div class="modal-dialog modal-lg">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4 class="modal-title color-ae"> {{'NOTIFY_MESSAGES.interests_title' | translate}}</h4>
+      <i class="icon-close" (click)=hideModal.emit()></i>
+    </div>
+    <div class="modal-body">
+      <span class="m-t-10 m-b-15 dis-block">
+        {{'NOTIFY_MESSAGES.interests_message'|translate}}
+      </span>
+      <form class="new-form" [formGroup]="form">
+        <div class="form-card">
+          <div class="form-card-content">
+            <div class="row">
+              <div class="col-sm-4">
+                <label class="new-label">
+                  {{ "GENERAL_LABELS.event_types" | translate }}:
+                </label>
+              </div>
+              <div class="col-sm-8">
+                <razor-multiselect class="new-element"
+                                   [bindValue]="'value'"
+                                   [class.validation-error]="form.get('eventTypes').errors && (form.get('eventTypes').touched || submitted)"
+                                   [items]="eventTypes"
+                                   formControlName="eventTypes"
+                                   [placeholder]="'GENERAL_LABELS.select' | translate">
+                </razor-multiselect>
+                <div class="messages text-danger">
+                  <div *ngIf="form.get('eventTypes').errors && (form.get('eventTypes').touched || submitted)">
+                    <div [hidden]="!form.get('eventTypes').errors.required">
+                      {{'GENERAL_VALIDATIONS.required_field' | translate}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <div class="row">
+        <div class="col-sm-12 d-flex flex-end">
+          <button type="button"
+                  class="btn-default"
+                  (click)="hideModal.emit()">
+            {{'GENERAL_LABELS.later' | translate}}
+          </button>
+          <button type="button"
+                  class="btn-default color-ae m-l-10"
+                  (click)="onSaveClick()">
+            {{'GENERAL_LABELS.save' | translate}}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

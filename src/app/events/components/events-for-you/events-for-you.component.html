@@ -1,1 +1,17 @@
 <app-events-grid></app-events-grid>
+
+
+<div bsModal
+     #interestsModal="bs-modal"
+     class="modal fade new-modal"
+     tabindex="-1"
+     [config]="{backdrop: 'static', focus: false}"
+     role="dialog"
+     aria-labelledby="Modal"
+     aria-hidden="true"
+     (onHidden)="onHideInterestsModalModal()">
+  <app-interests (hideModal)="onHideInterestsModalModal()"
+                 [currentUserId]="currentUser.id"
+                 [eventTypeIds]="currentUser.interestedTypeIds">
+  </app-interests>
+</div>

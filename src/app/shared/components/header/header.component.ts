@@ -15,6 +15,7 @@ import { ModalDirective } from 'ngx-bootstrap';
 import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { UserInterface } from '../../../infratructure/interfaces/user.interface';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-header',
@@ -24,6 +25,7 @@ import { UserInterface } from '../../../infratructure/interfaces/user.interface'
 export class HeaderComponent implements OnInit, OnDestroy {
   @ViewChild('signOutModal') public signOutModal: ModalDirective;
   @ViewChild('signInModal') public signInModal: ModalDirective;
+  @ViewChild('interestsModal') public interestsModal: ModalDirective;
 
   public languageForm: FormGroup;
   public languages: LanguageModel[];
@@ -36,6 +38,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   constructor(private fb: FormBuilder,
               private router: Router,
               private toastr: ToastrService,
+              private userService: UserService,
               private authApiService: AuthApiService,
               private globalVarsService: GlobalVarsService,
               private settingsService: SettingsService,
@@ -108,6 +111,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.signOutModal.hide();
   }
 
+  onHideInterestsModalModal() {
+    this.interestsModal.hide();
+  }
+
   public onSignOutConfirmed(): void {
     this.authApiService.signOut();
     this.globalVarsService.isAuthenticated.next(false);
@@ -134,6 +141,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     if (this.authApiService.isAuthenticated()) {
       this.globalVarsService.isAuthenticated.next(true);
       this.currentUser = this.authApiService.getCurrentUser();
+      this.getUserById(this.currentUser.id);
       this.getUserSetting(this.currentUser.id);
       this.isAuth = true;
     } else {
@@ -171,5 +179,19 @@ export class HeaderComponent implements OnInit, OnDestroy {
       .subscribe(message => {
         this.toastr.success(message, '', {positionClass: 'toast-bottom-right', progressBar: true, progressAnimation: 'decreasing'});
       });
+  }
+
+  private getUserById(id: number) {
+    this.userService.getUserById(id).subscribe(res => {
+      if (res.model) {
+        this.currentUser = res.model;
+        this.globalVarsService.signedInUser.next(this.currentUser);
+      }
+    });
+  }
+
+
+  setInterestsClick() {
+    this.interestsModal.show();
   }
 }

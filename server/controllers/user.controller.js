@@ -60,6 +60,24 @@ module.exports.put_update_user_by_id = (req, res) => {
     }
   })
 }
+module.exports.post_update_user_interests = (req, res) => {
+  User.updateUserInterests(req.body.userId ,req.body.eventTypeIds, (err, user) => {
+    if (err) throw err;
+    if (user) {
+      res.json({
+        success: true,
+        model: user,
+        status: 10
+      })
+    } else {
+      res.json({
+        success: false,
+        model: null,
+        status: 0
+      })
+    }
+  })
+}
 
 module.exports.put_follow_to_user = (req, res) => {
   if (req.body.followerId && req.body.followingId) {

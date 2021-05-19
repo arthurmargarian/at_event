@@ -24,7 +24,7 @@ export class OrgAddEditComponent implements OnInit {
   public isLoading: boolean;
   public form: FormGroup;
   public submitted: boolean;
-  public eventTypes: [] = [];
+  public eventTypes: SelectOption[];
   public orgDefaultPic: string;
   public currentUser: UserInterface;
   public currentOrg: OrganizationInterface;
