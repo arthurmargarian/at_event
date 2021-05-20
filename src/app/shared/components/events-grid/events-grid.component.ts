@@ -70,8 +70,10 @@ export class EventsGridComponent implements OnInit, OnChanges {
 
   private getCurrentUserFormService() {
     this.userProfileService.currentUser.subscribe(user => {
-      this.currentUser = user;
-      this.setEvents(this.isUserEvents, this.isCreatedEvents);
+      if (user) {
+        this.currentUser = user;
+        this.setEvents(this.isUserEvents, this.isCreatedEvents);
+      }
     });
   }
 
