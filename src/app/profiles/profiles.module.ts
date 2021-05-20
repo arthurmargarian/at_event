@@ -4,7 +4,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { ProfilesComponent } from './profiles.component';
 import { SharedModule } from '../shared/shared.module';
 import { ProfilesRoutingModule } from './profiles-routing.module';
-import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbTimepickerModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 import { PanelModule } from 'primeng/panel';
 import { UserEventsComponent } from './components/user-events/user-events.component';
 import { UserFollowingComponent } from './components/user-following/user-following.component';
@@ -13,6 +13,7 @@ import { ModalModule } from 'ngx-bootstrap';
 import { EventAddEditComponent } from './components/event-add-edit/event-add-edit.component';
 import { OrgAddEditComponent } from './components/org-add-edit/org-add-edit.component';
 import { OrganizationsComponent } from './components/organizations/organizations.component';
+import { RaiserDatepickerModule } from '../shared/components/raiser-datepicker/raiser-datepicker.module';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,9 @@ import { OrganizationsComponent } from './components/organizations/organizations
         ProfilesRoutingModule,
         NgbTooltipModule,
         PanelModule,
-        ModalModule
+        ModalModule,
+        RaiserDatepickerModule,
+        NgbTimepickerModule
     ],
   providers: [
     UserProfileService

@@ -30,6 +30,7 @@ const user = require('./server/routes/user.route');
 const userSettings = require('./server/routes/user-settings.route');
 const organization = require('./server/routes/organization.route');
 const values = require('./server/routes/values.route');
+const event = require('./server/routes/event.route');
 
 // Port Number
 const port = process.env.PORT || 3000;
@@ -55,6 +56,7 @@ app.use('/user', user);
 app.use('/settings', userSettings);
 app.use('/organization', organization);
 app.use('/values', values);
+app.use('/event', event);
 
 
 app.listen(port, () => {

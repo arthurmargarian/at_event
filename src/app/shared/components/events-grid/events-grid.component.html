@@ -1,3 +1,73 @@
-<p>
-  {{currentTab}} events grid works!
-</p>
+<div class="employee-grid-view p-20" *ngIf="!isLoading">
+  <div class="row">
+    <div *ngFor="let event of events" class="col-xl-3 col-lg-3 col-sm-4 col-6 grid-item">
+      <a class="new-card"
+         [routerLink]="['/events', event.id]">
+        <div class="new-card-header">
+          <div class="d-flex">
+            <span class="m-l-auto status-label"
+                  *ngIf="event['statusName']"
+                  [ngClass]="{'active': event['statusName']=== 'Active',
+                                      'upcoming': event['statusName']=== 'Upcoming'}">
+                      {{'EVENT_STATUSES.' + event['statusName'] | translate}}
+                    </span>
+          </div>
+        </div>
+        <div class="new-card-block text-center">
+          <div class="new-card-profile-header p-0">
+            <div>
+              <img [src]="event.photoUrl" alt="" style="object-fit: cover; height: 100%; width: 100%; border-radius: 10px;">
+            </div>
+            <div style="padding: 0 10px">
+              <div class="flex">
+                <h4>
+                  <span>{{event.name}}</span>
+                </h4>
+                <h6>
+                  <span class="font-italic">{{'EVENT_TYPES.' + event.typeName | translate}}</span>
+                </h6>
+              </div>
+              <div class="new-card-other-info">
+                <div class="d-flex flex-center align-center branch-name color-ae-font font-italic">
+                <span class="employee-name m-r-5">
+                  <i class="icon-date color-ae m-r-5"></i>
+                  <span>
+                   {{event.startDate | date:dateFormat}}&nbsp;{{event.startTime?.hour}}:{{event.startTime?.minute}}
+                  </span>
+                  <span *ngIf="event.endDate">
+                   &nbsp;-&nbsp;{{event.endDate | date:dateFormat}}&nbsp;{{event.endTime?.hour}}:{{event.endTime?.minute}}
+                  </span>
+                </span>
+                </div>
+                <div class="country-name">
+                <span class="tooltip-holder">
+                  <i class="icon-location color-ae m-r-5"></i>
+                  {{event.streetAndAddress}}, {{event.cityName}} , {{event.regionName}}
+                </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="new-card-footer text-center">
+            <a class="my-link"
+               [routerLink]="['/events', event.id]">
+              {{ 'GENERAL_LABELS.view_more_details' | translate}}
+            </a>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- /Grid View -->
+</div>
+
+<!-- Loader -->
+<app-loader *ngIf="isLoading"></app-loader>
+<!-- /Loader -->
+
+<div *ngIf="!isLoading && !events.length" class="card-block">
+  <div class="no-data text-center">
+    {{ 'GENERAL_LABELS.no_data' | translate}}
+  </div>
+</div>

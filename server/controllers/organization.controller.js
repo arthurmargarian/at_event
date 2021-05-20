@@ -58,29 +58,22 @@ module.exports.put_update_org = (req, res, next) => {
   });
 };
 module.exports.delete_org = (req, res, next) => {
-  Organization.deleteOrgById(req.query.id, (err, org) => {
+  Organization.deleteOrgById(req.query.id, (err) => {
     if (err) throw err;
-    if (org) {
-      User.removeOrganization(req.query.ownerId, req.query.id, (err, user) => {
-        if (err) throw err;
-        if (user) {
-          res.json({
-            success: true,
-            status: 10
-          })
-        } else {
-          res.json({
-            success: false,
-            status: 0
-          })
-        }
-      })
-    } else {
-      res.json({
-        success: false,
-        status: 0
-      })
-    }
+    User.removeOrganization(req.query.ownerId, req.query.id, (err, user) => {
+      if (err) throw err;
+      if (user) {
+        res.json({
+          success: true,
+          status: 10
+        })
+      } else {
+        res.json({
+          success: false,
+          status: 0
+        })
+      }
+    })
   });
 };
 

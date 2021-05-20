@@ -1,0 +1,89 @@
+@import "src/scss/partials/_variables.scss";
+@import "src/scss/partials/_mixins.scss";
+@import "src/scss/redesign/base/variables";
+
+.custom-header {
+    padding: 4px 5px;
+    position: relative;
+    .left-buttons
+    .right-buttons {
+      width: 25%;
+    }
+
+    .label-wrapper {
+      width: 50%;
+      text-align: center;
+      .custom-header-label {
+        font-size: 12px;
+        line-height: 25px;
+      }
+    }
+
+    .today-wrapper {
+      padding: 0 7px;
+      .today {
+        font-size: 11px;
+      }
+    }
+
+    button {
+      color: $main-blue;
+      width: 25px;
+      height: 25px;
+      line-height: 25px;
+      position: relative;
+      background: transparent;
+      border: none;
+      @include border-radius(50%);
+      cursor: pointer;
+      padding: 0;
+      &:after {
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        position: absolute;
+        font-family: "icomoon";
+        @include flexbox();
+        @include align-items(center);
+        @include justify-content(center);
+      }
+      &:hover {
+        background-color: rgba(0,0,0,.04);
+      }
+    }
+
+    .custom-next-month,
+    .custom-prev-month {
+        &:after {
+            content: "\e900";
+            font-size: 11px;
+        }
+    }
+
+    .custom-next-month:after {
+        transform: translateX(-2px) rotate(-90deg);
+        right: -4px;
+    }
+    .custom-prev-month:after {
+      transform: translateX(2px) rotate(90deg);
+      left: -4px;
+    }
+
+    .custom-next-year,
+    .custom-prev-year {
+      @include border-radius(50%);
+      &:after {
+        content: "\e903";
+      }
+    }
+
+    .custom-next-year:after {
+      transform: translateX(-2px) rotate(180deg);
+      margin-right: -4px;
+    }
+  }
+
+
+
+

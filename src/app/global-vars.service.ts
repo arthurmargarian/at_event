@@ -25,4 +25,10 @@ export class GlobalVarsService {
       headers: this.headers
     });
   }
+
+  getAllLocations(): Observable<any> {
+    return this.http.get(`${this.url}/getLocations`, {
+      headers: this.headers
+    });
+  }
 }

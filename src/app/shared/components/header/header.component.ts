@@ -34,6 +34,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   public isAuth: boolean;
   private currentTooltip: NgbTooltip;
   public defaultProfilePic = 'assets/images/default-profile-pic.png';
+  private patchLanguageFromDB: boolean;
 
   constructor(private fb: FormBuilder,
               private router: Router,
@@ -88,6 +89,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       .subscribe((res) => {
         if (res && res.model && res.model.language) {
           this.languageForm.get('language').patchValue(res.model.language);
+          this.translateService.setDefaultLang(res.model.language === LanguageEnum.English ? 'en' : 'hy');
         }
       });
   }

@@ -1,4 +1,362 @@
-<p>
-  create-event works!
-</p>
-barev vacho
+<div class="div" *ngIf="form">
+  <div class="d-flex flex-end">
+    <a class="my-btn"
+       (click)="onCreateFromMyProfile()"
+       *ngIf="isRouteFromOrg; else createFromOrg"
+       [routerLink]="['/profile', currentUser.id, 'create-event']">
+      <i class="icon-plus color-ae m-r-5 fs-11"></i>
+      {{'GENERAL_LABELS.create_event_form_profile' | translate}}
+    </a>
+    <ng-template #createFromOrg>
+      <a class="my-btn"
+         (click)="this.isSelectTypeView = false"
+         [routerLink]="['/profile', currentUser?.id, 'create-event']" [queryParams]="{selectOrg: true}">
+        <i class="icon-plus color-ae m-r-5 fs-11"></i>
+        {{'GENERAL_LABELS.create_event_form_org' | translate}}
+      </a>
+    </ng-template>
+  </div>
+
+  <div class="employee-grid-view p-20" *ngIf="!isLoading && isSelectOrgView">
+    <span style="display: block;margin-bottom: 30px;font-size: 20px; text-align: center">
+      {{'GENERAL_LABELS.select_org' | translate}}
+    </span>
+    <div class="row flex-center" *ngIf="organizations">
+      <div *ngFor="let organization of organizations" class="col-xl-2 col-lg-3 col-sm-4 col-6 grid-item">
+        <a class="new-card"
+           (click)="onCreateFormOrg(organization);"
+           [routerLink]="['/organizations', organization.id, 'create-org-event']">
+          <div class="new-card-block text-center">
+            <div class="new-card-profile-header m-t-5">
+              <div>
+                <img [src]="organization.photoUrl" alt="" style="object-fit: cover;">
+              </div>
+            </div>
+            <div class="new-card-footer text-center">
+              <a class="my-link"
+                 (click)="onCreateFormOrg(organization);"
+                 [routerLink]="['/organizations', organization.id, 'create-org-event']">
+                {{organization.name}}
+              </a>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="employee-grid-view p-20" *ngIf="isSelectTypeView">
+    <span style="display: block; margin-bottom: 30px; font-size: 20px; text-align: center">
+      {{'GENERAL_LABELS.select_type' | translate}}
+    </span>
+    <div class="row flex-center">
+      <div *ngFor="let type of eventTypes" class="col-xl-2 col-lg-3 col-sm-4 col-6 grid-item">
+        <a class="new-card"
+           (mouseenter)="changeTypePhotoTheme(false, type)"
+           (mouseleave)="changeTypePhotoTheme(true, type)"
+           (click)="onTypeSelect(type)">
+          <div class="new-card-block text-center">
+            <div class="new-card-profile-header">
+              <div>
+                <img [id]="type.id" [src]="'assets/images/types/'+type.label+'_.jpg'" alt="" style="object-fit: cover;">
+              </div>
+            </div>
+            <div class="new-card-footer text-center">
+              <a class="my-link"
+                 (click)="onTypeSelect(type)">
+                {{'EVENT_TYPES.' + type.label | translate}}
+              </a>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="isCreateView">
+    <div class="d-flex flex-start">
+      <a class="my-btn"
+         (click)="onBackToTypeSelect()">
+        <i class="icon-back color-ae m-r-5 fs-11"></i>
+        {{'EVENT_ADD_EDIT.back_to_types' | translate}}
+      </a>
+    </div>
+
+    <form class="new-form m-t-20" *ngIf="form" [formGroup]="form">
+      <div class="row row-sm-gap7">
+        <div class="col-sm-6 col-sm-gap">
+          <div class="form-card">
+            <div class="form-card-header">
+          <span class="title d-flex align-center">
+            <i class="icon-info color-ae"></i>
+            {{'EVENT_ADD_EDIT.main_information' | translate}}
+          </span>
+            </div>
+            <div class="form-card-content">
+              <div class="row">
+                <div class="col-sm-4">
+                  <label class="new-label">
+                    {{ "GENERAL_LABELS.name" | translate }}:
+                  </label>
+                </div>
+                <div class="col-sm-6">
+                  <input formControlName="name"
+                         [class.validation-error]="form.get('name').errors && (form.get('name').touched || submitted)"
+                         class="new-element"
+                         placeholder="{{ 'GENERAL_LABELS.enter' | translate }}">
+                  <div class="messages text-danger">
+                    <div *ngIf="form.get('name').errors && (form.get('name').touched || submitted)">
+                      <div [hidden]="!form.get('name').errors.required">
+                        {{'GENERAL_VALIDATIONS.required_field' | translate}}
+                      </div>
+                      <div [hidden]="!form.get('name').errors.minlength">
+                        {{'GENERAL_VALIDATIONS.min_character' | translate:{value: 5} }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-4">
+                  <label class="new-label">
+                    {{ "GENERAL_LABELS.event_type" | translate }}:
+                  </label>
+                </div>
+                <div class="col-sm-6">
+                  <ng-select [items]="eventTypesOptions"
+                             [class.validation-error]="form.get('type').errors && (form.get('type').touched || submitted)"
+                             class="new-element"
+                             [placeholder]="'GENERAL_LABELS.select' | translate"
+                             bindLabel="label"
+                             bindValue="value"
+                             [clearable]="false"
+                             formControlName="type">
+                  </ng-select>
+                  <div class="messages text-danger">
+                    <div *ngIf="form.get('type').errors && (form.get('type').touched || submitted)">
+                      <div [hidden]="!form.get('type').errors.required">
+                        {{'GENERAL_VALIDATIONS.required_field' | translate}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-4">
+                  <label class="new-label">
+                    {{ "EVENT_ADD_EDIT.description" | translate }}:
+                  </label>
+                </div>
+                <div class="col-sm-8">
+                </div>
+              </div>
+              <div class="row m-t-10 m-b-15">
+                <div class="col-sm-12 p-l-30">
+                  <app-html-area [config]="{ height: '120px' }"
+                                 formControlName="description">
+                  </app-html-area>
+                </div>
+                <div class="messages text-danger p-l-30">
+                  <div *ngIf="form.get('description').errors && (form.get('description').touched || submitted)">
+                    <div [hidden]="!form.get('description').errors.maxlength">
+                      {{'GENERAL_VALIDATIONS.max_character' | translate:{value: 2000} }}
+                    </div>
+                    <div [hidden]="!form.get('description').errors.minlength">
+                      {{'GENERAL_VALIDATIONS.min_character' | translate:{value: 30} }}
+                    </div>
+                    <div [hidden]="!form.get('description').errors.required">
+                      {{'GENERAL_VALIDATIONS.required_field' | translate}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-sm-gap">
+          <div class="form-card">
+            <div class="form-card-header">
+          <span class="title d-flex align-center">
+            <i class="icon-date color-ae"></i>
+            <span>{{'EVENT_ADD_EDIT.date_and_time' | translate}}</span>
+          </span>
+            </div>
+            <div class="form-card-content">
+              <div formGroupName="dateGroup">
+                <div class="row">
+                  <div class="col-sm-4">
+                    <label class="new-label">{{'GENERAL_LABELS.start_date_and_time' | translate}}:</label>
+                  </div>
+                  <div class="col-sm-8">
+                    <div class="d-flex">
+                      <div class="datepicker-200">
+                        <app-raiser-datepicker formControlName="startDate"
+                                               [placeholder]="'GENERAL_PLACEHOLDERS.date' | translate"
+                                               class="datepicker-new m-r-15"
+                                               [ngClass]="{'validation-error':  form.get('dateGroup').get('startDate').errors && (form.get('dateGroup').get('startDate').touched || submitted)}">
+                        </app-raiser-datepicker>
+                      </div>
+                      <ngb-timepicker class="new-timepicker"
+                                      [spinners]="false"
+                                      formControlName="startTime"
+                                      [meridian]="false"
+                                      [ngClass]="{'validation-error': form.get('dateGroup').get('startTime').errors && (form.get('dateGroup').get('startTime').touched || submitted)}"
+                                      size="small">
+                      </ngb-timepicker>
+                    </div>
+                    <div class="messages text-danger">
+                      <div
+                        *ngIf="form.get('dateGroup').get('startDate').errors && (form.get('dateGroup').get('startDate').touched || submitted)">
+                        <div [hidden]="!form.get('dateGroup').get('startDate').errors['required']">
+                          {{'GENERAL_VALIDATIONS.required_field' | translate }}
+                        </div>
+                      </div>
+                      <div
+                        *ngIf="form.get('dateGroup').get('startTime').errors && (form.get('dateGroup').get('startTime').touched || submitted)">
+                        <div [hidden]="!form.get('dateGroup').get('startTime').errors['required']">
+                          {{'GENERAL_VALIDATIONS.required_field' | translate }}
+                        </div>
+                      </div>
+                      <div
+                        *ngIf="form.controls['dateGroup'].touched && form.controls['dateGroup'].errors">
+                        <div *ngIf="form.controls['dateGroup'].errors['range']">
+                          {{'GENERAL_VALIDATIONS.start_date_greater_than_end' | translate }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-4">
+                    <label class="new-label">{{'GENERAL_LABELS.end_date_and_time' | translate}}:</label>
+                  </div>
+                  <div class="col-sm-8">
+                    <div class="d-flex">
+                      <div class="datepicker-200">
+                        <app-raiser-datepicker formControlName="endDate"
+                                               [placeholder]="'GENERAL_PLACEHOLDERS.date' | translate"
+                                               class="datepicker-new m-r-15"
+                                               [ngClass]="{'validation-error':  form.get('dateGroup').get('endDate').errors && (form.get('dateGroup').get('endDate').touched || submitted)}">
+                        </app-raiser-datepicker>
+                      </div>
+                      <ngb-timepicker class="new-timepicker"
+                                      [spinners]="false"
+                                      formControlName="endTime"
+                                      [meridian]="false"
+                                      [ngClass]="{'validation-error': form.get('dateGroup').get('endTime').errors && (form.get('dateGroup').get('endTime').touched || submitted)}"
+                                      size="small">
+                      </ngb-timepicker>
+                    </div>
+                    <div class="messages text-danger">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-card">
+            <div class="form-card-header">
+          <span class="title d-flex align-center">
+            <i class="icon-location color-ae"></i>
+            {{'EVENT_ADD_EDIT.location' | translate}}
+          </span>
+            </div>
+            <div class="form-card-content">
+              <div class="row">
+                <div class="col-sm-4">
+                  <label class="new-label">
+                    {{ "EVENT_ADD_EDIT.region" | translate }}:
+                  </label>
+                </div>
+                <div class="col-sm-6">
+                  <ng-select [items]="locationsOptions"
+                             [class.validation-error]="form.get('region').errors && (form.get('region').touched || submitted)"
+                             class="new-element"
+                             [placeholder]="'GENERAL_LABELS.select' | translate"
+                             bindLabel="label"
+                             bindValue="value"
+                             [clearable]="false"
+                             formControlName="region">
+                  </ng-select>
+                  <div class="messages text-danger">
+                    <div *ngIf="form.get('region').errors && (form.get('region').touched || submitted)">
+                      <div [hidden]="!form.get('region').errors.required">
+                        {{'GENERAL_VALIDATIONS.required_field' | translate}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-4">
+                  <label class="new-label">
+                    <span *ngIf="!isYerevanSelected">
+                      {{ "EVENT_ADD_EDIT.city" | translate }}:
+                    </span>
+                    <span *ngIf="isYerevanSelected">
+                      {{ "EVENT_ADD_EDIT.district" | translate }}:
+                    </span>
+                  </label>
+                </div>
+                <div class="col-sm-6">
+                  <ng-select [items]="citiesOptions"
+                             [class.validation-error]="form.get('city').errors && (form.get('city').touched || submitted)"
+                             class="new-element"
+                             [placeholder]="'GENERAL_LABELS.select' | translate"
+                             bindLabel="label"
+                             bindValue="value"
+                             [clearable]="false"
+                             formControlName="city">
+                  </ng-select>
+                  <div class="messages text-danger">
+                    <div *ngIf="form.get('city').errors && (form.get('city').touched || submitted)">
+                      <div [hidden]="!form.get('city').errors.required">
+                        {{'GENERAL_VALIDATIONS.required_field' | translate}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-4">
+                  <label class="new-label">
+                    {{ "EVENT_ADD_EDIT.street_and_address" | translate }}:
+                  </label>
+                </div>
+                <div class="col-sm-6">
+                  <input formControlName="streetAndAddress"
+                         [class.validation-error]="form.get('streetAndAddress').errors && (form.get('streetAndAddress').touched || submitted)"
+                         class="new-element"
+                         placeholder="{{ 'GENERAL_LABELS.enter' | translate }}">
+                  <div class="messages text-danger">
+                    <div
+                      *ngIf="form.get('streetAndAddress').errors && (form.get('streetAndAddress').touched || submitted)">
+                      <div [hidden]="!form.get('streetAndAddress').errors.required">
+                        {{'GENERAL_VALIDATIONS.required_field' | translate}}
+                      </div>
+                      <div [hidden]="!form.get('streetAndAddress').errors.minlength">
+                        {{'GENERAL_VALIDATIONS.min_character' | translate:{value: 5} }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+    <div class="row">
+      <div class="col-sm-12 d-flex flex-end">
+        <button type="button"
+                class="btn-default color-ae m-l-10"
+                (click)="onCreateClick()">
+          {{'GENERAL_LABELS.create' | translate}}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-loader *ngIf="isLoading">
+</app-loader>

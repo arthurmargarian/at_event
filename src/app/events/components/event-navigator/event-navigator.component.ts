@@ -6,8 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./event-navigator.component.scss']
 })
 export class EventNavigatorComponent implements OnInit {
+  filters: {
+    name: string,
+    region: number[],
+    type: number[],
+    status: number[]
+  };
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }

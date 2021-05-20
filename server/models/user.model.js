@@ -121,16 +121,44 @@ module.exports.updateUsersById = function (user, callback) {
   UserModel.findOneAndUpdate(query, updateQuery, callback);
 }
 module.exports.updateUserInterests = function (id, eventTypeIds, callback) {
-  const query = {id: id};
+  const findQuery = {id: id};
   const updateQuery = {
     interestedTypeIds: eventTypeIds,
   };
-  UserModel.findOneAndUpdate(query, updateQuery, callback);
+  UserModel.findOneAndUpdate(findQuery, updateQuery, callback);
 }
 
 module.exports.getUsersById = function (ids, callback) {
   const query = {id: ids};
   UserModel.find(query, callback);
+}
+
+module.exports.addEvent = function (userId, eventId, callback) {
+  const findQuery = {id: userId};
+  const updateQuery = {$push: {eventIds: eventId}};
+  const options = {new: true};
+  UserModel.findOneAndUpdate(findQuery, updateQuery, options, callback);
+}
+
+module.exports.removeEvent = function (userId, eventId, callback) {
+  const findQuery = {id: userId};
+  const updateQuery = {$pull: {eventIds: eventId}};
+  const options = {new: true};
+  UserModel.findOneAndUpdate(findQuery, updateQuery, options, callback);
+}
+
+module.exports.addInterestedEvent = function (userId, eventId, callback) {
+  const findQuery = {id: userId};
+  const updateQuery = {$push: {followingEventIds: eventId}};
+  const options = {new: true};
+  UserModel.findOneAndUpdate(findQuery, updateQuery, options, callback);
+}
+
+module.exports.removeInterestedEvent = function (userId, eventId, callback) {
+  const findQuery = {id: userId};
+  const updateQuery = {$pull: {followingEventIds: eventId}};
+  const options = {new: true};
+  UserModel.findOneAndUpdate(findQuery, updateQuery, options, callback);
 }
 
 module.exports.addFollower = function (followerId, followingId, callback) {

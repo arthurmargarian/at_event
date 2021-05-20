@@ -1,0 +1,23 @@
+<div class="custom-header">
+  <div class="d-flex">
+    <div class="d-flex left-buttons">
+      <button mat-icon-button class="custom-prev-year" (click)="previousClicked('year')">
+      </button>
+      <button class="custom-prev-month" (click)="previousClicked('month')">
+      </button>
+    </div>
+    <div class="label-wrapper">
+      <span class="custom-header-label">{{periodLabel}}</span>
+    </div>
+    <div class="d-flex right-buttons">
+      <button class="custom-next-month" (click)="nextClicked('month')">
+      </button>
+      <button mat-icon-button class="custom-next-year" (click)="nextClicked('year')">
+      </button>
+    </div>
+  </div>
+  <div class="today-wrapper">
+    <span mat-icon-button class="link today" (click)="setToday()">{{'GENERAL_LABELS.today' | translate}}</span>
+  </div>
+</div>
+

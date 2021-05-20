@@ -1,3 +1,175 @@
-<p>
-  dashboard works!
-</p>
+<div class="new-form m-t-20">
+  <div class="row row-sm-gap7">
+    <div class="col-sm-12 col-sm-gap main-card">
+      <div class="form-card">
+        <div class="form-card-header">
+          <div class="row align-center">
+            <div class="col-sm-6">
+              <span class="title d-flex align-center">
+                {{'GENERAL_LABELS.upcoming_events' | translate}}
+              </span>
+            </div>
+          </div>
+
+        </div>
+        <div class="form-card-content">
+          <app-events-grid [isUpcomingEvents] = true>
+          </app-events-grid>
+          <div class="row m-t-10">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+              <button class="my-btn"
+                      style="width: 100%"
+                      [routerLink]="['/events','navigator']">
+                <i class="fa fa-search color-ae m-r-5"></i>
+                {{'GENERAL_LABELS.find_more_in_navigate' | translate}}
+              </button>
+              <div class="col-sm-4"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="new-form m-t-20">
+  <div class="row row-sm-gap7">
+    <div class="col-sm-12 col-sm-gap main-card">
+      <div class="form-card">
+        <div class="form-card-header">
+          <div class="row align-center">
+            <div class="col-sm-6">
+              <span class="title d-flex align-center">
+                {{'GENERAL_LABELS.events_in_yerevan' | translate}}
+              </span>
+            </div>
+          </div>
+
+        </div>
+        <div class="form-card-content">
+          <app-events-grid [limit]="6"
+                           [isYerevanEvents]="true">
+          </app-events-grid>
+          <div class="row m-t-10">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+              <button class="my-btn"
+                      style="width: 100%"
+                      [routerLink]="['/events','navigator']">
+                <i class="fa fa-search color-ae m-r-5"></i>
+                {{'GENERAL_LABELS.find_more_in_navigate' | translate}}
+              </button>
+              <div class="col-sm-4"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="new-form m-t-20">
+  <div class="row row-sm-gap7">
+    <div class="col-sm-12 col-sm-gap main-card">
+      <div class="form-card">
+        <div class="form-card-header">
+          <div class="row align-center">
+            <div class="col-sm-6">
+              <span class="title d-flex align-center">
+                {{'GENERAL_LABELS.events_in_gyumri' | translate}}
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="form-card-content">
+          <app-events-grid
+                           [isGyumriEvents]="true">
+          </app-events-grid>
+          <div class="row m-t-10">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+              <button class="my-btn"
+                      style="width: 100%"
+                      [routerLink]="['/events','navigator']">
+                <i class="fa fa-search color-ae m-r-5"></i>
+                {{'GENERAL_LABELS.find_more_in_navigate' | translate}}
+              </button>
+              <div class="col-sm-4"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="new-form m-t-20">
+  <div class="row row-sm-gap7">
+    <div class="col-sm-12 col-sm-gap main-card">
+      <div class="form-card">
+        <div class="form-card-header">
+          <div class="row align-center">
+            <div class="col-sm-6">
+              <span class="title d-flex align-center">
+                {{'GENERAL_LABELS.party_events' | translate}}
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="form-card-content">
+          <app-events-grid
+            [isPartyEvents]="true">
+          </app-events-grid>
+          <div class="row m-t-10">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+              <button class="my-btn"
+                      style="width: 100%"
+                      [routerLink]="['/events','navigator']">
+                <i class="fa fa-search color-ae m-r-5"></i>
+                {{'GENERAL_LABELS.find_more_in_navigate' | translate}}
+              </button>
+              <div class="col-sm-4"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="new-form m-t-20">
+  <div class="row row-sm-gap7">
+    <div class="col-sm-12 col-sm-gap main-card">
+      <div class="form-card">
+        <div class="form-card-header">
+          <div class="row align-center">
+            <div class="col-sm-6">
+              <span class="title d-flex align-center">
+                {{'GENERAL_LABELS.music_events' | translate}}
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="form-card-content">
+          <app-events-grid
+            [isMusicEvents]="true">
+          </app-events-grid>
+          <div class="row m-t-10">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+              <button class="my-btn"
+                      style="width: 100%"
+                      [routerLink]="['/events','navigator']">
+                <i class="fa fa-search color-ae m-r-5"></i>
+                {{'GENERAL_LABELS.find_more_in_navigate' | translate}}
+              </button>
+              <div class="col-sm-4"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

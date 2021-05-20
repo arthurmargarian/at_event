@@ -17,9 +17,9 @@
               </h6>
             </div>
             <div class="new-card-other-info">
-              <div class="d-flex flex-center align-center branch-name color-ae-font">
+              <div class="d-flex flex-center align-center branch-name color-ae-font font-italic">
                 <span class="employee-name m-r-5" *ngFor="let typeId of organization.orgEventTypeIds; let i = index">
-                   {{"EVENT_TYPES." + getEventTypeLabel(typeId) + "" | translate}}<span *ngIf="i !== organization.orgEventTypeIds.length-1"> | </span>
+                   {{"EVENT_TYPES." + getEventTypeLabel(typeId) + "" | translate}}<span *ngIf="i !== organization.orgEventTypeIds.length-1"> / </span>
                 </span>
               </div>
               <div class="d-flex flex-center align-center branch-name">

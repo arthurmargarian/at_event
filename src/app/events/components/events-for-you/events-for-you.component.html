@@ -1,5 +1,45 @@
-<app-events-grid></app-events-grid>
+<div class="new-form m-t-20">
+  <div class="row row-sm-gap7">
+    <div class="col-sm-12 col-sm-gap main-card">
+      <div class="form-card">
+        <div class="form-card-header">
+          <div class="row align-center">
+            <div class="col-sm-6">
+              <span class="title d-flex align-center">
+                  <i class="icon-skills color-ae"></i>
+                {{'NOTIFY_MESSAGES.for_you_title' | translate}}
+              </span>
+            </div>
+            <div class="col-sm-6 d-flex flex-end">
+              <button class="my-btn"
+                 (click)="setInterestsClick()">
+                <i class="icon-skills color-ae m-r-5"></i>
+                {{'HEADER.LABELS.set_interests' | translate}}
+              </button>
+            </div>
+          </div>
 
+        </div>
+        <div class="form-card-content">
+          <app-events-grid></app-events-grid>
+          <div class="row m-t-10">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+              <button class="my-btn"
+                      style="width: 100%"
+                      [routerLink]="['/events','navigator']"
+                      (click)="setInterestsClick()">
+                <i class="fa fa-search color-ae m-r-5"></i>
+                {{'GENERAL_LABELS.find_more_in_navigate' | translate}}
+              </button>
+            <div class="col-sm-4"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div bsModal
      #interestsModal="bs-modal"

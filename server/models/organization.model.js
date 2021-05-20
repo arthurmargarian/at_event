@@ -1,8 +1,6 @@
 const mongoose = require('mongoose');
 const autoIncrement = require('mongoose-auto-increment');
 
-const UserModel = require('./user.model');
-
 
 const OrganizationSchema = mongoose.Schema({
   id: {
@@ -117,6 +115,20 @@ module.exports.addFollower = function (followerId, orgId, callback) {
 module.exports.removeFollower = function (followerId, orgId, callback) {
   const findQuery = {id: orgId};
   const updateQuery = {$pull: {followerIds: followerId}};
+  const options = {new: true};
+  OrganizationModel.findOneAndUpdate(findQuery, updateQuery, options, callback);
+}
+
+module.exports.addEvent = function (orgId, eventId, callback) {
+  const findQuery = {id: orgId};
+  const updateQuery = {$push: {eventIds: eventId}};
+  const options = {new: true};
+  OrganizationModel.findOneAndUpdate(findQuery, updateQuery, options, callback);
+}
+
+module.exports.removeEvent = function (orgId, eventId, callback) {
+  const findQuery = {id: orgId};
+  const updateQuery = {$pull: {eventIds: eventId}};
   const options = {new: true};
   OrganizationModel.findOneAndUpdate(findQuery, updateQuery, options, callback);
 }

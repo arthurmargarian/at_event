@@ -65,7 +65,7 @@ export class InterestsComponent implements OnInit, OnChanges {
   private getEventTypes() {
     this.globalVarsService.getEventTypes()
       .subscribe(res => {
-        this.eventTypes = res.model.map(item => {
+        const options = res.model.map(item => {
           let typeName = null;
           this.translateService.get(`EVENT_TYPES.${item.label}`)
             .subscribe(message => {
@@ -73,7 +73,7 @@ export class InterestsComponent implements OnInit, OnChanges {
             });
           return new SelectOption(typeName, +item.id);
         });
-        console.log(this.eventTypeIds);
+        this.eventTypes = options;
       });
   }
 

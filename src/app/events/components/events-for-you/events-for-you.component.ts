@@ -2,6 +2,7 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { GlobalVarsService } from '../../../global-vars.service';
 import { UserInterface } from '../../../infratructure/interfaces/user.interface';
 import { ModalDirective } from 'ngx-bootstrap';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-events-for-you',
@@ -12,10 +13,11 @@ export class EventsForYouComponent implements OnInit {
   currentUser: UserInterface;
   @ViewChild('interestsModal') public interestsModal: ModalDirective;
 
-  constructor(private globalVarsService: GlobalVarsService) {
+  constructor(private globalVarsService: GlobalVarsService, private titleService: Title) {
   }
 
   ngOnInit() {
+    this.titleService.setTitle('At Event | For You');
     this.getSignedUserFromService();
   }
 
@@ -30,20 +32,18 @@ export class EventsForYouComponent implements OnInit {
   }
 
   private checkUserInterests(interestedTypeIds: number[]) {
-    if (interestedTypeIds.length) {
-      this.getEventsByType(interestedTypeIds);
-    } else {
+    if (!interestedTypeIds.length) {
       setTimeout(() => {
         this.interestsModal.show();
       }, 300);
     }
   }
 
-  private getEventsByType(interestedTypeIds: number[]): void {
-    console.log('asdgetEventsByType');
-  }
-
   onHideInterestsModalModal() {
     this.interestsModal.hide();
+  }
+
+  setInterestsClick() {
+    this.interestsModal.show();
   }
 }

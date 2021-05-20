@@ -1,0 +1,46 @@
+:host {
+  .employee-grid-view {
+    .row {
+      margin-left: -6px !important;
+      margin-right: -6px !important;
+
+      [class*='col-sm'] {
+        padding-left: 6px !important;
+        padding-right: 6px !important;
+      }
+    }
+  }
+
+  /deep/ .paginator {
+    padding: 0 !important;
+  }
+}
+
+.grid-item .new-card {
+  display: block;
+
+  &:hover {
+    color: unset;
+  }
+}
+
+.new-card-profile-header {
+  padding: 0 !important;
+
+  img {
+    width: 150px !important;
+    height: 150px !important;
+    border-radius: 10px !important;
+  }
+
+  .new-card-other-info {
+    padding: 0 10px !important;
+  }
+}
+
+.grid-item .new-card .new-card-block .new-card-profile-header img{
+  width: 100% !important;
+  height: unset !important;
+  border-radius: 0 !important;
+  border: none;
+}

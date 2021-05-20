@@ -47,6 +47,7 @@
   },
   "GENERAL_PLACEHOLDERS": {
     "email": "Enter Email",
+    "date": "yyyy-mm-dd",
     "first_name": "Enter First Name",
     "last_name": "Enter Last Name",
     "contact_number": "Enter Contact Number",
@@ -64,21 +65,36 @@
     "new_org": "New Organization",
     "edit_org": "Edit {{value}} Organization",
     "name": "Name",
+    "today": "Today",
     "create": "Create",
     "update": "Update",
     "delete": "Delete",
     "enter": "Enter",
     "later": "Later",
+    "start_date_and_time": "Start Date and Time",
+    "end_date_and_time": "End Date and Time",
     "save": "Save",
     "create_event_from_org": "Create Event from {{value}}",
     "select": "Select",
     "contact_email": "Contact Email",
     "event_organization": "Event Organization",
     "view_organization": "View Organization",
+    "view_more_details": "View More Details",
     "about": "About",
     "address": "Address",
     "selected": "Selected",
+    "upcoming_events": "Upcoming Events",
+    "events_in_yerevan": "Events in Yerevan",
+    "events_in_gyumri": "Events in Gyumri",
+    "party_events": "Party Events",
+    "music_events": "Music Events",
+    "create_event_form_profile": "Create Event Form My Profile",
+    "create_event_form_org": "Create Event Form My Organizations",
+    "select_org": "Select the organization from which you want to create an event.",
+    "select_type": "Select type for new event.",
     "event_types": "Event Types",
+    "find_more_in_navigate": "Find more events in Navigator",
+    "event_type": "Event Type",
     "contact_number": "Contact Number",
     "org_delete_title": "Delete {{value}} Organization",
     "org_delete_message": "Аre you sure you want to delete {{value}} Organization?",
@@ -88,8 +104,9 @@
   "GENERAL_VALIDATIONS": {
     "required_field": "Required Field",
     "password_is_not_match": "Passwords is not match",
+    "start_date_greater_than_end": "Start date can't be greater than end date",
     "min_character": "This field needs to be at least {{value}} characters.",
-    "max_character": "This field needs to be more then {{value}} characters."
+    "max_character": "This field can't be more then {{value}} characters."
   },
   "HEADER": {
     "TITLES": {
@@ -121,8 +138,10 @@
     "unfollow": "Unfollowing {{value}}",
     "hidden_info": "This information was hidden from others.",
     "profile_info_updated": "Profile Info Updated.",
+    "event_created": "{{value}} Event Created.",
     "interests_title": "Let us know Your interests",
     "interests": "Your Interests are set.",
+    "for_you_title": "All Events that may interest you.",
     "interests_message": "Please select the types of events that may interest you.",
     "new_org_created": "New Organization Created.",
     "org_updated": "Your Organization Updated.",
@@ -135,7 +154,7 @@
   "NOT_FOUND": {
     "navigate": "Navigate to Dashboard"
   },
-  "USER_PROFILE":{
+  "USER_PROFILE": {
     "event_creator": "Event Creator",
     "edit_organization": "Edit Organization",
     "edit_profile": "Edit Profile",
@@ -158,17 +177,29 @@
     "FOLLOWING": {
       "TITLES": {
         "events": "Events",
-        "users":"Users",
+        "users": "Users",
         "organizations": "Organizations"
       }
     }
   },
-  "EVENT_STATUSES":{
-    "active": "Active",
-    "upcoming": "Upcoming",
-    "past": "Past",
-    "canceled": "Canceled",
-    "closed": "Closed",
-    "all": "All"
+  "EVENT_STATUSES": {
+    "Active": "Active",
+    "Upcoming": "Upcoming",
+    "Past": "Past",
+    "Canceled": "Canceled",
+    "Closed": "Closed",
+    "All": "All"
+  },
+  "EVENT_ADD_EDIT": {
+    "back_to_types": "Back To Types",
+    "main_information": "Main Information",
+    "region": "Region",
+    "city": "City",
+    "district": "District",
+    "street_and_address": "Street and Address",
+    "other_details": "Other Details",
+    "date_and_time": "Date and Time",
+    "location": "Location",
+    "description": "Description"
   }
 }

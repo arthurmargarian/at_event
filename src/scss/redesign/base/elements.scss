@@ -281,6 +281,13 @@ button {
   }
 }
 
+.datepicker-200 {
+  width: 200px !important;
+  .mat-form-field {
+    padding-left: 0 !important;
+  }
+}
+
 .datepicker-full-width {
   width: 100% !important;
   .mat-form-field {

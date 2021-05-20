@@ -1,0 +1,48 @@
+<div class="datepicker">
+  <label>
+    <span class="datepicker__label" *ngIf="label">{{ label }}</span>
+    <mat-form-field class="datepicker__field">
+      <input [min]="minDate" [max]="maxDate"
+             (focusout)="onFocusOut()"
+             [disabled]="!!controlDisabled || !!inputDisabled"
+             [(ngModel)]="value"
+             matInput
+             [matDatepicker]="picker"
+             [matDatepickerFilter]="filterOut.bind(this)"
+             [placeholder]="placeholder"
+             [dateFormat]="dateFormats.display.dateInput"
+             (validateInput)="getEmitedError($event)"
+             [clearInput]="clearInput"
+             appDatePickerMask
+             (dateChange)="onDateChange($event)"
+             [inputValue]="value"
+             maxlength="{{dateFormats.display.dateInput.length}}">
+      <mat-datepicker #picker [disabled]="controlDisabled"
+                      [panelClass]="'start-view-' + startView"
+                      [calendarHeaderComponent]="customHeader ? datepickerHeader: ''"
+                      (monthSelected)="monthSelected($event)"
+                      (yearSelected)="yearSelected($event)"
+                      [startView]="startView"></mat-datepicker>
+      <button type="button" (click)="picker.open()" class="datepicker__open" [ngClass]="{'disabled' : controlDisabled}"></button>
+    </mat-form-field>
+  </label>
+  <span *ngIf="datePickerError" class="messages text-danger">
+    <div *ngIf="datePickerError.wrongYearRange">
+      {{'GENERAL_VALIDATIONS.wrong_year_range' | translate :
+      { min: datePickerError.wrongYearRange[0],
+        max: datePickerError.wrongYearRange[1] } }}
+    </div>
+    <div *ngIf="datePickerError.wrongDateFormat">
+      {{'GENERAL_VALIDATIONS.wrong_date_format' | translate :
+      { value: datePickerError.wrongDateFormat } }}
+    </div>
+    <div *ngIf="datePickerError.wrongRange">
+      <span *ngIf="datePickerError.wrongRange === 'minError'; else maxError">
+        {{'GENERAL_VALIDATIONS.min_date_error' | translate : {value: minDate | date: dateFormat} }}
+      </span>
+      <ng-template #maxError>
+        <span>{{'GENERAL_VALIDATIONS.max_date_error' | translate : {value: maxDate | date: dateFormat} }}</span>
+      </ng-template>
+    </div>
+  </span>
+</div>
