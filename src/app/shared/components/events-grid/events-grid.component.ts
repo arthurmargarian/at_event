@@ -61,7 +61,7 @@ export class EventsGridComponent implements OnInit, OnChanges {
     this.globalVarsService.currentOrg.subscribe(org => {
       if (org) {
         this.currentOrg = org;
-        this.checkUrl();
+        this.setEvents(this.isUserEvents, this.isCreatedEvents);
       } else {
         this.getCurrentUserFormService();
       }
@@ -71,7 +71,7 @@ export class EventsGridComponent implements OnInit, OnChanges {
   private getCurrentUserFormService() {
     this.userProfileService.currentUser.subscribe(user => {
       this.currentUser = user;
-      this.checkUrl();
+      this.setEvents(this.isUserEvents, this.isCreatedEvents);
     });
   }
 
@@ -93,7 +93,7 @@ export class EventsGridComponent implements OnInit, OnChanges {
           this.isUserEvents = paths[1] === 'profile';
           this.currentTab = paths[4];
           this.ownerId = +paths[2];
-          this.setEvents(this.isUserEvents, this.isCreatedEvents);
+          this.getOrgFromService();
         }
       }
     }
