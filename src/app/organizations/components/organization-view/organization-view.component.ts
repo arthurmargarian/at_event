@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { OrganizationService } from '../../../shared/services/organization.service';
 import { OrganizationModel } from '../../../infratructure/models/organization.model';
@@ -16,7 +16,7 @@ import { ModalDirective } from 'ngx-bootstrap';
   templateUrl: './organization-view.component.html',
   styleUrls: ['./organization-view.component.scss']
 })
-export class OrganizationViewComponent implements OnInit {
+export class OrganizationViewComponent implements OnInit, OnDestroy {
   @ViewChild('signInModal') public signInModal: ModalDirective;
   isLoading: boolean;
   currentOrg: OrganizationModel;
@@ -36,6 +36,10 @@ export class OrganizationViewComponent implements OnInit {
 
   ngOnInit() {
     this.routerParamSubscriber();
+  }
+
+  ngOnDestroy(): void {
+    this.globalVarsService.currentOrg.next(null);
   }
 
   private routerParamSubscriber(): void {
@@ -111,4 +115,6 @@ export class OrganizationViewComponent implements OnInit {
         this.toastr.success(message, '', {positionClass: 'toast-bottom-right', progressBar: true, progressAnimation: 'decreasing'});
       });
   }
+
+
 }

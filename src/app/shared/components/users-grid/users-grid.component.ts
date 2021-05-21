@@ -68,8 +68,10 @@ export class UsersGridComponent implements OnInit {
 
   private getOrgFromService() {
     this.globalVarsService.currentOrg.subscribe(org => {
-      this.currentOrg = org;
-      this.getUsers(this.currentOrg.followerIds);
+      if (org) {
+        this.currentOrg = org;
+        this.getUsers(this.currentOrg.followerIds);
+      }
     });
   }
 }

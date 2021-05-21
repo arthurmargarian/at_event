@@ -51,6 +51,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.ngUnsubscribe.next();
     this.ngUnsubscribe.complete();
+    this.userProfileService.currentUser.next(null);
   }
 
   private initForm() {

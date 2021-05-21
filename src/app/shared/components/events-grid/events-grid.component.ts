@@ -15,8 +15,9 @@ import { AppSettings } from '../../../infratructure/constants/app.settings';
   styleUrls: ['./events-grid.component.scss']
 })
 export class EventsGridComponent implements OnInit, OnChanges {
-  @Input() limit = 6;
+  @Input() limit = 4;
   @Input() isUpcomingEvents: boolean;
+  @Input() isActiveEvents: boolean;
   @Input() isYerevanEvents: boolean;
   @Input() isGyumriEvents: boolean;
   @Input() isPartyEvents: boolean;
@@ -192,6 +193,15 @@ export class EventsGridComponent implements OnInit, OnChanges {
       this.eventService.getEventsByStatus(20)
         .subscribe(res => {
           if (res.model) {
+            console.log(res.model);
+            this.setLimitedEvents(res.model);
+          }
+        });
+    }
+    if (this.isActiveEvents) {
+      this.eventService.getEventsByStatus(10)
+        .subscribe(res => {
+          if (res.model) {
             this.setLimitedEvents(res.model);
           }
         });
@@ -200,8 +210,8 @@ export class EventsGridComponent implements OnInit, OnChanges {
 
   private setLimitedEvents(allEvents: EventModel[]) {
     const events = allEvents;
-    if (events.length > 6) {
-      this.events = events.splice(0, events.length - 1);
+    if (events.length > this.limit) {
+      this.events = events.splice(0, this.limit);
     } else {
       this.events = events;
     }

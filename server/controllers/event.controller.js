@@ -136,7 +136,7 @@ module.exports.get_by_status = (req, res, next) => {
 };
 
 module.exports.get_by_type = (req, res, next) => {
-  const type = req.query.type;
+  const type = req.query.typeId;
   Event.getEventsByTypeId(type, (err, events) => {
     if (err) throw err;
     res.json({
