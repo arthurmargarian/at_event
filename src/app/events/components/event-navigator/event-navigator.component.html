@@ -1,5 +1,74 @@
-<p>
-  event-navigator works!
-</p>
-<app-events-grid [filters]="filters">
-</app-events-grid>
+<div class="row m-t-20 new-form" [formGroup]="filtersForm">
+  <div class="col-sm-12 col-sm-gap main-card">
+    <div class="form-card p-t-5">
+      <div class="form-card-header p-b-5">
+        <div class="row align-center">
+          <div class="col-sm-6">
+                <span class="title d-flex align-center">
+                    <i class="icon-filter color-ae"></i>
+                  {{'GENERAL_LABELS.filters' | translate}}
+                </span>
+          </div>
+        </div>
+      </div>
+      <div class="form-card-content">
+        <div class="row">
+          <div class="col-sm-3">
+            <razor-multiselect class="form-control no-label new-element"
+                               formControlName="status"
+                               [items]="statusesOptions"
+                               [placeholder]="'GENERAL_LABELS.status' | translate"
+                               bindValue="value">
+            </razor-multiselect>
+          </div>
+          <div class="col-sm-3">
+            <razor-multiselect class="form-control no-label new-element"
+                               formControlName="type"
+                               [items]="eventTypesOptions"
+                               [placeholder]="'GENERAL_LABELS.type'| translate"
+                               bindValue="value">
+            </razor-multiselect>
+          </div>
+          <div class="col-sm-3">
+            <razor-multiselect class="form-control no-label new-element"
+                               formControlName="region"
+                               [items]="locationsOptions"
+                               [placeholder]="'GENERAL_LABELS.region'| translate"
+                               bindValue="value">
+            </razor-multiselect>
+          </div>
+          <div class="col-sm-3 d-flex flex-center">
+            <button class="my-btn m-t-0"
+                    (click)="onFiltersApply()">
+              <i class="fa fa-search color-ae m-r-5"></i>
+              {{'GENERAL_LABELS.apply_filters' | translate}}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-12 m-t-10 m-b-5">
+    <div class="row m-b-10">
+      <div class="col-sm-10 d-flex">
+        <div class="search-wrapper d-flex" style="width: 28.5%">
+          <i class="icon-search color-ae"></i>
+          <input formControlName="name"
+                 placeholder="{{ 'GENERAL_LABELS.search_by_name' | translate }}"
+                 type="text"/>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<hr>
+<span *ngIf="filteredEvents?.length" class="m-l-5 m-t-8 m-b-5 dis-block font-italic">
+  {{ 'GENERAL_LABELS.found' | translate:{value: filteredEvents.length} }}
+</span>
+<div [hidden]="isLoading">
+  <app-events-grid [filteredEvents]="filteredEvents">
+  </app-events-grid>
+</div>
+
+<app-loader [hidden]="!isLoading">
+</app-loader>

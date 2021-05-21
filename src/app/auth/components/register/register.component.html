@@ -59,6 +59,31 @@
           <div class="card-row">
             <div class="row">
               <div class="col-sm-4">
+                <label class="new-label" for="lastName">{{'GENERAL_LABELS.last_name' | translate}}:</label>
+              </div>
+              <div class="col-sm-8">
+                <input formControlName="lastName"
+                       type="text"
+                       id="lastName"
+                       class="new-element"
+                       [ngClass]='{"validation-error": form.get("lastName").errors && (form.get("lastName").touched || submitted)}'
+                       placeholder="{{'GENERAL_PLACEHOLDERS.last_name' | translate}}">
+                <div class="messages text-danger">
+                  <div *ngIf="form.get('lastName').errors && (form.get('lastName').touched || submitted)">
+                    <div [hidden]="!form.get('lastName').errors.required">
+                      {{'GENERAL_VALIDATIONS.required_field' | translate}}
+                    </div>
+                    <div [hidden]="!form.get('lastName').errors.minlength">
+                      {{'GENERAL_VALIDATIONS.min_character' | translate:{value:2} }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-row">
+            <div class="row">
+              <div class="col-sm-4">
                 <label class="new-label" for="contactNumber">{{'GENERAL_LABELS.contact_number' | translate}}:</label>
               </div>
               <div class="col-sm-8">
@@ -97,31 +122,6 @@
                     </div>
                     <div [hidden]="!form.get('contactEmail').errors.email">
                       {{'AUTH.validations.invalid_email' | translate}}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="card-row">
-            <div class="row">
-              <div class="col-sm-4">
-                <label class="new-label" for="lastName">{{'GENERAL_LABELS.last_name' | translate}}:</label>
-              </div>
-              <div class="col-sm-8">
-                <input formControlName="lastName"
-                       type="text"
-                       id="lastName"
-                       class="new-element"
-                       [ngClass]='{"validation-error": form.get("lastName").errors && (form.get("lastName").touched || submitted)}'
-                       placeholder="{{'GENERAL_PLACEHOLDERS.last_name' | translate}}">
-                <div class="messages text-danger">
-                  <div *ngIf="form.get('lastName').errors && (form.get('lastName').touched || submitted)">
-                    <div [hidden]="!form.get('lastName').errors.required">
-                      {{'GENERAL_VALIDATIONS.required_field' | translate}}
-                    </div>
-                    <div [hidden]="!form.get('lastName').errors.minlength">
-                      {{'GENERAL_VALIDATIONS.min_character' | translate:{value:2} }}
                     </div>
                   </div>
                 </div>

@@ -105,6 +105,7 @@ export class RegisterComponent implements OnInit {
   }
 
   public signUpSubmit(): void {
+    this.submitted = true;
     if (this.form.valid) {
       const model = new UserModel(0);
       const values = this.form.value;

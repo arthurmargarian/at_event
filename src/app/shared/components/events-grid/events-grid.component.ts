@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { EventService } from '../../services/event.service';
 import { EventModel } from '../../../infratructure/models/event.model';
@@ -21,12 +21,8 @@ export class EventsGridComponent implements OnInit, OnChanges {
   @Input() isGyumriEvents: boolean;
   @Input() isPartyEvents: boolean;
   @Input() isMusicEvents: boolean;
-  @Input() filters: {
-    name: string,
-    region: number[],
-    type: number[],
-    status: number[]
-  };
+  @Output() eventsForNavigator: EventEmitter<EventModel[]> = new EventEmitter();
+  @Input() filteredEvents: EventModel[];
   currentTab: string;
   events: EventModel[];
   allEvents: EventModel[];
@@ -52,8 +48,9 @@ export class EventsGridComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.filters && changes.filters.currentValue) {
-      this.searchEvents(this.filters);
+    if (changes.filteredEvents && changes.filteredEvents.currentValue) {
+      this.events = this.filteredEvents;
+      this.isLoading = false;
     }
   }
 
@@ -79,9 +76,8 @@ export class EventsGridComponent implements OnInit, OnChanges {
 
   private checkUrl(): void {
     const paths = this.router.url.split('/');
-    console.log(paths);
     if (paths[2] === 'navigator') {
-      this.getAllEvents();
+      this.isLoading = false;
     } else {
       if (paths[1] === 'dashboard') {
         this.getDashboardEvents();
@@ -210,20 +206,5 @@ export class EventsGridComponent implements OnInit, OnChanges {
       this.events = events;
     }
     this.isLoading = false;
-  }
-
-  private getAllEvents() {
-    this.eventService.getAllEvents().subscribe(res => {
-      this.events = res.model;
-      this.isLoading = false;
-    });
-  }
-
-  private searchEvents(filters: { name: string; region: number[]; type: number[]; status: number[] }) {
-    this.eventService.searchEvents(filters).subscribe(res => {
-      if (res) {
-        console.log(res.model);
-      }
-    });
   }
 }

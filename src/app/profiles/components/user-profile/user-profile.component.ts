@@ -95,8 +95,10 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   private getSignedUserFromService() {
     this.globalVarsService.signedInUser
       .subscribe(user => {
-        this.signedUser = user;
-        this.patchForm(this.signedUser);
+        if (user) {
+          this.signedUser = user;
+          this.patchForm(this.signedUser);
+        }
       });
   }
 

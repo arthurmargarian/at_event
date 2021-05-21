@@ -124,11 +124,11 @@
     }
   },
   "EVENT_STATUSES":{
-    "active": "Ակտիվ",
-    "upcoming": "Առաջիկա",
-    "past": "Անցած",
-    "canceled": "Չեղարկված",
-    "closed": "Փակված",
-    "all": "Բոլորը"
+    "Active": "Ակտիվ",
+    "Upcoming": "Առաջիկա",
+    "Past": "Անցած",
+    "Canceled": "Չեղարկված",
+    "Closed": "Փակված",
+    "All": "Բոլորը"
   }
 }
