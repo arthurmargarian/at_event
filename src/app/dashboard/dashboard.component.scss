@@ -1,0 +1,10 @@
+.form-card-header>div{
+  display: flex !important;
+  justify-content: center !important;
+  span{
+    display: block !important;
+    text-align: center !important;
+    margin: 5px 0;
+    font-size: 18px;
+  }
+}
