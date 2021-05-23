@@ -51,6 +51,7 @@ app.use(passport.session());
 require('./server/config/passport')(passport);
 
 // Routes
+// Routes
 app.use('/auth', auth);
 app.use('/user', user);
 app.use('/settings', userSettings);
